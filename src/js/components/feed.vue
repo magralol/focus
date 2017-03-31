@@ -1,10 +1,10 @@
 <template>
-  <h1>test component</h1>
+  <h1>feed component</h1>
 </template>
 
 <script>
 export default {
-  name: 'test',
+  name: 'feed',
   data () {
     return {}
   }

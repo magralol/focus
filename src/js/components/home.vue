@@ -2,9 +2,25 @@
   <div>
     <h1>Home view!</h1>
 
-    <p>count: {{ count }}</p>
+    <p>{{this.user}}</p>
 
-    <button v-on:click="inc()">click me!</button>
+    <p>sign in</p>
+    <form v-on:submit.prevent="signin()">
+      <input type="email" placeholder="email" v-model="email">
+      <input type="password" placeholder="password" v-model="password">
+      <input type="submit" value="sign in">
+    </form>
+
+    <br><br>
+    <p>register</p>
+    <form v-on:submit.prevent="register()">
+      <input type="text" placeholder="username" v-model="regUsername">
+      <input type="email" placeholder="email" v-model="regEmail">
+      <input type="password" placeholder="password" v-model="regPassword">
+      <input type="submit" value="register">
+    </form>
+    
+    <button v-on:click="signout()"> loggout </button>
   </div>
 </template>
 
@@ -12,16 +28,37 @@
 export default {
   name: 'home',
   data: function() {
-    return {}
-  },
-  computed: {
-    count: function() {
-        return this.$store.state.count;
+    return {
+      email: null,
+      password: null,
+      regUsername: null,
+      regEmail: null,
+      regPassword: null
     }
   },
+  computed: {
+    user: function() {
+        return this.$store.state.user;
+    }
+  },
+  watch: {
+      user: function(){
+         console.log("user changed ", this.user);
+         this.regEmail = null;
+         this.regPassword = null;
+         this.regUsername = null;
+         this.$router.push('feed');
+     } 
+  },
   methods: {
-    inc: function(e){
-      this.$store.dispatch('increment')
+    register: function(e){
+      this.$store.dispatch('registerUser', {email: this.regEmail, password: this.regPassword, username: this.regUsername});
+    },
+    signout: function(e){
+      this.$store.dispatch('signOutUser');
+    },
+    signin: function(e){
+      this.$store.dispatch('signInUser', {email: this.email, password: this.password});
     }
   }
 }
