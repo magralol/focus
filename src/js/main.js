@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 
 import App from './components/app.vue'
 import Home from './components/home.vue'
-import Test from './components/test.vue'
+import Feed from './components/feed.vue'
 
 require('../scss/style.scss');
 
@@ -15,7 +15,7 @@ new Vue({
     mode: 'hash',
     routes: [
       { path: '/', component: Home },
-      { path: '/test', component: Test }
+      { path: '/feed', component: Feed }
     ]
   }),
   render: h => h(App)
