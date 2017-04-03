@@ -38,20 +38,7 @@
     width: 350px; } }
 
 .feed_wrapper {
-  padding: 50px 20px; }
-
-.sign_out {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  padding: 5px 10px;
-  border: 1px solid #ccc;
-  cursor: pointer;
-  transition: all .3s ease-in-out;
-  font-size: 12px; }
-
-.sign_out:hover {
-  background: #fff; }
+  padding: 100px 20px; }
 
 .new_post_wrapper, .message_post {
   width: 100%;
@@ -94,7 +81,9 @@
   margin-bottom: 10px; }
 
 .message_box {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1); }
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility; }
 
 body {
   background: #f5f8fa;
