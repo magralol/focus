@@ -27,8 +27,8 @@ new Vue({
   router: new VueRouter({
     mode: 'hash',
     routes: [
-      { path: '/', component: Home },
-      { path: '/feed', component: Feed }
+      { path: '/', name: 'home', component: Home },
+      { path: '/feed', name: 'feed', component: Feed }
     ]
   }),
   render: h => h(App)

@@ -1,0 +1,48 @@
+#home-wrapper{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-box{
+  position: relative;
+  width: 95%;
+  height: 350px;
+  background: #fff;
+  text-align: center;
+  margin: 0 auto;
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 2px 5px 5px rgba(0,0,0,0.1);
+}
+
+.home-form{
+  width: 90%;
+  margin: 0 auto;
+}
+
+.home-form input{
+  margin-bottom: 5px;
+}
+
+.home-form label{
+  font-size: 10px;
+  display: block;
+  text-align: left;
+}
+
+
+.reg_btn{
+  width: 100%;
+  background: coral;
+  margin-top: 10px;
+}
+
+
+@media screen and (min-width: 768px){
+  .login-box{
+    width: 350px;
+  }
+}

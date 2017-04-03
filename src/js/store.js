@@ -16,12 +16,12 @@ export default new Vuex.Store({
     SET_USER: function (state, user){
       state.user = user;
     },
-    REMOVE_USER: function (state){
-      state.user = null;
-    },
     HANDEL_ERRORS: function (state, error) {
       state.error.code = error.code;
       state.error.msg = error.msg;
+    },
+    CLEAR_USER: function (state){
+      state.user = null;
     }
   },
   actions: {
@@ -45,7 +45,7 @@ export default new Vuex.Store({
     },
     signOutUser: function (ctx) {
       firebase.auth().signOut().then(function() {
-        ctx.commit("REMOVE_USER");
+        ctx.commit("CLEAR_USER");
       }).catch(function(error) {
         console.log("Sign out error", error);
       });
