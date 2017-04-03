@@ -9604,6 +9604,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'feed',
@@ -9853,8 +9856,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   return _c('div', [_c('div', {
     staticClass: "sign_out"
   }, [_c('span', [_vm._v("Sign out")])]), _vm._v(" "), _c('div', {
-    staticClass: "col-md-4 col-md-offset-4 feed_wrapper"
-  }, [_c('div', {
+    staticClass: "col-md-6 col-md-offset-3 feed_wrapper"
+  }, [_c('p', {
+    staticClass: "text-center",
+    staticStyle: {
+      "margin-bottom": "20px"
+    }
+  }, [_c('i', {
+    staticClass: "fa fa-eye fa-5x text-center"
+  })]), _vm._v(" "), _c('div', {
     staticClass: "new_post_wrapper clearfix"
   }, [_c('form', {
     staticClass: "message",

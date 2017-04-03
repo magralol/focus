@@ -3,9 +3,12 @@
   <div class="sign_out">
     <span>Sign out</span>
   </div>
-  <div class="col-md-4 col-md-offset-4 feed_wrapper">
+  <div class="col-md-6 col-md-offset-3 feed_wrapper">
 
 
+    <p class="text-center" style="margin-bottom: 20px;">
+      <i class="fa fa-eye fa-5x text-center"></i>
+    </p>
 
     <!-- New Post -->
     <div class="new_post_wrapper clearfix">
