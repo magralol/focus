@@ -7,6 +7,7 @@ export default new Vuex.Store({
   state: {
     count: 0,
     user: null,
+    posts: [],
     error:{
       code: null,
       msg: null
@@ -22,6 +23,16 @@ export default new Vuex.Store({
     },
     CLEAR_USER: function (state){
       state.user = null;
+    },
+    ADD_POSTS: function (state) {
+      firebase.database().ref('posts').once('value').then(function(data) {
+        let posts = [];
+        var postdata = data.val(); 
+        for(var post in data.val()){
+          posts.push({user: postdata[post].user, body: postdata[post].body, date: postdata[post].date});
+        }
+        state.posts = posts;
+      });
     }
   },
   actions: {
@@ -58,6 +69,20 @@ export default new Vuex.Store({
           console.log(err)
           ctx.commit("HANDEL_ERRORS", {code: err.code, msg: err.message});
       });
+    },
+    createPost: function (ctx, post) {
+      firebase.database().ref('posts').push({
+        user: post.user,
+        body: post.body,
+        date: Date.now()
+      }, function (err) {
+        if(err){
+          ctx.commit("HANDEL_ERRORS", {code: err.code, msg: err.message});
+        }else{
+          ctx.commit("ADD_POSTS");
+        }
+      });
+      //ctx.commit("ADD_POSTS");
     }
   }
 });

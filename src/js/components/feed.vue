@@ -9,22 +9,22 @@
 
     <!-- New Post -->
     <div class="new_post_wrapper clearfix">
-      <form class="message" action="index.html" method="post">
-        <textarea name="new_message" class="form-control" placeholder="Write a message..." id="new_message"></textarea>
-        <input type="submit" name="" class="btn btn-primary post_btn" value="Publish">
-        <span class="message_info">Character: 300</span>
+      <form class="message" v-on:submit.prevent="createPost()">
+        <textarea class="form-control" placeholder="Write a message..." id="new_message" v-model="postbody"></textarea>
+        <input type="submit" class="btn btn-primary post_btn" value="Publish">
+        <span class="message_info">Character: {{postbody.length}}/300</span>
 
       </form>
     </div>
 
 
     <!-- Posts feed -->
-    <div class="message_post clearfix">
+    <div class="message_post clearfix" v-for="post in posts">
       <div class="message_box">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        <p>{{ post.body }}</p>
       </div>
       <div class="message_info" style="line-height: 1px; padding-top: 20px;">
-        <p>@Username <span>11-03-17</span></p>
+        <p>@{{ post.user }} <span>{{ parseDate(post.date) }}</span></p>
       </div>
     </div>
 
@@ -37,13 +37,48 @@
 export default {
   name: 'feed',
   data () {
-    return {}
+    return {
+      postbody: "",
+      user: null,
+      posts: []
+    }
+  },
+  computed: {
+    posts: function() {
+        return this.$store.state.posts;
+    }
+  },
+  watch: {
+      posts: function(){
+         this.postbody = "";
+     } 
   },
   methods: {
     signout: function(e){
       this.$store.dispatch('signOutUser');
       this.$router.push({ name: 'home'});
+    },
+    createPost: function(e){
+      this.$store.dispatch('createPost', {user: this.user.displayName, body: this.postbody});
+    },
+    parseDate: function(date){
+      //TODO: FIX THIS with MOMENT.js
+      console.log("date;", date);
+      var d = new Date(date);
+
+      return d.getDay() + "-" + d.getMonth()+1 + "-" + d.getYear();
     }
+  },
+  mounted: function(){
+    this.user = this.$store.state.user;
+    firebase.database().ref('posts').once('value').then((data) => {
+        let p = [];
+        var postdata = data.val(); 
+        for(var post in data.val()){
+          p.push({user: postdata[post].user, body: postdata[post].body, date: postdata[post].date});
+        }
+        this.posts = p;
+      }); 
   }
 }
 </script>
