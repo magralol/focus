@@ -2,23 +2,11 @@
   "name": "focus",
   "version": "1.0.0",
   "description": "Social networking comsept application",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/magralol/focus.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/magralol/focus/issues"
-  },
-  "homepage": "https://github.com/magralol/focus#readme",
+  "private": true,
   "dependencies": {
     "vue": "^2.2.6",
-    "vue-router": "^2.3.1"
+    "vue-router": "^2.3.1",
+    "vuex": "^2.2.1"
   },
   "devDependencies": {
     "@types/node": "^7.0.12",
@@ -34,6 +22,7 @@
     "style-loader": "^0.16.1",
     "vue-loader": "^11.3.4",
     "vue-template-compiler": "^2.2.6",
+    "vuex": "^2.2.1",
     "webpack": "^2.3.2"
   }
 }
