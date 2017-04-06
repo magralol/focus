@@ -1,21 +1,10 @@
 .feed_wrapper{
-  padding: 50px 20px;
+  padding: 100px 20px;
 }
 
-.sign_out{
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  padding: 5px 10px;
-  border: 1px solid #ccc;
-  cursor: pointer;
-  transition: all .3s ease-in-out;
-  font-size: 12px;
-}
 
-.sign_out:hover{
-  background: #fff;
-}
+//Navigation bar
+
 
 .new_post_wrapper, .message_post{
   width: 100%;
@@ -65,4 +54,6 @@
 
 .message_box{
   border-bottom: 1px solid rgba(0,0,0,0.1);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }

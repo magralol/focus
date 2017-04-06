@@ -1,13 +1,40 @@
 <template>
 <div>
-  <div class="sign_out" v-on:click="signout()">
-    <span>Sign out</span>
-  </div>
-  <div class="col-md-4 col-md-offset-4 feed_wrapper">
+
+  <!-- Navigation bar
+   ============================================================ -->
+   <div class="navbar navbar-inverse navbar-fixed-top navigation-bar" role="navigation">
+
+     <div class="container">
+       <div class="navbar-header">
+         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+           <span class="sr-only">Menu</span>
+           <span class="icon-bar"></span>
+           <span class="icon-bar"></span>
+           <span class="icon-bar"></span>
+         </button>
+         <!-- <a href="" class="navbar-brand"><img src=""></a> -->
+       </div>
+       <div class="navbar-collapse collapse">
+         <ul class="nav navbar-nav navbar-right">
+           <li class="active"><a href="blog.html">Sign out</a></li>
+         </ul>
+       </div>
+     </div>
+
+   </div>
+
+  <div class="col-md-6 col-md-offset-3 feed_wrapper">
 
 
+    <!-- Logo
+     ============================================================ -->
+    <p class="text-center" style="margin-bottom: 20px;">
+      <i class="fa fa-eye fa-5x text-center"></i>
+    </p>
 
-    <!-- New Post -->
+    <!-- New Message
+     ============================================================ -->
     <div class="new_post_wrapper clearfix">
       <form class="message" v-on:submit.prevent="createPost()">
         <textarea class="form-control" placeholder="Write a message..." id="new_message" v-model="postbody"></textarea>
@@ -17,8 +44,8 @@
       </form>
     </div>
 
-
-    <!-- Posts feed -->
+    <!-- Message Feed
+     ============================================================ -->
     <div class="message_post clearfix" v-for="post in posts">
       <div class="message_box">
         <p>{{ post.body }}</p>
