@@ -18,6 +18,11 @@ var userSchema = new Schema({
         type: String,
         required: true, 
         unique: false
+    },
+	defaultfilter: { 
+        type: String,
+        required: true, 
+        unique: false
     }
 });
 
@@ -27,7 +32,8 @@ userSchema.statics.generateHash = function(pw) {
 }
 
 userSchema.statics.validatePassword = function(pw, toCompair) {
-    return bcrypt.compareSync(pw, toCompair);
+     return {pw: pw, toCompair: toCompair};    
+    //return bcrypt.compareSync(pw, toCompair);
 }
 
 module.exports = mongoose.model('user', userSchema);

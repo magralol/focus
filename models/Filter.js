@@ -1,28 +1,23 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var postSchema = new Schema({
+var filterSchema = new Schema({
 	user: { 
         type: String, 
         required: true, 
         unique: false
     },
-	body: { 
+	name: { 
         type: String, 
         required: true, 
         unique: false
     },
-    tags:[
+    allawedtags:[
         { 
             type : String 
         }
-    ],
-	date: { 
-        type: String, 
-        required: true, 
-        unique: false
-    }
+    ]
 });
 
 
-module.exports = mongoose.model('post', postSchema);
+module.exports = mongoose.model('filter', filterSchema);
