@@ -5,7 +5,7 @@
       <h3>Focus</h3>
 
       <!-- Register form -->
-      <form v-if="registerShow" class="register-form home-form" action="index.html" method="post">
+      <form v-show="!registerShow" class="register-form home-form" action="index.html" method="post">
 
         <!-- Username -->
         <label for="reg_username">Username</label>
@@ -21,11 +21,13 @@
 
         <!-- Register button -->
         <input type="submit" name="reg_btn" class="reg_btn btn" value="Register">
-
+        
+        <!-- Info tooltip -->
+        <span> Already have an account? <i v-on:click="registerShow = !registerShow">Sign in</i></span>
       </form>
 
       <!-- Sign in form -->
-      <form v-if="!registerShow" class="login-form home-form" action="index.html" method="post">
+      <form v-show="registerShow" class="login-form home-form" action="index.html" method="post">
 
         <!-- Email -->
         <label for="login_email">Email</label>
@@ -38,10 +40,9 @@
         <!-- Register button -->
         <input type="submit" name="login_btn" class="reg_btn btn" value="Sign in">
 
+        <!-- Info tooltip -->
+        <span> Dont have an account? <i v-on:click="registerShow = !registerShow">register!</i></span>
       </form>
-
-      <!-- Info tooltip -->
-      <span> Already have an account? <i v-on:click="registerShow = !registerShow">Sign in</i></span>
 
 
     </div>
