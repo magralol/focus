@@ -1,54 +1,9 @@
 <template>
 <div>
-  <div class="filter-active-bar">
-    <p><span>Work</span><i class="fa fa-circle" style="color: green;"></i></p>
-  </div>
-  <!-- Navigation bar
-   ============================================================ -->
-   <div class="navbar navbar-inverse navigation-bar" role="navigation">
-
-     <div class="container">
-       <div class="navbar-header text-center">
-         <span class="visible-xs">
-          <a href="#/feed">
-            <div class="col-xs-3 mobile-icon">
-              <i class="fa fa-commenting-o fa-2x"></i>
-            </div>
-          </a>
-
-          <a href="#/profile">
-            <div class="col-xs-3 mobile-icon mobile-active">
-              <i class="fa fa-user fa-2x"></i>
-            </div>
-          </a>
-
-          <a href="#/settings">
-            <div class="col-xs-3 mobile-icon">
-              <i class="fa fa-cog fa-2x"></i>
-            </div>
-          </a>
-
-          <a href="#">
-            <div class="col-xs-3 mobile-icon">
-              <i class="fa fa-times-circle-o fa-2x"></i>
-            </div>
-          </a>
-         </span>
-
-         <!-- <a href="" class="navbar-brand"><img src=""></a> -->
-       </div>
-       <div class="navbar-collapse collapse">
-         <ul class="nav navbar-nav navbar-right">
-           <li class="active"><a href="blog.html">Sign out</a></li>
-         </ul>
-       </div>
-     </div>
-
-   </div>
-
+  <navbar></navbar>
   <h3 style="margin: 30px auto;" class="text-center">@Username</h3>
 
-  <div class="col-md-6 col-md-offset-3 feed_wrapper">
+  <div class="col-md-4 col-md-offset-4 feed_wrapper">
     <!-- Message Feed
      ============================================================ -->
     <div class="message_post clearfix">
@@ -73,8 +28,12 @@
 </template>
 
 <script>
+import Navbar from './navbar.vue'
 export default {
   name: 'profile',
+  components: {
+    navbar: Navbar
+  },
   data () {
     return {}
   }

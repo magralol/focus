@@ -10,6 +10,7 @@ import Feed from './components/feed.vue'
 import Profile from './components/profile.vue'
 import Settings from './components/settings.vue'
 
+
 require('../scss/style.scss');
 
 Vue.use(VueRouter);
