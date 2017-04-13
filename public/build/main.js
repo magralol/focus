@@ -10562,49 +10562,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__navbar_vue__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__navbar_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__navbar_vue__);
 //
 //
 //
@@ -10652,8 +10611,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'feed',
+  components: {
+    navbar: __WEBPACK_IMPORTED_MODULE_0__navbar_vue___default.a
+  },
   data: function data() {
     return {};
   }
@@ -10733,51 +10696,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__navbar_vue__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__navbar_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__navbar_vue__);
 //
 //
 //
@@ -10808,8 +10728,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'profile',
+  components: {
+    navbar: __WEBPACK_IMPORTED_MODULE_0__navbar_vue___default.a
+  },
   data: function data() {
     return {};
   }
@@ -10821,49 +10745,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__navbar_vue__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__navbar_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__navbar_vue__);
 //
 //
 //
@@ -10948,8 +10831,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'settings',
+  components: {
+    navbar: __WEBPACK_IMPORTED_MODULE_0__navbar_vue___default.a
+  },
   data: function data() {
     return {};
   }
@@ -11008,69 +10895,9 @@ new __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */]({
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _vm._m(0)
+  return _c('div', [_c('navbar'), _vm._v(" "), _vm._m(0)], 1)
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('div', {
-    staticClass: "filter-active-bar"
-  }, [_c('p', [_c('span', [_vm._v("Work")]), _c('i', {
-    staticClass: "fa fa-circle",
-    staticStyle: {
-      "color": "green"
-    }
-  })])]), _vm._v(" "), _c('div', {
-    staticClass: "navbar navbar-inverse navigation-bar",
-    attrs: {
-      "role": "navigation"
-    }
-  }, [_c('div', {
-    staticClass: "container"
-  }, [_c('div', {
-    staticClass: "navbar-header text-center"
-  }, [_c('span', {
-    staticClass: "visible-xs"
-  }, [_c('a', {
-    attrs: {
-      "href": "#/feed"
-    }
-  }, [_c('div', {
-    staticClass: "col-xs-3 mobile-icon mobile-active"
-  }, [_c('i', {
-    staticClass: "fa fa-commenting-o fa-2x"
-  })])]), _vm._v(" "), _c('a', {
-    attrs: {
-      "href": "#/profile"
-    }
-  }, [_c('div', {
-    staticClass: "col-xs-3 mobile-icon"
-  }, [_c('i', {
-    staticClass: "fa fa-user fa-2x"
-  })])]), _vm._v(" "), _c('a', {
-    attrs: {
-      "href": "#/settings"
-    }
-  }, [_c('div', {
-    staticClass: "col-xs-3 mobile-icon"
-  }, [_c('i', {
-    staticClass: "fa fa-cog fa-2x"
-  })])]), _vm._v(" "), _c('a', {
-    attrs: {
-      "href": "#"
-    }
-  }, [_c('div', {
-    staticClass: "col-xs-3 mobile-icon"
-  }, [_c('i', {
-    staticClass: "fa fa-times-circle-o fa-2x"
-  })])])])]), _vm._v(" "), _c('div', {
-    staticClass: "navbar-collapse collapse"
-  }, [_c('ul', {
-    staticClass: "nav navbar-nav navbar-right"
-  }, [_c('li', {
-    staticClass: "active"
-  }, [_c('a', {
-    attrs: {
-      "href": "blog.html"
-    }
-  }, [_vm._v("Sign out")])])])])])]), _vm._v(" "), _c('div', {
+  return _c('div', {
     staticClass: "col-md-6 col-md-offset-3 feed_wrapper"
   }, [_c('div', {
     staticClass: "feed_tags"
@@ -11123,7 +10950,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "href": "#"
     }
-  }, [_vm._v("@Username")]), _vm._v(" "), _c('span', [_vm._v("11-03-17")])])])])])])
+  }, [_vm._v("@Username")]), _vm._v(" "), _c('span', [_vm._v("11-03-17")])])])])])
 }]}
 module.exports.render._withStripped = true
 if (false) {
@@ -11138,75 +10965,15 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _vm._m(0)
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('div', {
-    staticClass: "filter-active-bar"
-  }, [_c('p', [_c('span', [_vm._v("Work")]), _c('i', {
-    staticClass: "fa fa-circle",
-    staticStyle: {
-      "color": "green"
-    }
-  })])]), _vm._v(" "), _c('div', {
-    staticClass: "navbar navbar-inverse navigation-bar",
-    attrs: {
-      "role": "navigation"
-    }
-  }, [_c('div', {
-    staticClass: "container"
-  }, [_c('div', {
-    staticClass: "navbar-header text-center"
-  }, [_c('span', {
-    staticClass: "visible-xs"
-  }, [_c('a', {
-    attrs: {
-      "href": "#/feed"
-    }
-  }, [_c('div', {
-    staticClass: "col-xs-3 mobile-icon"
-  }, [_c('i', {
-    staticClass: "fa fa-commenting-o fa-2x"
-  })])]), _vm._v(" "), _c('a', {
-    attrs: {
-      "href": "#/profile"
-    }
-  }, [_c('div', {
-    staticClass: "col-xs-3 mobile-icon mobile-active"
-  }, [_c('i', {
-    staticClass: "fa fa-user fa-2x"
-  })])]), _vm._v(" "), _c('a', {
-    attrs: {
-      "href": "#/settings"
-    }
-  }, [_c('div', {
-    staticClass: "col-xs-3 mobile-icon"
-  }, [_c('i', {
-    staticClass: "fa fa-cog fa-2x"
-  })])]), _vm._v(" "), _c('a', {
-    attrs: {
-      "href": "#"
-    }
-  }, [_c('div', {
-    staticClass: "col-xs-3 mobile-icon"
-  }, [_c('i', {
-    staticClass: "fa fa-times-circle-o fa-2x"
-  })])])])]), _vm._v(" "), _c('div', {
-    staticClass: "navbar-collapse collapse"
-  }, [_c('ul', {
-    staticClass: "nav navbar-nav navbar-right"
-  }, [_c('li', {
-    staticClass: "active"
-  }, [_c('a', {
-    attrs: {
-      "href": "blog.html"
-    }
-  }, [_vm._v("Sign out")])])])])])]), _vm._v(" "), _c('h3', {
+  return _c('div', [_c('navbar'), _vm._v(" "), _c('h3', {
     staticClass: "text-center",
     staticStyle: {
       "margin": "30px auto"
     }
-  }, [_vm._v("@Username")]), _vm._v(" "), _c('div', {
-    staticClass: "col-md-6 col-md-offset-3 feed_wrapper"
+  }, [_vm._v("@Username")]), _vm._v(" "), _vm._m(0)], 1)
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col-md-4 col-md-offset-4 feed_wrapper"
   }, [_c('div', {
     staticClass: "message_post clearfix"
   }, [_c('div', {
@@ -11235,7 +11002,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "href": "#"
     }
-  }, [_vm._v("@Username")]), _vm._v(" "), _c('span', [_vm._v("11-03-17")])])])])])])
+  }, [_vm._v("@Username")]), _vm._v(" "), _c('span', [_vm._v("11-03-17")])])])])])
 }]}
 module.exports.render._withStripped = true
 if (false) {
@@ -11381,69 +11148,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _vm._m(0)
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('div', {
-    staticClass: "filter-active-bar"
-  }, [_c('p', [_c('span', [_vm._v("Work")]), _c('i', {
-    staticClass: "fa fa-circle",
-    staticStyle: {
-      "color": "green"
-    }
-  })])]), _vm._v(" "), _c('div', {
-    staticClass: "navbar navbar-inverse navigation-bar",
-    attrs: {
-      "role": "navigation"
-    }
-  }, [_c('div', {
-    staticClass: "container"
-  }, [_c('div', {
-    staticClass: "navbar-header text-center"
-  }, [_c('span', {
-    staticClass: "visible-xs"
-  }, [_c('a', {
-    attrs: {
-      "href": "#/feed"
-    }
-  }, [_c('div', {
-    staticClass: "col-xs-3 mobile-icon"
-  }, [_c('i', {
-    staticClass: "fa fa-commenting-o fa-2x"
-  })])]), _vm._v(" "), _c('a', {
-    attrs: {
-      "href": "#/profile"
-    }
-  }, [_c('div', {
-    staticClass: "col-xs-3 mobile-icon"
-  }, [_c('i', {
-    staticClass: "fa fa-user fa-2x"
-  })])]), _vm._v(" "), _c('a', {
-    attrs: {
-      "href": "#/settings"
-    }
-  }, [_c('div', {
-    staticClass: "col-xs-3 mobile-icon mobile-active"
-  }, [_c('i', {
-    staticClass: "fa fa-cog fa-2x"
-  })])]), _vm._v(" "), _c('a', {
-    attrs: {
-      "href": "#"
-    }
-  }, [_c('div', {
-    staticClass: "col-xs-3 mobile-icon"
-  }, [_c('i', {
-    staticClass: "fa fa-times-circle-o fa-2x"
-  })])])])]), _vm._v(" "), _c('div', {
-    staticClass: "navbar-collapse collapse"
-  }, [_c('ul', {
-    staticClass: "nav navbar-nav navbar-right"
-  }, [_c('li', {
-    staticClass: "active"
-  }, [_c('a', {
-    attrs: {
-      "href": "blog.html"
-    }
-  }, [_vm._v("Sign out")])])])])])]), _vm._v(" "), _c('h3', {
+  return _c('div', [_c('navbar'), _vm._v(" "), _c('h3', {
     staticClass: "text-center"
   }, [_vm._v("@Username")]), _vm._v(" "), _c('p', {
     staticClass: "btn create-filter-btn text-center",
@@ -11451,8 +11156,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "data-toggle": "modal",
       "data-target": "#newFilterModal"
     }
-  }, [_vm._v("New Filter ")]), _vm._v(" "), _c('div', {
+  }, [_vm._v("New Filter ")]), _vm._v(" "), _vm._m(0), _vm._v(" "), _vm._m(1)], 1)
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
     staticClass: "container"
+  }, [_c('div', {
+    staticClass: "col-md-6 col-md-offset-3"
   }, [_c('div', {
     staticClass: "row"
   }, [_c('div', {
@@ -11529,7 +11238,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_vm._v("Edit filter")]), _vm._v(" "), _c('div', {
     staticClass: "col-xs-6 text-center delete-filter"
-  }, [_vm._v("Delete filter")])])])])]), _vm._v(" "), _c('form', {
+  }, [_vm._v("Delete filter")])])])])])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('form', {
     attrs: {
       "action": "index.html",
       "method": "post"
@@ -11603,7 +11314,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "type": "button"
     }
-  }, [_vm._v("Save filter")])])])])])])])
+  }, [_vm._v("Save filter")])])])])])])
 }]}
 module.exports.render._withStripped = true
 if (false) {
@@ -15203,6 +14914,193 @@ module.exports = Array.isArray || function (arr) {
   return toString.call(arr) == '[object Array]';
 };
 
+
+/***/ }),
+/* 53 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(54),
+  /* template */
+  __webpack_require__(55),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/magra/code/javascript/focus/public/src/js/components/navbar.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] navbar.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-791225bf", Component.options)
+  } else {
+    hotAPI.reload("data-v-791225bf", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 54 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'navbar',
+  data: function data() {
+    return {};
+  }
+});
+
+/***/ }),
+/* 55 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _vm._m(0)
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', [_c('div', {
+    staticClass: "navbar navbar-inverse navigation-bar",
+    attrs: {
+      "role": "navigation"
+    }
+  }, [_c('div', {
+    staticClass: "container"
+  }, [_c('div', {
+    staticClass: "navbar-header text-center"
+  }, [_c('span', {
+    staticClass: "visible-xs"
+  }, [_c('a', {
+    attrs: {
+      "href": "#/feed"
+    }
+  }, [_c('div', {
+    staticClass: "col-xs-3 mobile-icon"
+  }, [_c('i', {
+    staticClass: "fa fa-commenting-o fa-2x"
+  })])]), _vm._v(" "), _c('a', {
+    attrs: {
+      "href": "#/profile"
+    }
+  }, [_c('div', {
+    staticClass: "col-xs-3 mobile-icon mobile-active"
+  }, [_c('i', {
+    staticClass: "fa fa-user fa-2x"
+  })])]), _vm._v(" "), _c('a', {
+    attrs: {
+      "href": "#/settings"
+    }
+  }, [_c('div', {
+    staticClass: "col-xs-3 mobile-icon"
+  }, [_c('i', {
+    staticClass: "fa fa-cog fa-2x"
+  })])]), _vm._v(" "), _c('a', {
+    attrs: {
+      "href": "#"
+    }
+  }, [_c('div', {
+    staticClass: "col-xs-3 mobile-icon"
+  }, [_c('i', {
+    staticClass: "fa fa-times-circle-o fa-2x"
+  })])])])]), _vm._v(" "), _c('div', {
+    staticClass: "navbar-collapse collapse"
+  }, [_c('ul', {
+    staticClass: "nav navbar-nav navbar-right"
+  }, [_c('li', {}, [_c('a', {
+    attrs: {
+      "href": "#/feed"
+    }
+  }, [_vm._v("Feed")])]), _vm._v(" "), _c('li', {}, [_c('a', {
+    attrs: {
+      "href": "#/profile"
+    }
+  }, [_vm._v("Profile")])]), _vm._v(" "), _c('li', {
+    staticClass: "active"
+  }, [_c('a', {
+    attrs: {
+      "href": "#/settings"
+    }
+  }, [_vm._v("Settings")])]), _vm._v(" "), _c('li', {}, [_c('a', {
+    attrs: {
+      "href": "/"
+    }
+  }, [_vm._v("Sign out")])])])])])])])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-791225bf", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);
