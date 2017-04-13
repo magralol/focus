@@ -1,4 +1,32 @@
-@import url(https://fonts.googleapis.com/css?family=Montserrat:100,300,400,700);@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700);#home-wrapper {
+@import url(https://fonts.googleapis.com/css?family=Montserrat:100,300,400,700);@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700);.filter-active-bar {
+  background: #222;
+  margin: 0;
+  box-sizing: border-box;
+  padding: 5px 10px;
+  color: #e26f20; }
+
+.filter-active-bar span {
+  margin-right: 10px; }
+
+.navbar {
+  border: none; }
+
+.navbar-header {
+  box-sizing: border-box; }
+
+.mobile-active {
+  border-bottom: 3px solid #e26f20; }
+
+.navbar-header a {
+  text-decoration: none;
+  color: #fff;
+  padding-bottom: 10px;
+  line-height: 50px;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #ccc; }
+
+#home-wrapper {
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -38,7 +66,7 @@
     width: 350px; } }
 
 .feed_wrapper {
-  padding: 100px 20px; }
+  padding: 0 5px; }
 
 .new_post_wrapper, .message_post {
   width: 100%;
@@ -47,10 +75,13 @@
   background: #fff;
   border: 1px solid #ececec;
   border-radius: 5px;
-  margin-bottom: 40px; }
+  margin-bottom: 20px; }
+
+.feed_tags {
+  padding: 20px 5px;
+  box-sizing: border-box; }
 
 #new_message {
-  min-height: 150px;
   resize: none;
   background: #fff;
   padding: 5px;
@@ -85,6 +116,57 @@
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility; }
 
+form label {
+  font-size: 12px;
+  font-weight: 300; }
+
+.create-filter-btn {
+  position: relative;
+  background: none;
+  left: 50%;
+  margin: 20px 0 20px -45px;
+  font-size: 12px;
+  border-color: #e26f20;
+  color: #e26f20; }
+
+.filter-group {
+  border: 1px solid #ccc;
+  padding: 10px 5px;
+  background: #fff; }
+
+.list-group-item {
+  margin-bottom: 10px; }
+
+.filter-title {
+  margin: 0;
+  padding: 0; }
+
+.filter-date {
+  font-size: 10px;
+  color: #e26f20; }
+
+.filter-body-tags {
+  color: #e26f20; }
+
+.filter-tags {
+  font-size: 10px;
+  font-style: italic;
+  color: #e26f20; }
+
+.panel-footer {
+  padding: 0;
+  background: none;
+  display: none; }
+
+.panel-footer div {
+  padding: 10px; }
+
+.delete-filter {
+  color: red; }
+
+.edit-filter {
+  color: green; }
+
 body {
-  background: #f5f8fa;
+  background: #f3f3f3;
   font-family: 'Open Sans'; }

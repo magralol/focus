@@ -7,17 +7,10 @@ import store from './store'
 import App from './components/app.vue'
 import Home from './components/home.vue'
 import Feed from './components/feed.vue'
+import Profile from './components/profile.vue'
+import Settings from './components/settings.vue'
 
 require('../scss/style.scss');
-
-firebase.initializeApp({
-  apiKey: "AIzaSyDAqs8NWnGU1kmmJBtb1PUGXE7chTMG-eY",
-  authDomain: "focus-d0b14.firebaseapp.com",
-  databaseURL: "https://focus-d0b14.firebaseio.com",
-  projectId: "focus-d0b14",
-  storageBucket: "focus-d0b14.appspot.com",
-  messagingSenderId: "850110927476"
-});
 
 Vue.use(VueRouter);
 
@@ -28,7 +21,9 @@ new Vue({
     mode: 'hash',
     routes: [
       { path: '/', name: 'home', component: Home },
-      { path: '/feed', name: 'feed', component: Feed }
+      { path: '/feed', name: 'feed', component: Feed },
+      { path: '/profile', component: Profile },
+      { path: '/settings', component: Settings }
     ]
   }),
   render: h => h(App)

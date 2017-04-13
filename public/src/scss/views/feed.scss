@@ -1,9 +1,7 @@
+
 .feed_wrapper{
-  padding: 100px 20px;
+  padding: 0 5px;
 }
-
-
-//Navigation bar
 
 
 .new_post_wrapper, .message_post{
@@ -13,11 +11,16 @@
   background: #fff;
   border: 1px solid #ececec;
   border-radius: 5px;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
+}
+
+.feed_tags{
+  padding: 20px 5px;
+  box-sizing: border-box;
 }
 
 #new_message{
-  min-height: 150px;
+  // min-height: 150px;
   resize: none;
   background: #fff;
   padding: 5px;

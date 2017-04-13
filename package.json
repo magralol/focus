@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Social networking comsept application",
   "private": true,
+  "scripts": {
+    "start": "mongod & nodemon app.js & webpack --watch"
+  },
   "dependencies": {
     "bcrypt": "^1.0.2",
     "body-parser": "^1.17.1",

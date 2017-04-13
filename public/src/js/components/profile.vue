@@ -11,13 +11,13 @@
        <div class="navbar-header text-center">
          <span class="visible-xs">
           <a href="#/feed">
-            <div class="col-xs-3 mobile-icon mobile-active">
+            <div class="col-xs-3 mobile-icon">
               <i class="fa fa-commenting-o fa-2x"></i>
             </div>
           </a>
 
           <a href="#/profile">
-            <div class="col-xs-3 mobile-icon">
+            <div class="col-xs-3 mobile-icon mobile-active">
               <i class="fa fa-user fa-2x"></i>
             </div>
           </a>
@@ -46,31 +46,9 @@
 
    </div>
 
+  <h3 style="margin: 30px auto;" class="text-center">@Username</h3>
+
   <div class="col-md-6 col-md-offset-3 feed_wrapper">
-
-    <!-- Tags
-     ============================================================ -->
-     <div class="feed_tags">
-      <span class="label label-primary">Oskar</span>
-      <span class="label label-primary">Work</span>
-      <span class="label label-primary">Context</span>
-      <span class="label label-primary">Aware</span>
-      <span class="label label-primary">Social media</span>
-     </div>
-
-
-    <!-- New Message
-     ============================================================ -->
-    <div class="new_post_wrapper clearfix">
-      <form class="message" action="index.html" method="post">
-        <textarea name="new_message" class="form-control" placeholder="Write a message..." rows="3" id="new_message"></textarea>
-        <input type="submit" name="" class="btn btn-primary post_btn" value="Publish">
-        <span class="message_info">Character: 300</span>
-
-      </form>
-    </div>
-
-
     <!-- Message Feed
      ============================================================ -->
     <div class="message_post clearfix">
@@ -82,14 +60,21 @@
       </div>
     </div>
 
-
+    <div class="message_post clearfix">
+      <div class="message_box">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      </div>
+      <div class="message_info" style="line-height: 1px; padding-top: 20px;">
+        <p><a href="#">@Username</a> <span>11-03-17</span></p>
+      </div>
+    </div>
   </div>
 </div>
 </template>
 
 <script>
 export default {
-  name: 'feed',
+  name: 'profile',
   data () {
     return {}
   }

@@ -1,0 +1,64 @@
+
+
+form label{
+  font-size: 12px;
+  font-weight: 300;
+}
+
+.create-filter-btn{
+  position: relative;
+  background: none;
+  left: 50%;
+  margin: 20px 0 20px -45px;
+  font-size: 12px;
+  border-color: $brand;
+  color: $brand;
+}
+
+
+.filter-group{
+  border: 1px solid #ccc;
+  padding: 10px 5px;
+  background: #fff;
+}
+
+.list-group-item{
+  margin-bottom: 10px;
+}
+
+.filter-title{
+  margin: 0;
+  padding: 0;
+}
+
+.filter-date{
+  font-size: 10px;
+  color: $brand;
+}
+
+.filter-body-tags{
+  color: $brand;
+}
+.filter-tags{
+  font-size: 10px;
+  font-style: italic;
+  color: $brand;
+}
+
+.panel-footer{
+  padding: 0;
+  background: none;
+  display: none;
+}
+
+.panel-footer div{
+  padding: 10px;
+}
+
+.delete-filter{
+  color: red;
+}
+
+.edit-filter{
+  color: green;
+}
