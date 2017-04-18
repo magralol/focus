@@ -19,26 +19,24 @@
     <!-- New Message
      ============================================================ -->
     <div class="new_post_wrapper clearfix">
-      <form class="message" action="index.html" method="post">
-        <textarea name="new_message" class="form-control" placeholder="Write a message..." rows="3" id="new_message"></textarea>
+      <form class="message" v-on:submit.prevent="post">
+        <textarea name="new_message" class="form-control" placeholder="Write a message..." rows="3" id="new_message" v-model="postbody"></textarea>
         <input type="submit" name="" class="btn btn-primary post_btn" value="Publish">
-        <span class="message_info">Character: 300</span>
+        <span class="message_info">Character: {{postbody.length}}/300</span>
 
       </form>
     </div>
 
-
     <!-- Message Feed
      ============================================================ -->
-    <div class="message_post clearfix">
+    <div class="message_post clearfix" v-for="post in posts">
       <div class="message_box">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        <p><markdown :text="post.body"></markdown></p>
       </div>
       <div class="message_info" style="line-height: 1px; padding-top: 20px;">
-        <p><a href="#">@Username</a> <span>11-03-17</span></p>
+        <p><a v-bind:href="'#/user/'+post.user">@{{ post.user }}</a> <span>{{ parseDate(post.date) }}</span></p>
       </div>
     </div>
-
 
   </div>
 </div>
@@ -46,13 +44,51 @@
 
 <script>
 import Navbar from './navbar.vue'
+import markdown from './markdown.vue'
+import moment from 'moment'
+
 export default {
   name: 'feed',
   components: {
-    navbar: Navbar
+    navbar: Navbar,
+    markdown: markdown
   },
   data () {
-    return {}
+    return {
+      posts: [],
+      postbody: ""
+    }
+  },
+  mounted: function(){
+    this.$store.dispatch('GET_POSTS').then((res) =>{
+      console.log(res.data);
+      this.posts = res.data;
+    })
+    .catch((err) => {
+      if(err.response){
+        //TODO: real errors:
+        console.log(err);
+      }
+    });
+  },
+  methods: {
+    parseDate: function(date){
+      return moment(date).format('DD/MM-YYYY');
+    },
+    post: function(){
+      this.$store.dispatch('CREATE_POST', {body: this.postbody}).then((res) =>{
+        
+        this.posts = res.data;
+        this.postbody = "";
+        this.$forceUpdate();
+      })
+      .catch((err) => {
+        if(err.response){
+          //TODO: real errors:
+          console.log(err);
+        }
+      });
+    }
   }
 }
 </script>

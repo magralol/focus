@@ -23,9 +23,13 @@ new Vue({
     routes: [
       { path: '/', name: 'home', component: Home },
       { path: '/feed', name: 'feed', component: Feed },
-      { path: '/profile', component: Profile },
-      { path: '/settings', component: Settings }
+      { path: '/profile', name: 'profile', component: Profile },
+      { path: '/settings', name: 'settings', component: Settings }
     ]
   }),
   render: h => h(App)
-})
+});
+
+Vue.filter('orderBy', function(arr) {
+  console.log(arr);
+});

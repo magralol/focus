@@ -14,6 +14,7 @@ export default new Vuex.Store({
   },
   mutations: {
     setposts: function(state, data) {
+      console.log("data: ", data);
       state.posts = data;
     },
     setfilters: function(state, data) {
@@ -30,6 +31,9 @@ export default new Vuex.Store({
         password: payload.password
       });
     },
+    SIGN_OUT: function (cxt) {
+      localStorage.removeItem("token");
+    },  
     REGISTER: function (ctx, payload) {
       return axios.post('/register', {
         email: payload.email,
@@ -38,15 +42,7 @@ export default new Vuex.Store({
       });
     },
     GET_POSTS: function (ctx) {
-      axios.get('/post')
-      .then(function (res) {
-        console.log(res.data);
-        ctx.commit('setposts', res.data);
-      })
-      .catch(function (err) {
-        //TODO: Real error handling
-        console.log(err);
-      });
+      return axios.get('/post');
     },
     GET_POSTS_BY_TAG: function (ctx, payload) {
       axios.get('/post/tag/' + payload.tag)
@@ -61,16 +57,8 @@ export default new Vuex.Store({
       });
     },
     CREATE_POST: function (ctx, payload) {
-      axios.post('/post', {
+      return axios.post('/post', {
         postbody: payload.body
-      })
-      .then(function (res) {
-        console.log(res.data);
-        ctx.commit('setposts', res.data);
-      })
-      .catch(function (err) {
-        //TODO: Real error handling
-        console.log(err);
       });
     },
     GET_USER: function (ctx, payload) {
