@@ -7,16 +7,17 @@ module.exports = {
             var filter = new Filter({
                 user:           "oskar",
                 name:           req.body.name,
-                allawedtags:    req.body.tags
+                allawedtags:    req.body.tags,
+                active:         false
             });
 
-            filter.save(function (err, doc) {
+            filter.save(function (err, docs) {
                 if(err){
                     //TODO: real Error Handling
                     console.log(err);
                     res.sendStatus(500);
                 }else{
-                    res.send(doc);
+                    res.send(docs);
                 }
             });
 

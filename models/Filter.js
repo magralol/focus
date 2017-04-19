@@ -12,6 +12,11 @@ var filterSchema = new Schema({
         required: true, 
         unique: false
     },
+    active: { 
+        type: Boolean, 
+        required: true, 
+        unique: false
+    },
     allawedtags:[
         { 
             type : String 

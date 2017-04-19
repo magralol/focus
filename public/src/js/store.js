@@ -62,26 +62,10 @@ export default new Vuex.Store({
       });
     },
     GET_USER: function (ctx, payload) {
-      axios.get('/user/' + payload.username)
-      .then(function (res) {
-        console.log(res.data);
-        ctx.commit('setposts', res.data);
-      })
-      .catch(function (err) {
-        //TODO: Real error handling
-        console.log(err);
-      });
+      return axios.get('/user/' + payload.username);
     },
     GET_FILTERS: function (ctx, payload) {
-      axios.get('/filter')
-      .then(function (res) {
-        console.log(res.data);
-        ctx.commit('setfilters', res.data);
-      })
-      .catch(function (err) {
-        //TODO: Real error handling
-        console.log(err);
-      });
+      return axios.get('/filter');
     },
     CREATE_FILTER: function (ctx, payload) {
       return axios.post('/filter', {

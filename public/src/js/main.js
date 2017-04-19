@@ -12,6 +12,7 @@ import Settings from './components/settings.vue'
 
 
 require('../scss/style.scss');
+require('es6-promise').polyfill();
 
 Vue.use(VueRouter);
 
@@ -23,13 +24,9 @@ new Vue({
     routes: [
       { path: '/', name: 'home', component: Home },
       { path: '/feed', name: 'feed', component: Feed },
-      { path: '/profile', name: 'profile', component: Profile },
+      { path: '/user/:username', name: 'profile', component: Profile },
       { path: '/settings', name: 'settings', component: Settings }
     ]
   }),
   render: h => h(App)
-});
-
-Vue.filter('orderBy', function(arr) {
-  console.log(arr);
 });
