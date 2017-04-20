@@ -8,10 +8,10 @@
      ============================================================ -->
     <div class="message_post clearfix" v-for="post in posts">
       <div class="message_box">
-        <p>{{ post.body }}</p>
+        <p><markdown :text="post.body"></markdown></p>
       </div>
       <div class="message_info" style="line-height: 1px; padding-top: 20px;">
-        <p><a href="#">@Username</a> <span>11-03-17</span></p>
+        <p><a href="#">@{{ post.user}}</a> <span>1{{ parseDate(post.date) }}</span></p>
       </div>
     </div>
 
@@ -22,10 +22,14 @@
 
 <script>
 import Navbar from './navbar.vue'
+import markdown from './markdown.vue'
+import moment from 'moment'
+
 export default {
   name: 'profile',
   components: {
-    navbar: Navbar
+    navbar: Navbar,
+    markdown: markdown
   },
   data () {
     return {
@@ -47,5 +51,10 @@ export default {
         console.log(err);
       });
    },
+   methods:{
+     parseDate: function(date){
+        return moment(date).format('DD/MM-YYYY');
+     }
+   }
 }
 </script>

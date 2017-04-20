@@ -6,13 +6,21 @@
 export default {
   name: 'markdown',
   props: ['text'],
+  cache: false,
   data () {
     return {
-        markdown: ""
     }
   },
+  computed: {
+    markdown: {
+        cache: false,
+        get: function () {
+            return new showdown.Converter().makeHtml(this.text);
+        }
+    }
+  }/*
   mounted: function(){
       this.markdown = new showdown.Converter().makeHtml(this.text);
-  }
+  }*/
 }
 </script>

@@ -2,19 +2,9 @@
 <div>
 
   <navbar></navbar>
+  <h3 style="margin: 30px auto;" class="text-center" v-if="tagname">#{{ tagname }}</h3>
 
   <div class="col-md-6 col-md-offset-3 feed_wrapper">
-
-    <!-- Tags
-     ============================================================ -->
-     <div class="feed_tags">
-      <span class="label label-primary">Oskar</span>
-      <span class="label label-primary">Work</span>
-      <span class="label label-primary">Context</span>
-      <span class="label label-primary">Aware</span>
-      <span class="label label-primary">Social media</span>
-     </div>
-
 
     <!-- New Message
      ============================================================ -->
@@ -55,21 +45,33 @@ export default {
   },
   data () {
     return {
-      posts: [],
-      postbody: ""
+      postbody: "",
+      tagname: null
     }
   },
-  mounted: function(){
-    this.$store.dispatch('GET_POSTS').then((res) =>{
-      console.log(res.data);
-      this.posts = res.data;
-    })
-    .catch((err) => {
-      if(err.response){
-        //TODO: real errors:
-        console.log(err);
-      }
-    });
+  computed: {
+    posts: function () {
+      return this.$store.state.posts;
+    }
+  },
+  watch: {
+    posts: function(){
+      //console.log("posts changed!");
+      //this.posts = this.$store.state.posts;
+      //console.log(this.posts[0]);
+      //this.$set("posts", this.$store.state.posts);
+      //console.log(this.$set);
+      //this.$set(this.posts, this.$store.state.posts)
+      //location.reload(); 
+    }
+  },
+  beforeMount: function(){
+    if(this.$route.params.tag){
+      this.tagname = this.$route.params.tag;
+      this.$store.dispatch('GET_POSTS_BY_TAG', {tag: this.$route.params.tag});
+    }else{
+      this.$store.dispatch('GET_POSTS');
+    }
   },
   methods: {
     parseDate: function(date){
@@ -78,9 +80,9 @@ export default {
     post: function(){
       this.$store.dispatch('CREATE_POST', {body: this.postbody}).then((res) =>{
         
-        this.posts = res.data;
+        this.$store.commit('setposts', res.data);
+        //this.posts.unshift({body: res.data[0].body, user: res.data[0].user, date: res.data[0].date});
         this.postbody = "";
-        this.$forceUpdate();
       })
       .catch((err) => {
         if(err.response){

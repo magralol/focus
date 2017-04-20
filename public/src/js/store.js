@@ -19,9 +19,6 @@ export default new Vuex.Store({
     },
     setfilters: function(state, data) {
       state.filters = data;
-    },
-    setactivetag: function (state, data) {
-      state.activetag = data;
     }
   },
   actions: {
@@ -42,14 +39,20 @@ export default new Vuex.Store({
       });
     },
     GET_POSTS: function (ctx) {
-      return axios.get('/post');
+      return axios.get('/post').then((res) =>{
+        ctx.commit('setposts', res.data);
+      })
+      .catch((err) => {
+        if(err.response){
+          //TODO: real errors:
+          console.log(err);
+        }
+      });;
     },
     GET_POSTS_BY_TAG: function (ctx, payload) {
       axios.get('/post/tag/' + payload.tag)
       .then(function (res) {
-        console.log(res.data);
         ctx.commit('setposts', res.data);
-        ctx.commit('setactivetag', payload.tag);
       })
       .catch(function (err) {
         //TODO: Real error handling
