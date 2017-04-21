@@ -32,6 +32,9 @@ module.exports = {
                 //TODO: real error handling
                 res.sendStatus(500);
             }else{
+                docs = docs.sort(function(a,b) { 
+                    return new Date(b.date).getTime() - new Date(a.date).getTime() 
+                });
                 res.send(docs);
             }
         });
@@ -43,6 +46,9 @@ module.exports = {
                 //TODO: real error handling
                 res.sendStatus(500);
             }else{
+                docs = docs.sort(function(a,b) { 
+                    return new Date(b.date).getTime() - new Date(a.date).getTime() 
+                });
                 res.send(docs);
             }
         });

@@ -15,19 +15,19 @@
        <div class="navbar-header text-center">
          <span class="visible-xs">
           <a href="#/feed">
-            <div class="col-xs-3 mobile-icon">
+            <div class="col-xs-3 mobile-icon" v-bind:class="page == 'feed' ? 'mobile-active': ''">
               <i class="fa fa-commenting-o fa-2x"></i>
             </div>
           </a>
 
-          <a href="#/profile">
-            <div class="col-xs-3 mobile-icon mobile-active">
+          <a :href="'#/user/'+user">
+            <div class="col-xs-3 mobile-icon" v-bind:class="page == 'profile' ? 'mobile-active': ''">
               <i class="fa fa-user fa-2x"></i>
             </div>
           </a>
 
           <a href="#/settings">
-            <div class="col-xs-3 mobile-icon">
+            <div class="col-xs-3 mobile-icon" v-bind:class="page == 'settings' ? 'mobile-active': ''">
               <i class="fa fa-cog fa-2x"></i>
             </div>
           </a>
@@ -43,10 +43,10 @@
        </div>
        <div class="navbar-collapse collapse">
          <ul class="nav navbar-nav navbar-right">
-           <li class=""><a href="#/feed">Feed</a></li>
-           <li class=""><a href="#/profile">Profile</a></li>
-           <li class="active"><a href="#/settings">Settings</a></li>
-           <li class=""><a href="/">Sign out</a></li>
+           <li v-bind:class="page == 'feed' ? 'active': ''"><a href="#/feed">Feed</a></li>
+           <li v-bind:class="page == 'profile' ? 'active': ''"><a :href="'#/user/'+user">Profile</a></li>-->
+           <li v-bind:class="page == 'settings' ? 'active': ''"><a href="#/settings">Settings</a></li>
+           <li><a href="#/">Sign out</a></li>
          </ul>
        </div>
      </div>
@@ -58,8 +58,21 @@
 <script>
 export default {
   name: 'navbar',
+  props: ['page'],
   data () {
-    return {}
+    return {
+      user: "null"
+    }
+  },
+  beforeMount: function(){
+    this.$store.dispatch('GET_USER_NAME').then((res) => {
+      this.user = res.data.username;
+    }).catch((err) => {
+        if(err.response){
+          //TODO: real errors:
+          console.log(err);
+        }
+    });
   }
 }
 </script>

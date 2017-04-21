@@ -4,6 +4,19 @@ import axios from 'axios'
 
 Vue.use(Vuex);
 
+if(localStorage.getItem("token")){
+  axios.defaults.headers.common['Authorization'] = localStorage.getItem("token");
+}
+
+axios.interceptors.response.use(function (response) {
+  return response;
+}, function (error) {
+  if(error.response.status == 401){
+    window.location.href = "/";
+  } 
+  return Promise.reject(error);
+});
+
 export default new Vuex.Store({
   state: {
     posts: [],
@@ -81,6 +94,10 @@ export default new Vuex.Store({
         name: payload.name,
         tags: payload.tags.split(",")
       });
+    },
+    GET_USER_NAME: function (ctx, payload) {
+      /* Hacky way to get the username from a id for navigation */
+      return axios.get('/username');
     }
   }
 });

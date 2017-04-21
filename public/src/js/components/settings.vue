@@ -1,6 +1,6 @@
 <template>
 <div>
-  <navbar></navbar>
+  <navbar :page="'settings'"></navbar>
 
   <h3 class="text-center">@Username</h3>
 

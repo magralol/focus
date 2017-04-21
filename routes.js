@@ -21,13 +21,14 @@ app.put('/user/filter', require('./controllers/FilterController').setFilter);
 
 //Post routes
 app.get('/post/:id', require('./controllers/PostController').getById);
-app.get('/post', require('./controllers/PostController').getAll);
+app.get('/post', auth, require('./controllers/PostController').getAll);
 app.get('/post/user/:username', require('./controllers/PostController').getUsersPosts);
 app.get('/post/tag/:tag', require('./controllers/PostController').getByTag);
 app.post('/post', require('./controllers/PostController').createPost);
 
 //User routes
 app.get('/user/:username', require('./controllers/UserController').getUser);
+app.get('/username', require('./controllers/UserController').getUserName);
 
 //Filter routes
 app.get('/filter', require('./controllers/FilterController').getFilters);

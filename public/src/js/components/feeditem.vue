@@ -5,7 +5,7 @@
                 <p><markdown :text="text"></markdown></p>
             </div>
             <div class="message_info" style="line-height: 1px; padding-top: 20px;">
-                <p><a v-bind:href="'#/user/'+post.user">@{{ user }}</a> <span>{{ parseDate(date) }}</span></p>
+                <p><a v-bind:href="'#/user/'+user">@{{ user }}</a> <span>{{ parseDate(date) }}</span></p>
             </div>
         </div>
     </div>

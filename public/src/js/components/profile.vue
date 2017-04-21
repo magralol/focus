@@ -1,18 +1,17 @@
 <template>
 <div>
-  <navbar></navbar>
+  <navbar :page="'profile'"></navbar>
   <h3 style="margin: 30px auto;" class="text-center" v-if="username">@{{ username }}</h3>
 
   <div class="col-md-4 col-md-offset-4 feed_wrapper">
     <!-- Message Feed
      ============================================================ -->
-    <div class="message_post clearfix" v-for="post in posts">
-      <div class="message_box">
-        <p><markdown :text="post.body"></markdown></p>
-      </div>
-      <div class="message_info" style="line-height: 1px; padding-top: 20px;">
-        <p><a href="#">@{{ post.user}}</a> <span>1{{ parseDate(post.date) }}</span></p>
-      </div>
+    <div v-for="post in posts">
+      <feeditem :text="post.body" :user="post.user" :date="post.date"></feeditem>
+    </div>
+
+    <div v-if="posts.length == 0">
+        user have not posted any thing
     </div>
 
   </div>
@@ -23,12 +22,14 @@
 <script>
 import Navbar from './navbar.vue'
 import markdown from './markdown.vue'
+import Feeditem from './feeditem.vue'
 import moment from 'moment'
 
 export default {
   name: 'profile',
   components: {
     navbar: Navbar,
+    feeditem: Feeditem,
     markdown: markdown
   },
   data () {
