@@ -1,31 +1,41 @@
+var sanitizer = require('sanitizer');
+
 var User = require('../models/User');
 var Filter = require('../models/Filter');
 
 module.exports = {
     createFilter: function (req, res) {
         if(req.body.name.length < 100){
-            var filter = new Filter({
-                user:           "oskar",
-                name:           req.body.name,
-                allawedtags:    req.body.tags,
-                active:         false
-            });
-
-            filter.save(function (err, docs) {
+            User.findById(req.user.id, function (err, doc) {
                 if(err){
                     //TODO: real Error Handling
                     console.log(err);
                     res.sendStatus(500);
                 }else{
-                    res.send(docs);
+                    
+                    var filter = new Filter({
+                        user:           doc.username,
+                        name:           sanitizer.sanitize(req.body.name),
+                        allawedtags:    req.body.tags,
+                        active:         false
+                    });
+
+                    filter.save(function (err, docs) {
+                        if(err){
+                            //TODO: real Error Handling
+                            console.log(err);
+                            res.sendStatus(500);
+                        }else{
+                            res.send(docs);
+                        }
+                    });
                 }
             });
 
         }
     },
     getFilters: function (req, res) {
-        var user = "58e61f9d567e801443c6d4db";
-        User.findById(user, {__v: 0, password: 0}, function (err, doc) {
+        User.findById(req.user.id, {__v: 0, password: 0}, function (err, doc) {
             if(err){
                 //TODO Error handling
                 res.sendStatus(500);
@@ -43,8 +53,7 @@ module.exports = {
         
     },
     updateFilter: function (req, res) {
-        var user = "58e61f9d567e801443c6d4db";
-        User.findById(user, {__v: 0, password: 0}, function (err, doc) {
+        User.findById(req.user.id, {__v: 0, password: 0}, function (err, doc) {
             if(err){
                 //TODO error handling
                 res.sendStatus(500);
@@ -61,8 +70,7 @@ module.exports = {
         });
     },
     setFilter: function (req, res) {
-        var user = "58e61f9d567e801443c6d4db";
-        User.update({_id: user}, {defaultfilter: req.body.filter}, function (err, doc) {
+        User.update({_id: req.user.id}, {defaultfilter: req.body.filter}, function (err, doc) {
             if(err){
                 //TODO error handling
                 console.log(err);

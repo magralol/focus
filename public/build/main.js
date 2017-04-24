@@ -28038,7 +28038,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this2 = this;
 
       this.$store.dispatch('REGISTER', { email: this.regEmail, password: this.regPassword, username: this.regUsername }).then(function (res) {
-        _this2.successmsg = 'Account successfully created';
+        _this2.successmsg = 'Kontot skapat!';
         _this2.regEmail = null;
         _this2.regPassword = null;
         _this2.regUsername = null;
@@ -28368,10 +28368,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   methods: {
     createFilter: function createFilter() {
+      var _this2 = this;
+
       console.log(this.filterTags, this.filterName);
       this.$store.dispatch('CREATE_FILTER', { name: this.filterName, tags: this.filterTags }).then(function (res) {
         console.log(res.data);
-        //this.$store.commit('setfilters', res.data);
+        //this.filters.push();
+        _this2.filters.push(res.data);
+        _this2.$store.commit('setfilters', _this2.filters);
+        $('#filtermodal').modal('hide');
       }).catch(function (err) {
         //TODO: Real error handling
         console.log(err);
@@ -28757,7 +28762,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "form-control",
     attrs: {
       "name": "new_message",
-      "placeholder": "Write a message...",
+      "placeholder": "Skriv ett meddelande...",
       "rows": "3",
       "id": "new_message"
     },
@@ -29073,7 +29078,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "btn create-filter-btn text-center",
     attrs: {
       "data-toggle": "modal",
-      "data-target": "#newFilterModal"
+      "data-target": "#filtermodal"
     }
   }, [_vm._v("Nytt Filter ")]), _vm._v(" "), _c('div', {
     staticClass: "container"
@@ -29103,7 +29108,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }, [(filter.active) ? _c('span', {
       staticClass: "label label-success"
-    }, [_vm._v("Activated")]) : _c('span', {
+    }, [_vm._v("Aktiverad")]) : _c('span', {
       staticClass: "label label-default"
     }, [_vm._v("Aktivera")])]), _vm._v(" "), _c('div', {
       staticClass: "filter-body-tags"
@@ -29122,10 +29127,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('div', {
     staticClass: "modal fade",
     attrs: {
-      "id": "newFilterModal",
+      "id": "filtermodal",
       "tabindex": "-1",
       "role": "dialog",
-      "aria-labelledby": "myModalLabel"
+      "aria-labelledby": "filtermodal"
     }
   }, [_c('div', {
     staticClass: "modal-dialog",
@@ -29169,7 +29174,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "for": "filterTags"
     }
-  }, [_vm._v("Separera taggarna med \",\"\"")]), _vm._v(" "), _c('input', {
+  }, [_vm._v("Taggar (separera med ,)\"")]), _vm._v(" "), _c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -29208,7 +29213,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "col-xs-6 text-center edit-filter",
     attrs: {
       "data-toggle": "modal",
-      "data-target": "#newFilterModal"
+      "data-target": "#filtermodal"
     }
   }, [_vm._v("Redigera filter")]), _vm._v(" "), _c('div', {
     staticClass: "col-xs-6 text-center delete-filter"

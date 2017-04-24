@@ -1,4 +1,6 @@
 var crypto = require('crypto');
+var sanitizer = require('sanitizer');
+
 var User = require('../models/User');
 var jwt = require('jsonwebtoken');
 
@@ -9,10 +11,9 @@ module.exports = {
         if(req.body.email.length < 100 && req.body.password.length < 100 && req.body.username.length < 100){
             
             var user = new User({ 
-                username:       req.body.username,
+                username:       sanitizer.sanitize(req.body.username),
                 password:       User.generateHash(req.body.password),
-                email:          req.body.email,
-                defaultfilter:  "none"
+                email:          sanitizer.sanitize(req.body.email)
             });
             
             user.save(function (err, doc) {

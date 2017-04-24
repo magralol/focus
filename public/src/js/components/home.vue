@@ -92,7 +92,7 @@ export default {
     register: function(){
       this.$store.dispatch('REGISTER', {email: this.regEmail, password: this.regPassword, username: this.regUsername})
       .then((res) => {
-        this.successmsg = 'Account successfully created';
+        this.successmsg = 'Kontot skapat!';
         this.regEmail = null;
         this.regPassword = null;
         this.regUsername = null;

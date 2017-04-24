@@ -5,7 +5,7 @@
   <!-- FILIP, Lägg till dynamiskt användarnamn, plz -->
   <h3 class="text-center">@Username</h3>
 
-    <p class="btn create-filter-btn text-center" data-toggle="modal" data-target="#newFilterModal">Nytt Filter </p>
+    <p class="btn create-filter-btn text-center" data-toggle="modal" data-target="#filtermodal">Nytt Filter </p>
 
 
 
@@ -27,14 +27,14 @@
             <span class="filter-title">{{ filter.name }}</span>
           </div>
           <div style="padding: 0" class="col-xs-4 text-right" v-on:click="activateFilter(i)">
-            <span v-if="filter.active" class="label label-success">Activated</span>
+            <span v-if="filter.active" class="label label-success">Aktiverad</span>
             <span v-else class="label label-default">Aktivera</span>
           </div>
           <div class="filter-body-tags">
             <span class="filter-tags" v-for="(tag, i) in filter.allawedtags">{{ tag }} </span>
           </div>
           <div class="panel-footer clearfix">
-            <div class="col-xs-6 text-center edit-filter" data-toggle="modal" data-target="#newFilterModal">Redigera filter</div>
+            <div class="col-xs-6 text-center edit-filter" data-toggle="modal" data-target="#filtermodal">Redigera filter</div>
             <div class="col-xs-6 text-center delete-filter">Ta bort filter</div>
           </div>
         </li>
@@ -45,7 +45,7 @@
 
 <!-- Modal -->
 <form class="" v-on:submit.prevent="createFilter">
-<div class="modal fade" id="newFilterModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="filtermodal" tabindex="-1" role="dialog" aria-labelledby="filtermodal">
   <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -54,7 +54,7 @@
             <input type="text" id="filterTitle" name="filterTilte" class="form-control" placeholder="Namn på filtret" v-model="filterName">
         </div>
         <div class="modal-body">
-          <label for="filterTags">Separera taggarna med ",""</label>
+          <label for="filterTags">Taggar (separera med ,)"</label>
           <input type="text" id="filterTags" name="filterTags" class="form-control" placeholder="Taggar..." v-model="filterTags">
         </div>
         <div class="modal-footer">
@@ -102,7 +102,10 @@ export default {
         console.log(this.filterTags, this.filterName);
         this.$store.dispatch('CREATE_FILTER', {name: this.filterName, tags: this.filterTags}).then((res) => {
           console.log(res.data);
-          //this.$store.commit('setfilters', res.data);
+          //this.filters.push();
+          this.filters.push(res.data)
+          this.$store.commit('setfilters', this.filters);
+          $('#filtermodal').modal('hide');
         })
         .catch((err) => {
           //TODO: Real error handling
