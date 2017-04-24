@@ -1,41 +1,61 @@
 <template>
 <div>
-  <navbar></navbar>
-  <h3 style="margin: 30px auto;" class="text-center">@Username</h3>
+  <navbar :page="'profile'"></navbar>
+  <h3 style="margin: 30px auto;" class="text-center" v-if="username">@{{ username }}</h3>
 
   <div class="col-md-4 col-md-offset-4 feed_wrapper">
     <!-- Message Feed
      ============================================================ -->
-    <div class="message_post clearfix">
-      <div class="message_box">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-      </div>
-      <div class="message_info" style="line-height: 1px; padding-top: 20px;">
-        <p><a href="#">@Username</a> <span>11-03-17</span></p>
-      </div>
+    <div v-for="post in posts">
+      <feeditem :text="post.body" :user="post.user" :date="post.date"></feeditem>
     </div>
 
-    <div class="message_post clearfix">
-      <div class="message_box">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-      </div>
-      <div class="message_info" style="line-height: 1px; padding-top: 20px;">
-        <p><a href="#">@Username</a> <span>11-03-17</span></p>
-      </div>
+    <div v-if="posts.length == 0">
+        user have not posted any thing
     </div>
+
   </div>
 </div>
+
 </template>
 
 <script>
 import Navbar from './navbar.vue'
+import markdown from './markdown.vue'
+import Feeditem from './feeditem.vue'
+import moment from 'moment'
+
 export default {
   name: 'profile',
   components: {
-    navbar: Navbar
+    navbar: Navbar,
+    feeditem: Feeditem,
+    markdown: markdown
   },
   data () {
-    return {}
-  }
+    return {
+      username: null
+    }
+  },
+  computed: {
+    posts: function () {
+      return this.$store.state.posts;
+    }
+  },
+  beforeMount: function(){
+    this.username = this.$route.params.username;
+    this.$store.dispatch('GET_USER', {username: this.username}).then((res) => {
+        this.$store.commit('setposts', res.data.posts);
+      })
+      .catch((err) => {
+        //TODO: Real error handling
+        console.log(err);
+      });
+   },
+   methods:{
+     parseDate: function(date){
+        return moment(date).format('DD/MM-YYYY');
+     }
+   }
 }
 </script>

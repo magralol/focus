@@ -1,6 +1,6 @@
 <template>
 <div>
-  <navbar></navbar>
+  <navbar :page="'settings'"></navbar>
 
   <h3 class="text-center">@Username</h3>
 
@@ -21,15 +21,16 @@
        </div>
 
       <ul class="list-group">
-        <li class="list-group-item">
+        <li class="list-group-item" v-for="(filter, i) in filters">
           <div style="padding: 0" class="col-xs-8 text-left">
-            <span class="filter-title">Work</span>
+            <span class="filter-title">{{ filter.name }}</span>
           </div>
-          <div style="padding: 0" class="col-xs-4 text-right">
-            <span class="label label-success">Activated</span>
+          <div style="padding: 0" class="col-xs-4 text-right" v-on:click="activateFilter(i)">
+            <span v-if="filter.active" class="label label-success">Activated</span>
+            <span v-else class="label label-default">Activated</span>
           </div>
           <div class="filter-body-tags">
-            <span class="filter-tags">Work</span>, <span class="filter-tags">Friends</span>, <span class="filter-tags">Friends</span>
+            <span class="filter-tags" v-for="(tag, i) in filter.allawedtags">{{ tag }} </span>
           </div>
           <div class="panel-footer clearfix">
             <div class="col-xs-6 text-center edit-filter" data-toggle="modal" data-target="#newFilterModal">Edit filter</div>
@@ -37,47 +38,33 @@
           </div>
         </li>
 
-        <li class="list-group-item">
-          <div style="padding: 0" class="col-xs-8 text-left">
-            <span class="filter-title">Work</span>
-          </div>
-          <div style="padding: 0" class="col-xs-4 text-right">
-            <span class="label label-default">Activated</span>
-          </div>
-          <div class="filter-body-tags">
-            <span class="filter-tags">Work</span>, <span class="filter-tags">Friends</span>, <span class="filter-tags">Friends</span>
-          </div>
-          <div class="panel-footer clearfix">
-            <div class="col-xs-6 text-center edit-filter" data-toggle="modal" data-target="#newFilterModal">Edit filter</div>
-            <div class="col-xs-6 text-center delete-filter">Delete filter</div>
-          </div>
-        </li>
       </ul>
     </div>
   </div>
 
 <!-- Modal -->
-<form class="" action="index.html" method="post">
+<form class="" v-on:submit.prevent="createFilter">
 <div class="modal fade" id="newFilterModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <label for="filterTitle">Name on filter</label>
-            <input type="text" id="filterTitle" name="filterTilte" value="" class="form-control" placeholder="Name on filter">
+            <input type="text" id="filterTitle" name="filterTilte" class="form-control" placeholder="Name on filter" v-model="filterName">
         </div>
         <div class="modal-body">
           <label for="filterTags">Separate tags with ",""</label>
-          <input type="text" id="filterTags" name="filterTags" value="" class="form-control" placeholder="Tags...">
+          <input type="text" id="filterTags" name="filterTags" class="form-control" placeholder="Tags..." v-model="filterTags">
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save filter</button>
+          <button type="submit" class="btn btn-primary">Save filter</button>
         </div>
     </div>
   </div>
 </div>
 </form>
+
 </div>
 </template>
 
@@ -89,7 +76,42 @@ export default {
     navbar: Navbar
   },
   data () {
-    return {}
-  }
+    return {
+      filterTags: "",
+      filterName: ""
+    }
+  },
+  computed: {
+    filters: function () {
+      return this.$store.state.filters;
+    }
+  },
+  beforeMount: function(){
+    this.$store.dispatch('GET_FILTERS').then((res) => {
+        console.log(res.data);
+        this.$store.commit('setfilters', res.data);
+      })
+      .catch((err) => {
+        //TODO: Real error handling
+        console.log(err);
+      });
+   },
+    methods: {
+      createFilter: function(){
+        console.log(this.filterTags, this.filterName);
+        this.$store.dispatch('CREATE_FILTER', {name: this.filterName, tags: this.filterTags}).then((res) => {
+          console.log(res.data);
+          //this.$store.commit('setfilters', res.data);
+        })
+        .catch((err) => {
+          //TODO: Real error handling
+          console.log(err);
+        });
+
+      },
+      activateFilter: function(i){
+        this.$store.dispatch('ACTIVATE_FILTER', {id: this.filters[i]._id});
+      }
+    }
 }
 </script>

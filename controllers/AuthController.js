@@ -34,7 +34,8 @@ module.exports = {
                 res.sendStatus(500);
             }else{
                 if(User.validatePassword(doc.password, User.generateHash(req.body.password))){
-                    res.send(jwt.sign({ id: doc._id }, secret, { expiresIn: '1d' }));
+                    var token = {id: doc._id};
+                    res.send(jwt.sign(token, secret, { expiresIn: '1d' }));
                 }else{
                     res.send({});
                 }
@@ -43,14 +44,16 @@ module.exports = {
         });
     },
     authenticate: function (req, res, next) {
-        var token = req.header("Authorization").replace("Bearer ", "");
-        jwt.verify(token, secret, function(err, decoded) {
-            if(err){
-                res.sendStatus(401);
-            }else{
-                req.user = { id: decoded.id };
-                next();
-            } 
-        });
+        if(req.header("Authorization")){
+            var token = req.header("Authorization").replace("Bearer ", "");
+            jwt.verify(token, secret, function(err, decoded) {
+                if(err){
+                    res.sendStatus(401);
+                }else{
+                    req.user = { id: decoded.id };
+                    next();
+                } 
+            });
+        }
     }
 }

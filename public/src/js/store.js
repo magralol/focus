@@ -1,88 +1,112 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import axios from 'axios'
 
 Vue.use(Vuex);
 
+if(localStorage.getItem("token")){
+  axios.defaults.headers.common['Authorization'] = "Bearer " + localStorage.getItem("token");
+}
+
+axios.interceptors.response.use(function (response) {
+  return response;
+}, function (error) {
+  if(error.response.status == 401){
+    window.location.href = "/";
+    return Promise.reject(error);
+  } 
+});
+
 export default new Vuex.Store({
   state: {
-    count: 0,
-    user: null,
     posts: [],
-    error:{
-      code: null,
-      msg: null
-    }
+    filters: [],
+    activetag: null
+  },
+  getters: {
   },
   mutations: {
-    SET_USER: function (state, user){
-      state.user = user;
+    setposts: function(state, data) {
+      console.log("data: ", data);
+      state.posts = data;
     },
-    HANDEL_ERRORS: function (state, error) {
-      state.error.code = error.code;
-      state.error.msg = error.msg;
-    },
-    CLEAR_USER: function (state){
-      state.user = null;
-    },
-    ADD_POSTS: function (state) {
-      firebase.database().ref('posts').once('value').then(function(data) {
-        let posts = [];
-        var postdata = data.val(); 
-        for(var post in data.val()){
-          posts.push({user: postdata[post].user, body: postdata[post].body, date: postdata[post].date});
-        }
-        state.posts = posts;
-      });
+    setfilters: function(state, data) {
+      state.filters = data;
     }
   },
   actions: {
-    registerUser: function (ctx, details) {
-
-      firebase.auth().createUserWithEmailAndPassword(details.email, details.password).then(function(user) {
-          var user = firebase.auth().currentUser;
-           user.updateProfile({
-              displayName: details.username,
-           }).then(function() {
-              console.log("user", user);
-              ctx.commit("SET_USER", user);
-           }, function(error) {
-              console.log("update user error", error);
-           });
-      }, function(err) {
-          console.log(err)
-          ctx.commit("HANDEL_ERRORS", {code: err.code, msg: err.message});
-      });
-      
-    },
-    signOutUser: function (ctx) {
-      firebase.auth().signOut().then(function() {
-        ctx.commit("CLEAR_USER");
-      }).catch(function(error) {
-        console.log("Sign out error", error);
+    SIGN_IN: function (cxt, payload) {
+      return axios.post('/signin', {
+        email: payload.email,
+        password: payload.password
       });
     },
-    signInUser: function (ctx, credentials) {
-     firebase.auth().signInWithEmailAndPassword(credentials.email, credentials.password).then(function(user) {
-          var user = firebase.auth().currentUser;
-          ctx.commit("SET_USER", user);
-      }, function(err) {
-          console.log(err)
-          ctx.commit("HANDEL_ERRORS", {code: err.code, msg: err.message});
+    SIGN_OUT: function (cxt) {
+      localStorage.removeItem("token");
+    },  
+    REGISTER: function (ctx, payload) {
+      return axios.post('/register', {
+        email: payload.email,
+        password: payload.password,
+        username: payload.username
       });
     },
-    createPost: function (ctx, post) {
-      firebase.database().ref('posts').push({
-        user: post.user,
-        body: post.body,
-        date: Date.now()
-      }, function (err) {
-        if(err){
-          ctx.commit("HANDEL_ERRORS", {code: err.code, msg: err.message});
-        }else{
-          ctx.commit("ADD_POSTS");
+    GET_POSTS: function (ctx) {
+      return axios.get('/post').then((res) =>{
+        ctx.commit('setposts', res.data);
+      })
+      .catch((err) => {
+        if(err.response){
+          //TODO: real errors:
+          console.log(err);
         }
       });
-      //ctx.commit("ADD_POSTS");
+    },
+    GET_POSTS_BY_TAG: function (ctx, payload) {
+      axios.get('/post/tag/' + payload.tag)
+      .then(function (res) {
+        ctx.commit('setposts', res.data);
+      })
+      .catch(function (err) {
+        //TODO: Real error handling
+        console.log(err);
+      });
+    },
+    CREATE_POST: function (ctx, payload) {
+      return axios.post('/post', {
+        postbody: payload.body
+      });
+    },
+    GET_USER: function (ctx, payload) {
+      return axios.get('/user/' + payload.username);
+    },
+    GET_FILTERS: function (ctx, payload) {
+      return axios.get('/filter');
+    },
+    CREATE_FILTER: function (ctx, payload) {
+      return axios.post('/filter', {
+        name: payload.name,
+        tags: payload.tags.split(",")
+      });
+    },
+    UPDATE_FILTER: function (ctx, payload) {
+      return axios.put('/filter/' + payload.id, {
+        name: payload.name,
+        tags: payload.tags.split(",")
+      });
+    },
+    GET_USER_NAME: function (ctx, payload) {
+      /* Hacky way to get the username from a id for navigation */
+      return axios.get('/username');
+    },
+    ACTIVATE_FILTER: function (ctx, payload) {
+      //console.log(payload.id);
+      axios.get('/filter/activate/' + payload.id).then(function (res) {
+          ctx.commit('setfilters', res.data);
+      }).catch(function (err) {
+        //TODO: Real error handling
+        console.log(err);
+      });
     }
   }
 });
