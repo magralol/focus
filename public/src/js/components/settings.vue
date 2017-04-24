@@ -2,9 +2,10 @@
 <div>
   <navbar :page="'settings'"></navbar>
 
+  <!-- FILIP, Lägg till dynamiskt användarnamn, plz -->
   <h3 class="text-center">@Username</h3>
 
-    <p class="btn create-filter-btn text-center" data-toggle="modal" data-target="#newFilterModal">New Filter </p>
+    <p class="btn create-filter-btn text-center" data-toggle="modal" data-target="#newFilterModal">Nytt Filter </p>
 
 
 
@@ -12,12 +13,12 @@
      <div class="col-md-6 col-md-offset-3">
        <div class="row">
          <div class="col-xs-6 text-left">
-           <p>Filters</p>
+           <p>Filter</p>
          </div>
 
          <!-- När man klickar på edit ska .panel-footer bli display: block
           ============================================================ -->
-         <div class="col-xs-6 text-right">Edit</div>
+         <div class="col-xs-6 text-right">Redigera</div>
        </div>
 
       <ul class="list-group">
@@ -27,14 +28,14 @@
           </div>
           <div style="padding: 0" class="col-xs-4 text-right" v-on:click="activateFilter(i)">
             <span v-if="filter.active" class="label label-success">Activated</span>
-            <span v-else class="label label-default">Activated</span>
+            <span v-else class="label label-default">Aktivera</span>
           </div>
           <div class="filter-body-tags">
             <span class="filter-tags" v-for="(tag, i) in filter.allawedtags">{{ tag }} </span>
           </div>
           <div class="panel-footer clearfix">
-            <div class="col-xs-6 text-center edit-filter" data-toggle="modal" data-target="#newFilterModal">Edit filter</div>
-            <div class="col-xs-6 text-center delete-filter">Delete filter</div>
+            <div class="col-xs-6 text-center edit-filter" data-toggle="modal" data-target="#newFilterModal">Redigera filter</div>
+            <div class="col-xs-6 text-center delete-filter">Ta bort filter</div>
           </div>
         </li>
 
@@ -49,16 +50,16 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <label for="filterTitle">Name on filter</label>
-            <input type="text" id="filterTitle" name="filterTilte" class="form-control" placeholder="Name on filter" v-model="filterName">
+          <label for="filterTitle">Namn</label>
+            <input type="text" id="filterTitle" name="filterTilte" class="form-control" placeholder="Namn på filtret" v-model="filterName">
         </div>
         <div class="modal-body">
-          <label for="filterTags">Separate tags with ",""</label>
-          <input type="text" id="filterTags" name="filterTags" class="form-control" placeholder="Tags..." v-model="filterTags">
+          <label for="filterTags">Separera taggarna med ",""</label>
+          <input type="text" id="filterTags" name="filterTags" class="form-control" placeholder="Taggar..." v-model="filterTags">
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Save filter</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Stäng</button>
+          <button type="submit" class="btn btn-primary">Spara filter</button>
         </div>
     </div>
   </div>

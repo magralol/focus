@@ -11,8 +11,8 @@
     <div class="new_post_wrapper clearfix">
       <form class="message" v-on:submit.prevent="post">
         <textarea name="new_message" class="form-control" placeholder="Write a message..." rows="3" id="new_message" v-model="postbody"></textarea>
-        <input type="submit" name="" class="btn btn-primary post_btn" value="Publish">
-        <span class="message_info">Character: {{postbody.length}}/300</span>
+        <input type="submit" name="" class="btn btn-primary post_btn" value="Skicka">
+        <span class="message_info">Tecken: {{postbody.length}}/300</span>
 
       </form>
     </div>
@@ -20,8 +20,8 @@
     <!-- Message Feed
      ============================================================ -->
     <div v-if="posts.length == 0">
-      <span v-if="tagname">there are no posts with tag of {{tagname}}</span>
-      <span v-else>there is currently no posts</span>
+      <span v-if="tagname">Det finns inga inlägg i #{{tagname}}</span>
+      <span v-else>Det finns för tillfället inga inlägg.</span>
     </div>
 
     <div v-for="post in posts">
@@ -64,7 +64,7 @@ export default {
       //this.$set("posts", this.$store.state.posts);
       //console.log(this.$set);
       //this.$set(this.posts, this.$store.state.posts)
-      //location.reload(); 
+      //location.reload();
     }
   },
   beforeMount: function(){
@@ -81,7 +81,7 @@ export default {
     },
     post: function(){
       this.$store.dispatch('CREATE_POST', {body: this.postbody}).then((res) =>{
-        
+
         if(this.$route.params.tag){
           this.posts.unshift({body: res.data[0].body, user: res.data[0].user, date: res.data[0].date});
         }else{

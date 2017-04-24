@@ -27975,7 +27975,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       //this.$set("posts", this.$store.state.posts);
       //console.log(this.$set);
       //this.$set(this.posts, this.$store.state.posts)
-      //location.reload(); 
+      //location.reload();
     }
   },
   beforeMount: function beforeMount() {
@@ -28386,6 +28386,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__navbar_vue__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__navbar_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__navbar_vue__);
+//
 //
 //
 //
@@ -30914,11 +30915,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "type": "submit",
       "name": "",
-      "value": "Publish"
+      "value": "Skicka"
     }
   }), _vm._v(" "), _c('span', {
     staticClass: "message_info"
-  }, [_vm._v("Character: " + _vm._s(_vm.postbody.length) + "/300")])])]), _vm._v(" "), (_vm.posts.length == 0) ? _c('div', [(_vm.tagname) ? _c('span', [_vm._v("there are no posts with tag of " + _vm._s(_vm.tagname))]) : _c('span', [_vm._v("there is currently no posts")])]) : _vm._e(), _vm._v(" "), _vm._l((_vm.posts), function(post) {
+  }, [_vm._v("Tecken: " + _vm._s(_vm.postbody.length) + "/300")])])]), _vm._v(" "), (_vm.posts.length == 0) ? _c('div', [(_vm.tagname) ? _c('span', [_vm._v("Det finns inga inlägg i #" + _vm._s(_vm.tagname))]) : _c('span', [_vm._v("Det finns för tillfället inga inlägg.")])]) : _vm._e(), _vm._v(" "), _vm._l((_vm.posts), function(post) {
     return _c('div', [_c('feeditem', {
       attrs: {
         "text": post.body,
@@ -30960,7 +30961,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "date": post.date
       }
     })], 1)
-  }), _vm._v(" "), (_vm.posts.length == 0) ? _c('div', [_vm._v("\n        user have not posted any thing\n    ")]) : _vm._e()], 2)], 1)
+  }), _vm._v(" "), (_vm.posts.length == 0) ? _c('div', [_vm._v("\n        Användaren har inte postat någonting.\n    ")]) : _vm._e()], 2)], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -31021,7 +31022,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "for": "reg_username"
     }
-  }, [_vm._v("Username")]), _vm._v(" "), _c('input', {
+  }, [_vm._v("Användarnamn")]), _vm._v(" "), _c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -31073,7 +31074,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "for": "reg_password"
     }
-  }, [_vm._v("Password")]), _vm._v(" "), _c('input', {
+  }, [_vm._v("Lösenord")]), _vm._v(" "), _c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -31100,15 +31101,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "type": "submit",
       "name": "reg_btn",
-      "value": "Register"
+      "value": "Registrera"
     }
-  }), _vm._v(" "), _c('span', [_vm._v(" Already have an account? "), _c('i', {
+  }), _vm._v(" "), _c('span', [_vm._v("Har du redan ett konto? "), _c('i', {
     on: {
       "click": function($event) {
         _vm.registerShow = !_vm.registerShow
       }
     }
-  }, [_vm._v("Sign in")])])]), _vm._v(" "), _c('form', {
+  }, [_vm._v("Logga in")])])]), _vm._v(" "), _c('form', {
     directives: [{
       name: "show",
       rawName: "v-show",
@@ -31151,7 +31152,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "for": "login_password"
     }
-  }, [_vm._v("Password")]), _vm._v(" "), _c('input', {
+  }, [_vm._v("Lösenord")]), _vm._v(" "), _c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -31177,17 +31178,17 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "type": "submit",
       "name": "login_btn",
-      "value": "Sign in"
+      "value": "Logga in"
     }
-  }), _vm._v(" "), _c('span', [_vm._v(" Dont have an account? "), _c('i', {
+  }), _vm._v(" "), _c('span', [_vm._v(" Har du inget konto? "), _c('i', {
     on: {
       "click": function($event) {
         _vm.registerShow = !_vm.registerShow
       }
     }
-  }, [_vm._v("register!")])])])])])
+  }, [_vm._v("Registrera!")])])])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('b', [_c('ul', [_c('li', [_vm._v("aaaa")])])])
+  return _c('b', [_c('ul', [_c('li', [_vm._v("Nu har det visst blivit fel.")])])])
 }]}
 module.exports.render._withStripped = true
 if (false) {
@@ -31214,7 +31215,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "data-toggle": "modal",
       "data-target": "#newFilterModal"
     }
-  }, [_vm._v("New Filter ")]), _vm._v(" "), _c('div', {
+  }, [_vm._v("Nytt Filter ")]), _vm._v(" "), _c('div', {
     staticClass: "container"
   }, [_c('div', {
     staticClass: "col-md-6 col-md-offset-3"
@@ -31244,7 +31245,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "label label-success"
     }, [_vm._v("Activated")]) : _c('span', {
       staticClass: "label label-default"
-    }, [_vm._v("Activated")])]), _vm._v(" "), _c('div', {
+    }, [_vm._v("Aktivera")])]), _vm._v(" "), _c('div', {
       staticClass: "filter-body-tags"
     }, _vm._l((filter.allawedtags), function(tag, i) {
       return _c('span', {
@@ -31279,7 +31280,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "for": "filterTitle"
     }
-  }, [_vm._v("Name on filter")]), _vm._v(" "), _c('input', {
+  }, [_vm._v("Namn")]), _vm._v(" "), _c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -31291,7 +31292,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "type": "text",
       "id": "filterTitle",
       "name": "filterTilte",
-      "placeholder": "Name on filter"
+      "placeholder": "Namn på filtret"
     },
     domProps: {
       "value": (_vm.filterName)
@@ -31308,7 +31309,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "for": "filterTags"
     }
-  }, [_vm._v("Separate tags with \",\"\"")]), _vm._v(" "), _c('input', {
+  }, [_vm._v("Separera taggarna med \",\"\"")]), _vm._v(" "), _c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -31320,7 +31321,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "type": "text",
       "id": "filterTags",
       "name": "filterTags",
-      "placeholder": "Tags..."
+      "placeholder": "Taggar..."
     },
     domProps: {
       "value": (_vm.filterTags)
@@ -31337,9 +31338,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "row"
   }, [_c('div', {
     staticClass: "col-xs-6 text-left"
-  }, [_c('p', [_vm._v("Filters")])]), _vm._v(" "), _c('div', {
+  }, [_c('p', [_vm._v("Filter")])]), _vm._v(" "), _c('div', {
     staticClass: "col-xs-6 text-right"
-  }, [_vm._v("Edit")])])
+  }, [_vm._v("Redigera")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "panel-footer clearfix"
@@ -31349,9 +31350,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "data-toggle": "modal",
       "data-target": "#newFilterModal"
     }
-  }, [_vm._v("Edit filter")]), _vm._v(" "), _c('div', {
+  }, [_vm._v("Redigera filter")]), _vm._v(" "), _c('div', {
     staticClass: "col-xs-6 text-center delete-filter"
-  }, [_vm._v("Delete filter")])])
+  }, [_vm._v("Ta bort filter")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('button', {
     staticClass: "close",
@@ -31374,12 +31375,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "type": "button",
       "data-dismiss": "modal"
     }
-  }, [_vm._v("Close")]), _vm._v(" "), _c('button', {
+  }, [_vm._v("Stäng")]), _vm._v(" "), _c('button', {
     staticClass: "btn btn-primary",
     attrs: {
       "type": "submit"
     }
-  }, [_vm._v("Save filter")])])
+  }, [_vm._v("Spara filter")])])
 }]}
 module.exports.render._withStripped = true
 if (false) {
@@ -31464,26 +31465,26 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "href": "#/feed"
     }
-  }, [_vm._v("Feed")])]), _vm._v(" "), _c('li', {
+  }, [_vm._v("Flöde")])]), _vm._v(" "), _c('li', {
     class: _vm.page == 'profile' ? 'active' : ''
   }, [_c('a', {
     attrs: {
       "href": '#/user/' + _vm.user
     }
-  }, [_vm._v("Profile")])]), _vm._v(" "), _c('li', {
+  }, [_vm._v("Profil")])]), _vm._v(" "), _c('li', {
     class: _vm.page == 'settings' ? 'active' : ''
   }, [_c('a', {
     attrs: {
       "href": "#/settings"
     }
-  }, [_vm._v("Settings")])]), _vm._v(" "), _c('li', [_c('a', {
+  }, [_vm._v("Inställningar")])]), _vm._v(" "), _c('li', [_c('a', {
     attrs: {
       "href": "#"
     },
     on: {
       "click": _vm.signout
     }
-  }, [_vm._v("Sign out")])])])])])])])
+  }, [_vm._v("Logga ut")])])])])])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col-xs-3 mobile-icon"
