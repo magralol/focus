@@ -5,7 +5,7 @@ import axios from 'axios'
 Vue.use(Vuex);
 
 if(localStorage.getItem("token")){
-  axios.defaults.headers.common['Authorization'] = localStorage.getItem("token");
+  axios.defaults.headers.common['Authorization'] = "Bearer " + localStorage.getItem("token");
 }
 
 axios.interceptors.response.use(function (response) {
@@ -13,8 +13,8 @@ axios.interceptors.response.use(function (response) {
 }, function (error) {
   if(error.response.status == 401){
     window.location.href = "/";
+    return Promise.reject(error);
   } 
-  return Promise.reject(error);
 });
 
 export default new Vuex.Store({
@@ -60,7 +60,7 @@ export default new Vuex.Store({
           //TODO: real errors:
           console.log(err);
         }
-      });;
+      });
     },
     GET_POSTS_BY_TAG: function (ctx, payload) {
       axios.get('/post/tag/' + payload.tag)
@@ -98,6 +98,15 @@ export default new Vuex.Store({
     GET_USER_NAME: function (ctx, payload) {
       /* Hacky way to get the username from a id for navigation */
       return axios.get('/username');
+    },
+    ACTIVATE_FILTER: function (ctx, payload) {
+      //console.log(payload.id);
+      axios.get('/filter/activate/' + payload.id).then(function (res) {
+          ctx.commit('setfilters', res.data);
+      }).catch(function (err) {
+        //TODO: Real error handling
+        console.log(err);
+      });
     }
   }
 });

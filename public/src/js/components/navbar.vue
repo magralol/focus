@@ -32,7 +32,7 @@
             </div>
           </a>
 
-          <a href="#">
+          <a href="#" v-on:click="signout">
             <div class="col-xs-3 mobile-icon">
               <i class="fa fa-times-circle-o fa-2x"></i>
             </div>
@@ -44,9 +44,9 @@
        <div class="navbar-collapse collapse">
          <ul class="nav navbar-nav navbar-right">
            <li v-bind:class="page == 'feed' ? 'active': ''"><a href="#/feed">Feed</a></li>
-           <li v-bind:class="page == 'profile' ? 'active': ''"><a :href="'#/user/'+user">Profile</a></li>-->
+           <li v-bind:class="page == 'profile' ? 'active': ''"><a :href="'#/user/'+user">Profile</a></li>
            <li v-bind:class="page == 'settings' ? 'active': ''"><a href="#/settings">Settings</a></li>
-           <li><a href="#/">Sign out</a></li>
+           <li><a href="#" v-on:click="signout">Sign out</a></li>
          </ul>
        </div>
      </div>
@@ -73,6 +73,15 @@ export default {
           console.log(err);
         }
     });
+  },
+  methods:{
+    signout: function(e){
+      e.preventDefault();
+      if(localStorage.getItem("token")){
+        localStorage.removeItem("token");
+      }
+      this.$router.push({path:"/"});
+    }
   }
 }
 </script>

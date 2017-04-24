@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Vuex from 'vuex'
+import axios from 'axios'
 
 import store from './store'
 
@@ -12,22 +13,37 @@ import Settings from './components/settings.vue'
 
 
 require('../scss/style.scss');
-require('es6-promise').polyfill();
 
 Vue.use(VueRouter);
+
+function checkAuth(to, from, next) {
+    if(localStorage.getItem("token")){
+      axios.get('/auth/check').then((res) =>{
+        next();
+      }).catch((err) => {
+        if(err.response){
+          router.push({path:"/"});
+        }
+      });
+    }else{
+      router.push({path:"/"})
+    }
+}
+
+var router = new VueRouter({
+    mode: 'hash',
+    routes: [
+      { path: '/', name: 'home', component: Home },
+      { path: '/feed', name: 'feed', component: Feed, beforeEnter: checkAuth },
+      { path: '/tag/:tag', name: 'tag', component: Feed, beforeEnter: checkAuth },
+      { path: '/user/:username', name: 'profile', component: Profile, beforeEnter: checkAuth },
+      { path: '/settings', name: 'settings', component: Settings, beforeEnter: checkAuth }
+    ]
+});
 
 new Vue({
   el: '#app',
   store: store,
-  router: new VueRouter({
-    mode: 'hash',
-    routes: [
-      { path: '/', name: 'home', component: Home },
-      { path: '/feed', name: 'feed', component: Feed },
-      { path: '/tag/:tag', name: 'tag', component: Feed },
-      { path: '/user/:username', name: 'profile', component: Profile },
-      { path: '/settings', name: 'settings', component: Settings }
-    ]
-  }),
+  router: router,
   render: h => h(App)
 });

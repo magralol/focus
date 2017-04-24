@@ -21,11 +21,11 @@
        </div>
 
       <ul class="list-group">
-        <li class="list-group-item" v-for="filter in filters">
+        <li class="list-group-item" v-for="(filter, i) in filters">
           <div style="padding: 0" class="col-xs-8 text-left">
             <span class="filter-title">{{ filter.name }}</span>
           </div>
-          <div style="padding: 0" class="col-xs-4 text-right">
+          <div style="padding: 0" class="col-xs-4 text-right" v-on:click="activateFilter(i)">
             <span v-if="filter.active" class="label label-success">Activated</span>
             <span v-else class="label label-default">Activated</span>
           </div>
@@ -108,6 +108,9 @@ export default {
           console.log(err);
         });
 
+      },
+      activateFilter: function(i){
+        this.$store.dispatch('ACTIVATE_FILTER', {id: this.filters[i]._id});
       }
     }
 }

@@ -1,5 +1,7 @@
 var moment = require('moment');
 var Post = require('../models/Post');
+var Filter = require('../models/Filter');
+var User = require('../models/User');
 
 module.exports = {
     getById: function (req, res) {
@@ -13,7 +15,39 @@ module.exports = {
         });
     },
     getAll: function (req, res) {
-        Post.find({}, {__v: 0 }, function (err, docs) {
+        User.findById(req.user.id, function (err, doc) {
+            if(err){
+                //TODO: real error handling
+                res.sendStatus(500);
+            }else{
+                Filter.findOne({user: doc.username, active: true}, function (err, doc) {
+                    if(err){
+                        //TODO: real error handling
+                        res.sendStatus(500);
+                    }else{
+                        var query;
+                        if(doc){
+                            query = {tags: { $in : doc.allawedtags }};
+                        }else{
+                            query = {};
+                        }
+
+                        Post.find(query, {__v: 0 }, function (err, docs) {
+                            if(err){
+                                //TODO: real error handling
+                                res.sendStatus(500);
+                            }else{
+                                docs = docs.sort(function(a,b) { 
+                                    return new Date(b.date).getTime() - new Date(a.date).getTime() 
+                                });
+                                res.send(docs);
+                            }
+                        });
+                    }
+                });
+            }
+        });
+        /*Post.find({}, {__v: 0 }, function (err, docs) {
             if(err){
                 //TODO: real error handling
                 res.sendStatus(500);
@@ -23,7 +57,7 @@ module.exports = {
                 });
                 res.send(docs);
             }
-        });
+        });*/
         
     },
     getByTag: function (req, res) {
@@ -87,15 +121,36 @@ module.exports = {
                     console.log(err);
                     res.sendStatus(500);
                 }else{
-                    Post.find({}, {__v: 0 }, function (err, docs) {
+                    User.findById(req.user.id, function (err, doc) {
                         if(err){
                             //TODO: real error handling
                             res.sendStatus(500);
                         }else{
-                            docs = docs.sort(function(a,b) { 
-                                return new Date(b.date).getTime() - new Date(a.date).getTime() 
+                            Filter.findOne({user: doc.username, active: true}, function (err, doc) {
+                                if(err){
+                                    //TODO: real error handling
+                                    res.sendStatus(500);
+                                }else{
+                                    var query;
+                                    if(doc){
+                                        query = {tags: { $in : doc.allawedtags }};
+                                    }else{
+                                        query = {};
+                                    }
+
+                                    Post.find(query, {__v: 0 }, function (err, docs) {
+                                        if(err){
+                                            //TODO: real error handling
+                                            res.sendStatus(500);
+                                        }else{
+                                            docs = docs.sort(function(a,b) { 
+                                                return new Date(b.date).getTime() - new Date(a.date).getTime() 
+                                            });
+                                            res.send(docs);
+                                        }
+                                    });
+                                }
                             });
-                            res.send(docs);
                         }
                     });
                 }
