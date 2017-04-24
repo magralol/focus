@@ -10,7 +10,7 @@
      ============================================================ -->
     <div class="new_post_wrapper clearfix">
       <form class="message" v-on:submit.prevent="post">
-        <textarea name="new_message" class="form-control" placeholder="Write a message..." rows="3" id="new_message" v-model="postbody"></textarea>
+        <textarea name="new_message" class="form-control" placeholder="Skriv ett meddelande..." rows="3" id="new_message" v-model="postbody"></textarea>
         <input type="submit" name="" class="btn btn-primary post_btn" value="Skicka">
         <span class="message_info">Tecken: {{postbody.length}}/300</span>
 

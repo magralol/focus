@@ -30897,7 +30897,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "form-control",
     attrs: {
       "name": "new_message",
-      "placeholder": "Write a message...",
+      "placeholder": "Skriv ett meddelande...",
       "rows": "3",
       "id": "new_message"
     },
@@ -31243,7 +31243,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }, [(filter.active) ? _c('span', {
       staticClass: "label label-success"
-    }, [_vm._v("Activated")]) : _c('span', {
+    }, [_vm._v("Aktiverad")]) : _c('span', {
       staticClass: "label label-default"
     }, [_vm._v("Aktivera")])]), _vm._v(" "), _c('div', {
       staticClass: "filter-body-tags"
@@ -31309,7 +31309,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "for": "filterTags"
     }
-  }, [_vm._v("Separera taggarna med \",\"\"")]), _vm._v(" "), _c('input', {
+  }, [_vm._v("Taggar (separera med ,)\"")]), _vm._v(" "), _c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",

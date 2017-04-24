@@ -27,7 +27,7 @@
             <span class="filter-title">{{ filter.name }}</span>
           </div>
           <div style="padding: 0" class="col-xs-4 text-right" v-on:click="activateFilter(i)">
-            <span v-if="filter.active" class="label label-success">Activated</span>
+            <span v-if="filter.active" class="label label-success">Aktiverad</span>
             <span v-else class="label label-default">Aktivera</span>
           </div>
           <div class="filter-body-tags">
@@ -54,7 +54,7 @@
             <input type="text" id="filterTitle" name="filterTilte" class="form-control" placeholder="Namn på filtret" v-model="filterName">
         </div>
         <div class="modal-body">
-          <label for="filterTags">Separera taggarna med ",""</label>
+          <label for="filterTags">Taggar (separera med ,)"</label>
           <input type="text" id="filterTags" name="filterTags" class="form-control" placeholder="Taggar..." v-model="filterTags">
         </div>
         <div class="modal-footer">
