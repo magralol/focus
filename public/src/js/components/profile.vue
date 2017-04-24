@@ -11,7 +11,7 @@
     </div>
 
     <div v-if="posts.length == 0">
-        user have not posted any thing
+        Användaren har inte postat någonting.
     </div>
 
   </div>

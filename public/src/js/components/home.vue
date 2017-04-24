@@ -9,7 +9,7 @@
       <div v-show="errors" class="alert alert-danger" role="alert">
         <b>
           <ul>
-            <li>aaaa</li>
+            <li>Nu har det visst blivit fel.</li>
           </ul>
         </b>
       </div>
@@ -18,7 +18,7 @@
       <form v-show="!registerShow" class="register-form home-form" v-on:submit.prevent="register">
 
         <!-- Username -->
-        <label for="reg_username">Username</label>
+        <label for="reg_username">Användarnamn</label>
         <input id="reg_username" type="text" name="" class="form-control" v-model="regUsername">
 
         <!-- Email -->
@@ -26,14 +26,14 @@
         <input id="reg_email" type="email" name="" class="form-control" v-model="regEmail">
 
         <!-- Password -->
-        <label for="reg_password">Password</label>
+        <label for="reg_password">Lösenord</label>
         <input id="reg_password" type="password" name="" class="form-control" v-model="regPassword">
 
         <!-- Register button -->
-        <input type="submit" name="reg_btn" class="reg_btn btn" value="Register">
-        
+        <input type="submit" name="reg_btn" class="reg_btn btn" value="Registrera">
+
         <!-- Info tooltip -->
-        <span> Already have an account? <i v-on:click="registerShow = !registerShow">Sign in</i></span>
+        <span>Har du redan ett konto? <i v-on:click="registerShow = !registerShow">Logga in</i></span>
       </form>
 
       <!-- Sign in form -->
@@ -44,14 +44,14 @@
         <input id="login_email" type="email" class="form-control" v-model="email">
 
         <!-- Password -->
-        <label for="login_password">Password</label>
+        <label for="login_password">Lösenord</label>
         <input id="login_password" type="password" class="form-control" v-model="password">
 
         <!-- Register button -->
-        <input type="submit" name="login_btn" class="reg_btn btn" value="Sign in">
+        <input type="submit" name="login_btn" class="reg_btn btn" value="Logga in">
 
         <!-- Info tooltip -->
-        <span> Dont have an account? <i v-on:click="registerShow = !registerShow">register!</i></span>
+        <span> Har du inget konto? <i v-on:click="registerShow = !registerShow">Registrera!</i></span>
       </form>
 
 

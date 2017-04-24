@@ -43,10 +43,10 @@
        </div>
        <div class="navbar-collapse collapse">
          <ul class="nav navbar-nav navbar-right">
-           <li v-bind:class="page == 'feed' ? 'active': ''"><a href="#/feed">Feed</a></li>
-           <li v-bind:class="page == 'profile' ? 'active': ''"><a :href="'#/user/'+user">Profile</a></li>
-           <li v-bind:class="page == 'settings' ? 'active': ''"><a href="#/settings">Settings</a></li>
-           <li><a href="#" v-on:click="signout">Sign out</a></li>
+           <li v-bind:class="page == 'feed' ? 'active': ''"><a href="#/feed">Flöde</a></li>
+           <li v-bind:class="page == 'profile' ? 'active': ''"><a :href="'#/user/'+user">Profil</a></li>
+           <li v-bind:class="page == 'settings' ? 'active': ''"><a href="#/settings">Inställningar</a></li>
+           <li><a href="#" v-on:click="signout">Logga ut</a></li>
          </ul>
        </div>
      </div>
