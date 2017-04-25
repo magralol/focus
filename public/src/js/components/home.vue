@@ -7,11 +7,7 @@
       <div v-show="successmsg" class="alert alert-success" role="alert"><b>{{ successmsg }}</b></div>
 
       <div v-show="errors" class="alert alert-danger" role="alert">
-        <b>
-          <ul>
-            <li>Nu har det visst blivit fel.</li>
-          </ul>
-        </b>
+        <b>{{ errors }}</b>
       </div>
 
       <!-- Register form -->
@@ -79,27 +75,36 @@ export default {
     signIn: function(){
       this.$store.dispatch('SIGN_IN', {email: this.email, password: this.password})
       .then((res) => {
-        localStorage.setItem("token", res.data);
-        //console.log(localStorage.getItem("token"));
-        this.$router.push('feed');
+        console.log(res);
+        if(res){
+           localStorage.setItem("token", res.data);
+          //console.log(localStorage.getItem("token"));
+          this.$router.push('feed');
+        }else{
+          this.errors = "Fel användarnamn eller lösenord, försök igen!";
+        }
       }).catch((err) => {
         if(err.response){
           //TODO: real errors:
-          console.log("test");
+          this.errors = "Fel användarnamn eller lösenord, försök igen!";
         }
       });;
     },
     register: function(){
       this.$store.dispatch('REGISTER', {email: this.regEmail, password: this.regPassword, username: this.regUsername})
       .then((res) => {
-        this.successmsg = 'Kontot skapat!';
-        this.regEmail = null;
-        this.regPassword = null;
-        this.regUsername = null;
+        if(res){
+          this.successmsg = 'Kontot skapat!';
+          this.regEmail = null;
+          this.regPassword = null;
+          this.regUsername = null;
+        }else{
+          this.errors = "Nu har det visst blivit fel. Försök igen!";
+        }
       }).catch((err) => {
         if(err.response){
           //TODO: real errors:
-          console.log("test");
+          this.errors = "Nu har det visst blivit fel. Försök igen!";
         }
       });
     }

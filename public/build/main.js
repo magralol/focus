@@ -27999,10 +27999,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'home',
@@ -28024,13 +28020,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this = this;
 
       this.$store.dispatch('SIGN_IN', { email: this.email, password: this.password }).then(function (res) {
-        localStorage.setItem("token", res.data);
-        //console.log(localStorage.getItem("token"));
-        _this.$router.push('feed');
+        console.log(res);
+        if (res) {
+          localStorage.setItem("token", res.data);
+          //console.log(localStorage.getItem("token"));
+          _this.$router.push('feed');
+        } else {
+          _this.errors = "Fel användarnamn eller lösenord, försök igen!";
+        }
       }).catch(function (err) {
         if (err.response) {
           //TODO: real errors:
-          console.log("test");
+          _this.errors = "Fel användarnamn eller lösenord, försök igen!";
         }
       });;
     },
@@ -28038,14 +28039,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this2 = this;
 
       this.$store.dispatch('REGISTER', { email: this.regEmail, password: this.regPassword, username: this.regUsername }).then(function (res) {
-        _this2.successmsg = 'Kontot skapat!';
-        _this2.regEmail = null;
-        _this2.regPassword = null;
-        _this2.regUsername = null;
+        if (res) {
+          _this2.successmsg = 'Kontot skapat!';
+          _this2.regEmail = null;
+          _this2.regPassword = null;
+          _this2.regUsername = null;
+        } else {
+          _this2.errors = "Nu har det visst blivit fel. Försök igen!";
+        }
       }).catch(function (err) {
         if (err.response) {
           //TODO: real errors:
-          console.log("test");
+          _this2.errors = "Nu har det visst blivit fel. Försök igen!";
         }
       });
     }
@@ -28869,7 +28874,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "role": "alert"
     }
-  }, [_vm._m(0)]), _vm._v(" "), _c('form', {
+  }, [_c('b', [_vm._v(_vm._s(_vm.errors))])]), _vm._v(" "), _c('form', {
     directives: [{
       name: "show",
       rawName: "v-show",
@@ -29052,9 +29057,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }
   }, [_vm._v("Registrera!")])])])])])
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('b', [_c('ul', [_c('li', [_vm._v("Nu har det visst blivit fel.")])])])
-}]}
+},staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
