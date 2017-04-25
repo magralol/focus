@@ -26,9 +26,8 @@ userSchema.statics.generateHash = function(pw) {
     return bcrypt.hashSync(pw, bcrypt.genSaltSync(10));
 }
 
-userSchema.statics.validatePassword = function(pw, toCompair) {
-     return {pw: pw, toCompair: toCompair};    
-    //return bcrypt.compareSync(pw, toCompair);
+userSchema.statics.validatePassword = function(pw, toCompair) {   
+    return bcrypt.compareSync(toCompair, pw);
 }
 
 module.exports = mongoose.model('user', userSchema);

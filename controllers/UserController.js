@@ -18,8 +18,7 @@ module.exports = {
         });
     },
     getUserName: function (req, res) {
-        var user = "58e61f9d567e801443c6d4db";
-        User.findById(user, {__v:0, password: 0}, function (err, doc) {
+        User.findById(req.user.id, {__v:0, password: 0}, function (err, doc) {
            if(err){
                /* TODO: Real error handling */
                res.sendStatus(500);

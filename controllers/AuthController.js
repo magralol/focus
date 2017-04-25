@@ -34,11 +34,11 @@ module.exports = {
             if(err){
                 res.sendStatus(500);
             }else{
-                if(User.validatePassword(doc.password, User.generateHash(req.body.password))){
+                if(User.validatePassword(doc.password, req.body.password)){
                     var token = {id: doc._id};
                     res.send(jwt.sign(token, secret, { expiresIn: '1d' }));
                 }else{
-                    res.send({});
+                    res.send(500);
                 }
             }
 

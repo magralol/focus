@@ -28120,10 +28120,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'home',
@@ -28145,13 +28141,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this = this;
 
       this.$store.dispatch('SIGN_IN', { email: this.email, password: this.password }).then(function (res) {
-        localStorage.setItem("token", res.data);
-        //console.log(localStorage.getItem("token"));
-        _this.$router.push('feed');
+        console.log(res);
+        if (res) {
+          localStorage.setItem("token", res.data);
+          //console.log(localStorage.getItem("token"));
+          _this.$router.push('feed');
+        } else {
+          _this.errors = "Fel användarnamn eller lösenord, försök igen!";
+        }
       }).catch(function (err) {
         if (err.response) {
           //TODO: real errors:
-          console.log("test");
+          _this.errors = "Fel användarnamn eller lösenord, försök igen!";
         }
       });;
     },
@@ -28159,14 +28160,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this2 = this;
 
       this.$store.dispatch('REGISTER', { email: this.regEmail, password: this.regPassword, username: this.regUsername }).then(function (res) {
-        _this2.successmsg = 'Kontot skapat!';
-        _this2.regEmail = null;
-        _this2.regPassword = null;
-        _this2.regUsername = null;
+        if (res) {
+          _this2.successmsg = 'Kontot skapat!';
+          _this2.regEmail = null;
+          _this2.regPassword = null;
+          _this2.regUsername = null;
+        } else {
+          _this2.errors = "Nu har det visst blivit fel. Försök igen!";
+        }
       }).catch(function (err) {
         if (err.response) {
           //TODO: real errors:
-          console.log("test");
+          _this2.errors = "Nu har det visst blivit fel. Försök igen!";
         }
       });
     }
@@ -28620,6 +28625,7 @@ function byteLength (b64) {
   return b64.length * 3 / 4 - placeHoldersCount(b64)
 }
 
+<<<<<<< HEAD
 function toByteArray (b64) {
   var i, j, l, tmp, placeHolders, arr
   var len = b64.length
@@ -28646,6 +28652,226 @@ function toByteArray (b64) {
     tmp = (revLookup[b64.charCodeAt(i)] << 10) | (revLookup[b64.charCodeAt(i + 1)] << 4) | (revLookup[b64.charCodeAt(i + 2)] >> 2)
     arr[L++] = (tmp >> 8) & 0xFF
     arr[L++] = tmp & 0xFF
+=======
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    attrs: {
+      "id": "home-wrapper"
+    }
+  }, [_c('div', {
+    staticClass: "login-box"
+  }, [_c('h3', [_vm._v("Focus")]), _vm._v(" "), _c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.successmsg),
+      expression: "successmsg"
+    }],
+    staticClass: "alert alert-success",
+    attrs: {
+      "role": "alert"
+    }
+  }, [_c('b', [_vm._v(_vm._s(_vm.successmsg))])]), _vm._v(" "), _c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.errors),
+      expression: "errors"
+    }],
+    staticClass: "alert alert-danger",
+    attrs: {
+      "role": "alert"
+    }
+  }, [_c('b', [_vm._v(_vm._s(_vm.errors))])]), _vm._v(" "), _c('form', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (!_vm.registerShow),
+      expression: "!registerShow"
+    }],
+    staticClass: "register-form home-form",
+    on: {
+      "submit": function($event) {
+        $event.preventDefault();
+        _vm.register($event)
+      }
+    }
+  }, [_c('label', {
+    attrs: {
+      "for": "reg_username"
+    }
+  }, [_vm._v("Användarnamn")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.regUsername),
+      expression: "regUsername"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "id": "reg_username",
+      "type": "text",
+      "name": ""
+    },
+    domProps: {
+      "value": (_vm.regUsername)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.regUsername = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "reg_email"
+    }
+  }, [_vm._v("Email")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.regEmail),
+      expression: "regEmail"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "id": "reg_email",
+      "type": "email",
+      "name": ""
+    },
+    domProps: {
+      "value": (_vm.regEmail)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.regEmail = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "reg_password"
+    }
+  }, [_vm._v("Lösenord")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.regPassword),
+      expression: "regPassword"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "id": "reg_password",
+      "type": "password",
+      "name": ""
+    },
+    domProps: {
+      "value": (_vm.regPassword)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.regPassword = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('input', {
+    staticClass: "reg_btn btn",
+    attrs: {
+      "type": "submit",
+      "name": "reg_btn",
+      "value": "Registrera"
+    }
+  }), _vm._v(" "), _c('span', [_vm._v("Har du redan ett konto? "), _c('i', {
+    on: {
+      "click": function($event) {
+        _vm.registerShow = !_vm.registerShow
+      }
+    }
+  }, [_vm._v("Logga in")])])]), _vm._v(" "), _c('form', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.registerShow),
+      expression: "registerShow"
+    }],
+    staticClass: "login-form home-form",
+    on: {
+      "submit": function($event) {
+        $event.preventDefault();
+        _vm.signIn($event)
+      }
+    }
+  }, [_c('label', {
+    attrs: {
+      "for": "login_email"
+    }
+  }, [_vm._v("Email")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.email),
+      expression: "email"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "id": "login_email",
+      "type": "email"
+    },
+    domProps: {
+      "value": (_vm.email)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.email = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "login_password"
+    }
+  }, [_vm._v("Lösenord")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.password),
+      expression: "password"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "id": "login_password",
+      "type": "password"
+    },
+    domProps: {
+      "value": (_vm.password)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.password = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('input', {
+    staticClass: "reg_btn btn",
+    attrs: {
+      "type": "submit",
+      "name": "login_btn",
+      "value": "Logga in"
+    }
+  }), _vm._v(" "), _c('span', [_vm._v(" Har du inget konto? "), _c('i', {
+    on: {
+      "click": function($event) {
+        _vm.registerShow = !_vm.registerShow
+      }
+    }
+  }, [_vm._v("Registrera!")])])])])])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-44784e64", module.exports)
+>>>>>>> origin/dev
   }
 
   return arr
