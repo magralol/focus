@@ -5,7 +5,7 @@
   <!-- FILIP, Lägg till dynamiskt användarnamn, plz -->
   <h3 class="text-center">@Username</h3>
 
-    <p class="btn create-filter-btn text-center" data-toggle="modal" data-target="#newFilterModal">Nytt Filter </p>
+    <p class="btn btn-primary create-filter-btn text-center" data-toggle="modal" data-target="#newFilterModal">Nytt Filter </p>
 
 
 

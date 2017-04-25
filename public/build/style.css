@@ -58,7 +58,6 @@
 
 .reg_btn {
   width: 100%;
-  background: coral;
   margin-top: 10px; }
 
 @media screen and (min-width: 768px) {
@@ -122,12 +121,9 @@ form label {
 
 .create-filter-btn {
   position: relative;
-  background: none;
   left: 50%;
   margin: 20px 0 20px -45px;
-  font-size: 12px;
-  border-color: #e26f20;
-  color: #e26f20; }
+  font-size: 12px; }
 
 .filter-group {
   border: 1px solid #ccc;

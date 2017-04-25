@@ -24352,14 +24352,14 @@ if (localStorage.getItem("token")) {
   __WEBPACK_IMPORTED_MODULE_2_axios___default.a.defaults.headers.common['Authorization'] = "Bearer " + localStorage.getItem("token");
 }
 
-__WEBPACK_IMPORTED_MODULE_2_axios___default.a.interceptors.response.use(function (response) {
-  return response;
-}, function (error) {
-  if (error.response.status == 401) {
-    window.location.href = "/";
-    return Promise.reject(error);
-  }
-});
+// axios.interceptors.response.use(function (response) {
+//   return response;
+// }, function (error) {
+//   if(error.response.status == 401){
+//     window.location.href = "/";
+//     return Promise.reject(error);
+//   }
+// });
 
 /* harmony default export */ __webpack_exports__["a"] = (new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
   state: {
@@ -28559,7 +28559,7 @@ function checkAuth(to, from, next) {
 
 var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
   mode: 'hash',
-  routes: [{ path: '/', name: 'home', component: __WEBPACK_IMPORTED_MODULE_6__components_home_vue___default.a }, { path: '/feed', name: 'feed', component: __WEBPACK_IMPORTED_MODULE_7__components_feed_vue___default.a, beforeEnter: checkAuth }, { path: '/tag/:tag', name: 'tag', component: __WEBPACK_IMPORTED_MODULE_7__components_feed_vue___default.a, beforeEnter: checkAuth }, { path: '/user/:username', name: 'profile', component: __WEBPACK_IMPORTED_MODULE_8__components_profile_vue___default.a, beforeEnter: checkAuth }, { path: '/settings', name: 'settings', component: __WEBPACK_IMPORTED_MODULE_9__components_settings_vue___default.a, beforeEnter: checkAuth }]
+  routes: [{ path: '/', name: 'home', component: __WEBPACK_IMPORTED_MODULE_6__components_home_vue___default.a }, { path: '/feed', name: 'feed', component: __WEBPACK_IMPORTED_MODULE_7__components_feed_vue___default.a }, { path: '/tag/:tag', name: 'tag', component: __WEBPACK_IMPORTED_MODULE_7__components_feed_vue___default.a }, { path: '/user/:username', name: 'profile', component: __WEBPACK_IMPORTED_MODULE_8__components_profile_vue___default.a }, { path: '/settings', name: 'settings', component: __WEBPACK_IMPORTED_MODULE_9__components_settings_vue___default.a }]
 });
 
 new __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */]({
@@ -31174,7 +31174,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }
   }), _vm._v(" "), _c('input', {
-    staticClass: "reg_btn btn",
+    staticClass: "reg_btn btn btn-primary",
     attrs: {
       "type": "submit",
       "name": "login_btn",
@@ -31210,7 +31210,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }), _vm._v(" "), _c('h3', {
     staticClass: "text-center"
   }, [_vm._v("@Username")]), _vm._v(" "), _c('p', {
-    staticClass: "btn create-filter-btn text-center",
+    staticClass: "btn btn-primary create-filter-btn text-center",
     attrs: {
       "data-toggle": "modal",
       "data-target": "#newFilterModal"

@@ -48,7 +48,7 @@
         <input id="login_password" type="password" class="form-control" v-model="password">
 
         <!-- Register button -->
-        <input type="submit" name="login_btn" class="reg_btn btn" value="Logga in">
+        <input type="submit" name="login_btn" class="reg_btn btn btn-primary" value="Logga in">
 
         <!-- Info tooltip -->
         <span> Har du inget konto? <i v-on:click="registerShow = !registerShow">Registrera!</i></span>
