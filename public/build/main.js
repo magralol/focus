@@ -24356,6 +24356,7 @@ __WEBPACK_IMPORTED_MODULE_2_axios___default.a.interceptors.response.use(function
   return response;
 }, function (error) {
   if (error.response.status == 401) {
+    console.log(error.response);
     window.location.href = "/";
     return Promise.reject(error);
   }
@@ -27846,17 +27847,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       return this.$store.state.posts;
     }
   },
-  watch: {
-    posts: function posts() {
-      //console.log("posts changed!");
-      //this.posts = this.$store.state.posts;
-      //console.log(this.posts[0]);
-      //this.$set("posts", this.$store.state.posts);
-      //console.log(this.$set);
-      //this.$set(this.posts, this.$store.state.posts)
-      //location.reload();
-    }
-  },
   beforeMount: function beforeMount() {
     if (this.$route.params.tag) {
       this.tagname = this.$route.params.tag;
@@ -27941,6 +27931,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 //
 //
 //
@@ -27999,6 +27991,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'home',
@@ -28011,29 +28005,59 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       regPassword: null,
       regUsername: null,
       errors: null,
-      successmsg: null
+      successmsg: null,
+      signInStatus: false
     };
   },
 
+  beforeMount: function beforeMount() {
+    if (localStorage.getItem("token")) {
+      this.$router.push({ path: "/feed" });
+    }
+  },
+  watch: {
+    signInStatus: function signInStatus() {
+      console.log();
+      console.log("signin status changed");
+      if (this.signInStatus) {
+        console.log("test");
+        //this.router.push({path:"/feed"});
+      }
+    }
+  },
   methods: {
     signIn: function signIn() {
       var _this = this;
 
-      this.$store.dispatch('SIGN_IN', { email: this.email, password: this.password }).then(function (res) {
-        console.log(res);
-        if (res) {
-          localStorage.setItem("token", res.data);
-          //console.log(localStorage.getItem("token"));
-          _this.$router.push('feed');
-        } else {
-          _this.errors = "Fel användarnamn eller lösenord, försök igen!";
-        }
+      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('/signin', { email: this.email, password: this.password }).then(function (res) {
+        _this.signInStatus = true;
       }).catch(function (err) {
         if (err.response) {
           //TODO: real errors:
           _this.errors = "Fel användarnamn eller lösenord, försök igen!";
         }
-      });;
+      });
+
+      /*var router = this.$router;
+      this.$store.dispatch('SIGN_IN', {email: this.email, password: this.password})
+      .then((res) => {
+        if(res.status == 200){
+          localStorage.setItem("token", res.data);
+          //console.log(localStorage.getItem("token"));
+          //this.$router.push('feed');
+          //window.location.href = "#/feed";
+          //router.push({path:"/feed"});
+          //history.pushState({}, null, "#/feed");
+          router.replace({path:"/feed"});
+        }else{
+          this.errors = "Fel användarnamn eller lösenord, försök igen!";
+        }
+      }).catch((err) => {
+        if(err.response){
+          //TODO: real errors:
+          this.errors = "Fel användarnamn eller lösenord, försök igen!";
+        }
+      });*/
     },
     register: function register() {
       var _this2 = this;
@@ -28163,16 +28187,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
 
   beforeMount: function beforeMount() {
-    var _this = this;
-
-    this.$store.dispatch('GET_USER_NAME').then(function (res) {
-      _this.user = res.data.username;
-    }).catch(function (err) {
-      if (err.response) {
-        //TODO: real errors:
-        console.log(err);
-      }
-    });
+    /*
+    this.$store.dispatch('GET_USER_NAME').then((res) => {
+      this.user = res.data.username;
+    }).catch((err) => {
+        if(err.response){
+          //TODO: real errors:
+          console.log(err);
+        }
+    });*/
   },
   methods: {
     signout: function signout(e) {
@@ -28448,7 +28471,7 @@ function checkAuth(to, from, next) {
 
 var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
   mode: 'hash',
-  routes: [{ path: '/', name: 'home', component: __WEBPACK_IMPORTED_MODULE_6__components_home_vue___default.a }, { path: '/feed', name: 'feed', component: __WEBPACK_IMPORTED_MODULE_7__components_feed_vue___default.a, beforeEnter: checkAuth }, { path: '/tag/:tag', name: 'tag', component: __WEBPACK_IMPORTED_MODULE_7__components_feed_vue___default.a, beforeEnter: checkAuth }, { path: '/user/:username', name: 'profile', component: __WEBPACK_IMPORTED_MODULE_8__components_profile_vue___default.a, beforeEnter: checkAuth }, { path: '/settings', name: 'settings', component: __WEBPACK_IMPORTED_MODULE_9__components_settings_vue___default.a, beforeEnter: checkAuth }]
+  routes: [{ path: '/', name: 'home', component: __WEBPACK_IMPORTED_MODULE_6__components_home_vue___default.a }, { path: '/feed', name: 'feed', component: __WEBPACK_IMPORTED_MODULE_7__components_feed_vue___default.a, beforeEnter: checkAuth }, { path: '/tag/:tag', name: 'tag', component: __WEBPACK_IMPORTED_MODULE_7__components_feed_vue___default.a, beforeEnter: checkAuth }, { path: '/user/:username', name: 'profile', component: __WEBPACK_IMPORTED_MODULE_8__components_profile_vue___default.a, beforeEnter: checkAuth }, { path: '/settings', name: 'settings', component: __WEBPACK_IMPORTED_MODULE_9__components_settings_vue___default.a, beforeEnter: checkAuth }, { path: '*', redirect: '/' }]
 });
 
 new __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */]({

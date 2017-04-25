@@ -65,6 +65,7 @@ export default {
     }
   },
   beforeMount: function(){
+    /*
     this.$store.dispatch('GET_USER_NAME').then((res) => {
       this.user = res.data.username;
     }).catch((err) => {
@@ -72,7 +73,7 @@ export default {
           //TODO: real errors:
           console.log(err);
         }
-    });
+    });*/
   },
   methods:{
     signout: function(e){

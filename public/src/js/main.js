@@ -26,7 +26,7 @@ function checkAuth(to, from, next) {
         }
       });
     }else{
-      router.push({path:"/"})
+      router.push({path:"/"});
     }
 }
 
@@ -37,7 +37,8 @@ var router = new VueRouter({
       { path: '/feed', name: 'feed', component: Feed, beforeEnter: checkAuth },
       { path: '/tag/:tag', name: 'tag', component: Feed, beforeEnter: checkAuth },
       { path: '/user/:username', name: 'profile', component: Profile, beforeEnter: checkAuth },
-      { path: '/settings', name: 'settings', component: Settings, beforeEnter: checkAuth }
+      { path: '/settings', name: 'settings', component: Settings, beforeEnter: checkAuth },
+      { path: '*', redirect: '/' }
     ]
 });
 
