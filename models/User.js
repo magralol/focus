@@ -18,11 +18,6 @@ var userSchema = new Schema({
         type: String,
         required: true, 
         unique: false
-    },
-	defaultfilter: { 
-        type: String,
-        required: true, 
-        unique: false
     }
 });
 

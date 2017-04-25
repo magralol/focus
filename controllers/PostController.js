@@ -1,4 +1,6 @@
 var moment = require('moment');
+var sanitizer = require('sanitizer');
+
 var Post = require('../models/Post');
 var Filter = require('../models/Filter');
 var User = require('../models/User');
@@ -107,55 +109,63 @@ module.exports = {
                 }
             }
 
-            var post = new Post({ 
-                //TODO: Do dynamic with sign in user
-                user:       "oskar",
-                body:       body,
-                tags:       tags,
-                date:       moment.utc().format()
-            });
-            
-            post.save(function (err, doc) {
-                if(err){   
-                    //TODO: Real error handling
-                    console.log(err);
-                    res.sendStatus(500);
-                }else{
-                    User.findById(req.user.id, function (err, doc) {
-                        if(err){
-                            //TODO: real error handling
-                            res.sendStatus(500);
-                        }else{
-                            Filter.findOne({user: doc.username, active: true}, function (err, doc) {
-                                if(err){
-                                    //TODO: real error handling
-                                    res.sendStatus(500);
-                                }else{
-                                    var query;
-                                    if(doc){
-                                        query = {tags: { $in : doc.allawedtags }};
+            User.findById(req.user.id, function (err, doc) {
+                    if(err){   
+                        //TODO: Real error handling
+                        console.log(err);
+                        res.sendStatus(500);
+                    }else{
+                        var post = new Post({ 
+                            //TODO: Do dynamic with sign in user
+                            user:       doc.username,
+                            body:       sanitizer.sanitize(body),
+                            tags:       tags,
+                            date:       moment.utc().format()
+                        });
+                        
+                        post.save(function (err, doc) {
+                            if(err){   
+                                //TODO: Real error handling
+                                console.log(err);
+                                res.sendStatus(500);
+                            }else{
+                                User.findById(req.user.id, function (err, doc) {
+                                    if(err){
+                                        //TODO: real error handling
+                                        res.sendStatus(500);
                                     }else{
-                                        query = {};
-                                    }
+                                        Filter.findOne({user: doc.username, active: true}, function (err, doc) {
+                                            if(err){
+                                                //TODO: real error handling
+                                                res.sendStatus(500);
+                                            }else{
+                                                var query;
+                                                if(doc){
+                                                    query = {tags: { $in : doc.allawedtags }};
+                                                }else{
+                                                    query = {};
+                                                }
 
-                                    Post.find(query, {__v: 0 }, function (err, docs) {
-                                        if(err){
-                                            //TODO: real error handling
-                                            res.sendStatus(500);
-                                        }else{
-                                            docs = docs.sort(function(a,b) { 
-                                                return new Date(b.date).getTime() - new Date(a.date).getTime() 
-                                            });
-                                            res.send(docs);
-                                        }
-                                    });
-                                }
-                            });
-                        }
+                                                Post.find(query, {__v: 0 }, function (err, docs) {
+                                                    if(err){
+                                                        //TODO: real error handling
+                                                        res.sendStatus(500);
+                                                    }else{
+                                                        docs = docs.sort(function(a,b) { 
+                                                            return new Date(b.date).getTime() - new Date(a.date).getTime() 
+                                                        });
+                                                        res.send(docs);
+                                                    }
+                                                });
+                                            }
+                                        });
+                                    }
+                                });
+                            }
+                            
                     });
-                }
-                
-           });
+                    }
+            });
 
         }
     }

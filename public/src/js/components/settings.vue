@@ -3,9 +3,10 @@
   <navbar :page="'settings'"></navbar>
 
   <!-- FILIP, Lägg till dynamiskt användarnamn, plz -->
-  <h3 class="text-center">@Username</h3>
+  <!-- <h3 class="text-center">@Username</h3> -->
 
-    <p class="btn btn-primary create-filter-btn text-center" data-toggle="modal" data-target="#newFilterModal">Nytt Filter </p>
+    <p class="btn create-filter-btn text-center" data-toggle="modal" data-target="#filtermodal">Nytt Filter </p>
+
 
 
 
@@ -34,7 +35,7 @@
             <span class="filter-tags" v-for="(tag, i) in filter.allawedtags">{{ tag }} </span>
           </div>
           <div class="panel-footer clearfix">
-            <div class="col-xs-6 text-center edit-filter" data-toggle="modal" data-target="#newFilterModal">Redigera filter</div>
+            <div class="col-xs-6 text-center edit-filter" data-toggle="modal" data-target="#filtermodal">Redigera filter</div>
             <div class="col-xs-6 text-center delete-filter">Ta bort filter</div>
           </div>
         </li>
@@ -45,7 +46,7 @@
 
 <!-- Modal -->
 <form class="" v-on:submit.prevent="createFilter">
-<div class="modal fade" id="newFilterModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="filtermodal" tabindex="-1" role="dialog" aria-labelledby="filtermodal">
   <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -102,7 +103,10 @@ export default {
         console.log(this.filterTags, this.filterName);
         this.$store.dispatch('CREATE_FILTER', {name: this.filterName, tags: this.filterTags}).then((res) => {
           console.log(res.data);
-          //this.$store.commit('setfilters', res.data);
+          //this.filters.push();
+          this.filters.push(res.data)
+          this.$store.commit('setfilters', this.filters);
+          $('#filtermodal').modal('hide');
         })
         .catch((err) => {
           //TODO: Real error handling
