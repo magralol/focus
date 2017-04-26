@@ -69,6 +69,34 @@ module.exports = {
             }
         });
     },
+    removeFilter: function (req, res) {
+      User.findById(req.user.id, function (err, doc) {
+          if(err){
+              //TODO Error handling
+              res.sendStatus(500);
+          }else{
+              Filter.findOneAndRemove({_id: req.params.id, user: doc.username}, function(err, doc){
+                if(err){
+                    //TODO Error handling
+                    res.sendStatus(500);
+                }else{
+                    if(doc){
+                        Filter.find({user: doc.username}, {__v: 0}, function (err, docs) {
+                            if(err){
+                                //TODO Error handling
+                                res.sendStatus(500);
+                            }else{
+                                res.send(docs);
+                            }
+                        });
+                    }else{
+                        res.sendStatus(401)
+                    }
+                }
+              });
+          }
+      });  
+    },
     setFilter: function (req, res) {
         User.update({_id: req.user.id}, {defaultfilter: req.body.filter}, function (err, doc) {
             if(err){

@@ -93,6 +93,7 @@ export default {
     signIn: function(){
       
       axios.post('/signin', {email: this.email, password: this.password}).then((res) => {
+        localStorage.setItem("token", res.data);
         this.signInStatus = true;
       }).catch((err) => {
         if(err.response){

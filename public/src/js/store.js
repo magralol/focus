@@ -96,6 +96,14 @@ export default new Vuex.Store({
         tags: payload.tags.split(",")
       });
     },
+    REMOVE_FILTER: function (ctx, payload) {
+      axios.delete('/filter/' + payload.id).then(function (res) {
+          ctx.commit('setfilters', res.data);
+      }).catch(function (err) {
+        //TODO: Real error handling
+        console.log(err);
+      });
+    },
     GET_USER_NAME: function (ctx, payload) {
       /* Hacky way to get the username from a id for navigation */
       return axios.get('/username');
