@@ -28341,6 +28341,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -28570,7 +28572,7 @@ function checkAuth(to, from, next) {
 
 var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
   mode: 'hash',
-  routes: [{ path: '/', name: 'home', component: __WEBPACK_IMPORTED_MODULE_6__components_home_vue___default.a }, { path: '/feed', name: 'feed', component: __WEBPACK_IMPORTED_MODULE_7__components_feed_vue___default.a }, { path: '/tag/:tag', name: 'tag', component: __WEBPACK_IMPORTED_MODULE_7__components_feed_vue___default.a }, { path: '/user/:username', name: 'profile', component: __WEBPACK_IMPORTED_MODULE_8__components_profile_vue___default.a }, { path: '/settings', name: 'settings', component: __WEBPACK_IMPORTED_MODULE_9__components_settings_vue___default.a }]
+  routes: [{ path: '/', name: 'home', component: __WEBPACK_IMPORTED_MODULE_6__components_home_vue___default.a }, { path: '/feed', name: 'feed', component: __WEBPACK_IMPORTED_MODULE_7__components_feed_vue___default.a, beforeEnter: checkAuth }, { path: '/tag/:tag', name: 'tag', component: __WEBPACK_IMPORTED_MODULE_7__components_feed_vue___default.a, beforeEnter: checkAuth }, { path: '/user/:username', name: 'profile', component: __WEBPACK_IMPORTED_MODULE_8__components_profile_vue___default.a, beforeEnter: checkAuth }, { path: '/settings', name: 'settings', component: __WEBPACK_IMPORTED_MODULE_9__components_settings_vue___default.a, beforeEnter: checkAuth }]
 });
 
 new __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */]({
@@ -28625,7 +28627,6 @@ function byteLength (b64) {
   return b64.length * 3 / 4 - placeHoldersCount(b64)
 }
 
-<<<<<<< HEAD
 function toByteArray (b64) {
   var i, j, l, tmp, placeHolders, arr
   var len = b64.length
@@ -28652,226 +28653,6 @@ function toByteArray (b64) {
     tmp = (revLookup[b64.charCodeAt(i)] << 10) | (revLookup[b64.charCodeAt(i + 1)] << 4) | (revLookup[b64.charCodeAt(i + 2)] >> 2)
     arr[L++] = (tmp >> 8) & 0xFF
     arr[L++] = tmp & 0xFF
-=======
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    attrs: {
-      "id": "home-wrapper"
-    }
-  }, [_c('div', {
-    staticClass: "login-box"
-  }, [_c('h3', [_vm._v("Focus")]), _vm._v(" "), _c('div', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.successmsg),
-      expression: "successmsg"
-    }],
-    staticClass: "alert alert-success",
-    attrs: {
-      "role": "alert"
-    }
-  }, [_c('b', [_vm._v(_vm._s(_vm.successmsg))])]), _vm._v(" "), _c('div', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.errors),
-      expression: "errors"
-    }],
-    staticClass: "alert alert-danger",
-    attrs: {
-      "role": "alert"
-    }
-  }, [_c('b', [_vm._v(_vm._s(_vm.errors))])]), _vm._v(" "), _c('form', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (!_vm.registerShow),
-      expression: "!registerShow"
-    }],
-    staticClass: "register-form home-form",
-    on: {
-      "submit": function($event) {
-        $event.preventDefault();
-        _vm.register($event)
-      }
-    }
-  }, [_c('label', {
-    attrs: {
-      "for": "reg_username"
-    }
-  }, [_vm._v("Användarnamn")]), _vm._v(" "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.regUsername),
-      expression: "regUsername"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "id": "reg_username",
-      "type": "text",
-      "name": ""
-    },
-    domProps: {
-      "value": (_vm.regUsername)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.regUsername = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": "reg_email"
-    }
-  }, [_vm._v("Email")]), _vm._v(" "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.regEmail),
-      expression: "regEmail"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "id": "reg_email",
-      "type": "email",
-      "name": ""
-    },
-    domProps: {
-      "value": (_vm.regEmail)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.regEmail = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": "reg_password"
-    }
-  }, [_vm._v("Lösenord")]), _vm._v(" "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.regPassword),
-      expression: "regPassword"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "id": "reg_password",
-      "type": "password",
-      "name": ""
-    },
-    domProps: {
-      "value": (_vm.regPassword)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.regPassword = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('input', {
-    staticClass: "reg_btn btn",
-    attrs: {
-      "type": "submit",
-      "name": "reg_btn",
-      "value": "Registrera"
-    }
-  }), _vm._v(" "), _c('span', [_vm._v("Har du redan ett konto? "), _c('i', {
-    on: {
-      "click": function($event) {
-        _vm.registerShow = !_vm.registerShow
-      }
-    }
-  }, [_vm._v("Logga in")])])]), _vm._v(" "), _c('form', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.registerShow),
-      expression: "registerShow"
-    }],
-    staticClass: "login-form home-form",
-    on: {
-      "submit": function($event) {
-        $event.preventDefault();
-        _vm.signIn($event)
-      }
-    }
-  }, [_c('label', {
-    attrs: {
-      "for": "login_email"
-    }
-  }, [_vm._v("Email")]), _vm._v(" "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.email),
-      expression: "email"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "id": "login_email",
-      "type": "email"
-    },
-    domProps: {
-      "value": (_vm.email)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.email = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": "login_password"
-    }
-  }, [_vm._v("Lösenord")]), _vm._v(" "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.password),
-      expression: "password"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "id": "login_password",
-      "type": "password"
-    },
-    domProps: {
-      "value": (_vm.password)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.password = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('input', {
-    staticClass: "reg_btn btn",
-    attrs: {
-      "type": "submit",
-      "name": "login_btn",
-      "value": "Logga in"
-    }
-  }), _vm._v(" "), _c('span', [_vm._v(" Har du inget konto? "), _c('i', {
-    on: {
-      "click": function($event) {
-        _vm.registerShow = !_vm.registerShow
-      }
-    }
-  }, [_vm._v("Registrera!")])])])])])
-},staticRenderFns: []}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-44784e64", module.exports)
->>>>>>> origin/dev
   }
 
   return arr
@@ -31184,7 +30965,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticStyle: {
       "margin": "30px auto"
     }
-  }, [_vm._v("@" + _vm._s(_vm.username))]) : _vm._e(), _vm._v(" "), _c('div', {
+  }, [_vm._v("@" + _vm._s(_vm.username))]) : _vm._e(), _vm._v(" "), _c('p', {
+    staticClass: "text-center"
+  }, [_vm._v("Inlägg")]), _vm._v(" "), _c('p', {
+    staticClass: "text-center"
+  }, [_vm._v(_vm._s(_vm.posts.length))]), _vm._v(" "), _c('div', {
     staticClass: "col-md-4 col-md-offset-4 feed_wrapper"
   }, [_vm._l((_vm.posts), function(post) {
     return _c('div', [_c('feeditem', {
@@ -31237,7 +31022,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "role": "alert"
     }
-  }, [_vm._m(0)]), _vm._v(" "), _c('form', {
+  }, [_c('b', [_vm._v(_vm._s(_vm.errors))])]), _vm._v(" "), _c('form', {
     directives: [{
       name: "show",
       rawName: "v-show",
@@ -31420,9 +31205,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }
   }, [_vm._v("Registrera!")])])])])])
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('b', [_c('ul', [_c('li', [_vm._v("Nu har det visst blivit fel.")])])])
-}]}
+},staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
@@ -31441,7 +31224,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "page": 'settings'
     }
   }), _vm._v(" "), _c('p', {
-    staticClass: "btn create-filter-btn text-center",
+    staticClass: "btn btn-primary create-filter-btn text-center",
     attrs: {
       "data-toggle": "modal",
       "data-target": "#filtermodal"

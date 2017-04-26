@@ -26,18 +26,18 @@ function checkAuth(to, from, next) {
         }
       });
     }else{
-      router.push({path:"/"})
+      router.push({path:"/"});
     }
 }
 
 var router = new VueRouter({
     mode: 'hash',
     routes: [
-      { path: '/', name: 'home', component: Home },
-      { path: '/feed', name: 'feed', component: Feed},
-      { path: '/tag/:tag', name: 'tag', component: Feed},
-      { path: '/user/:username', name: 'profile', component: Profile},
-      { path: '/settings', name: 'settings', component: Settings}
+      { path: '/', name: 'home', component: Home},
+      { path: '/feed', name: 'feed', component: Feed, beforeEnter: checkAuth},
+      { path: '/tag/:tag', name: 'tag', component: Feed, beforeEnter: checkAuth},
+      { path: '/user/:username', name: 'profile', component: Profile, beforeEnter: checkAuth},
+      { path: '/settings', name: 'settings', component: Settings, beforeEnter: checkAuth}
     ]
 });
 
