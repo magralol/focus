@@ -28196,15 +28196,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
 
   beforeMount: function beforeMount() {
-    /*
-    this.$store.dispatch('GET_USER_NAME').then((res) => {
-      this.user = res.data.username;
-    }).catch((err) => {
-        if(err.response){
-          //TODO: real errors:
-          console.log(err);
-        }
-    });*/
+    var _this = this;
+
+    this.$store.dispatch('GET_USER_NAME').then(function (res) {
+      _this.user = res.data.username;
+    }).catch(function (err) {
+      if (err.response) {
+        //TODO: real errors:
+        console.log(err);
+      }
+    });
   },
   methods: {
     signout: function signout(e) {
@@ -28212,7 +28213,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       if (localStorage.getItem("token")) {
         localStorage.removeItem("token");
       }
-      this.$router.push({ path: "/" });
+      window.location.href = "/";
     }
   }
 });
@@ -28384,7 +28385,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     return {
       filterTags: "",
       filterName: "",
-      filterFooter: false
+      filterFooter: false,
+      editMode: false
     };
   },
 
@@ -28408,19 +28410,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     createFilter: function createFilter() {
       var _this2 = this;
 
-      console.log(this.filterTags, this.filterName);
-      this.$store.dispatch('CREATE_FILTER', { name: this.filterName, tags: this.filterTags }).then(function (res) {
-        console.log(res.data);
-        //this.filters.push();
-        _this2.filters.push(res.data);
-        _this2.$store.commit('setfilters', _this2.filters);
-        _this2.filterName = "";
-        _this2.filterTags = "";
-        $('#filtermodal').modal('hide');
-      }).catch(function (err) {
-        //TODO: Real error handling
-        console.log(err);
-      });
+      if (editMode) {} else {
+        this.$store.dispatch('CREATE_FILTER', { name: this.filterName, tags: this.filterTags }).then(function (res) {
+          console.log(res.data);
+          //this.filters.push();
+          _this2.filters.push(res.data);
+          _this2.$store.commit('setfilters', _this2.filters);
+          _this2.filterName = "";
+          _this2.filterTags = "";
+          $('#filtermodal').modal('hide');
+        }).catch(function (err) {
+          //TODO: Real error handling
+          console.log(err);
+        });
+      }
     },
     activateFilter: function activateFilter(i) {
       this.$store.dispatch('ACTIVATE_FILTER', { id: this.filters[i]._id });
@@ -28430,7 +28433,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       console.log(this.filterFooter);
     },
     editFilter: function editFilter(i) {
-      alert('Funktionalitet är ännu inte genomförd!');
+      //this.filterName = this.filters[i].name;
+      //this.filterTags = this.filters[i].allawedtags.join();
+      //$('#filtermodal').modal('show');
+      alert("Funktionalitet inte implementera än");
     },
     deleteFilter: function deleteFilter(i) {
       if (confirm("Är du säker på att du vill ta bort filter: " + this.filters[i].name + "?")) {
@@ -28485,17 +28491,17 @@ function checkAuth(to, from, next) {
       next();
     }).catch(function (err) {
       if (err.response) {
-        router.push({ path: "/" });
+        window.location.href = "/";
       }
     });
   } else {
-    router.push({ path: "/" });
+    window.location.href = "/";
   }
 }
 
 var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
   mode: 'hash',
-  routes: [{ path: '/', name: 'home', component: __WEBPACK_IMPORTED_MODULE_6__components_home_vue___default.a }, { path: '/feed', name: 'feed', component: __WEBPACK_IMPORTED_MODULE_7__components_feed_vue___default.a, beforeEnter: checkAuth }, { path: '/tag/:tag', name: 'tag', component: __WEBPACK_IMPORTED_MODULE_7__components_feed_vue___default.a, beforeEnter: checkAuth }, { path: '/user/:username', name: 'profile', component: __WEBPACK_IMPORTED_MODULE_8__components_profile_vue___default.a, beforeEnter: checkAuth }, { path: '/settings', name: 'settings', component: __WEBPACK_IMPORTED_MODULE_9__components_settings_vue___default.a, beforeEnter: checkAuth }, { path: '*', redirect: '/' }]
+  routes: [{ path: '/', name: 'home', component: __WEBPACK_IMPORTED_MODULE_7__components_feed_vue___default.a, beforeEnter: checkAuth }, { path: '/feed', name: 'feed', component: __WEBPACK_IMPORTED_MODULE_7__components_feed_vue___default.a, beforeEnter: checkAuth }, { path: '/tag/:tag', name: 'tag', component: __WEBPACK_IMPORTED_MODULE_7__components_feed_vue___default.a, beforeEnter: checkAuth }, { path: '/user/:username', name: 'profile', component: __WEBPACK_IMPORTED_MODULE_8__components_profile_vue___default.a, beforeEnter: checkAuth }, { path: '/settings', name: 'settings', component: __WEBPACK_IMPORTED_MODULE_9__components_settings_vue___default.a, beforeEnter: checkAuth }, { path: '*', redirect: '/' }]
 });
 
 new __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */]({

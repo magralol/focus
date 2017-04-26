@@ -65,7 +65,7 @@ export default {
     }
   },
   beforeMount: function(){
-    /*
+    
     this.$store.dispatch('GET_USER_NAME').then((res) => {
       this.user = res.data.username;
     }).catch((err) => {
@@ -73,7 +73,7 @@ export default {
           //TODO: real errors:
           console.log(err);
         }
-    });*/
+    });
   },
   methods:{
     signout: function(e){
@@ -81,7 +81,7 @@ export default {
       if(localStorage.getItem("token")){
         localStorage.removeItem("token");
       }
-      this.$router.push({path:"/"});
+       window.location.href = "/"
     }
   }
 }

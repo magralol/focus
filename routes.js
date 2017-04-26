@@ -12,6 +12,12 @@ app.get('/', function (req, res) {
   });
 });
 
+app.get('/feed', function (req, res) {
+  fs.readFile(__dirname + '/views/feed.html', 'utf8', function(err, data){
+        res.send(data);
+  });
+});
+
 //Auth routes
 app.post('/register', require('./controllers/AuthController').register);
 app.post('/signin', require('./controllers/AuthController').signin);

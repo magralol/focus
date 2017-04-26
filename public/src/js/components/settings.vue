@@ -80,7 +80,8 @@ export default {
     return {
       filterTags: "",
       filterName: "",
-      filterFooter: false
+      filterFooter: false,
+      editMode: false
     }
   },
   computed: {
@@ -100,20 +101,24 @@ export default {
    },
     methods: {
       createFilter: function(){
-        console.log(this.filterTags, this.filterName);
-        this.$store.dispatch('CREATE_FILTER', {name: this.filterName, tags: this.filterTags}).then((res) => {
-          console.log(res.data);
-          //this.filters.push();
-          this.filters.push(res.data)
-          this.$store.commit('setfilters', this.filters);
-          this.filterName = "";
-          this.filterTags = "";
-          $('#filtermodal').modal('hide');
-        })
-        .catch((err) => {
-          //TODO: Real error handling
-          console.log(err);
-        });
+        
+        if(editMode){
+
+        }else{
+          this.$store.dispatch('CREATE_FILTER', {name: this.filterName, tags: this.filterTags}).then((res) => {
+            console.log(res.data);
+            //this.filters.push();
+            this.filters.push(res.data)
+            this.$store.commit('setfilters', this.filters);
+            this.filterName = "";
+            this.filterTags = "";
+            $('#filtermodal').modal('hide');
+          }).catch((err) => {
+            //TODO: Real error handling
+            console.log(err);
+          });
+        }
+        
 
       },
       activateFilter: function(i){
@@ -124,7 +129,10 @@ export default {
         console.log(this.filterFooter);
       },
       editFilter: function(i){
-        alert('Funktionalitet är ännu inte genomförd!')
+        //this.filterName = this.filters[i].name;
+        //this.filterTags = this.filters[i].allawedtags.join();
+        //$('#filtermodal').modal('show');
+        alert("Funktionalitet inte implementera än");
       },
       deleteFilter: function(i){
         if(confirm("Är du säker på att du vill ta bort filter: " + this.filters[i].name + "?")){
