@@ -102,8 +102,8 @@ export default {
     methods: {
       createFilter: function(){
         
-        if(editMode){
-
+        if(this.editMode){
+          console.error("NOT YET IMPLEMENTED");
         }else{
           this.$store.dispatch('CREATE_FILTER', {name: this.filterName, tags: this.filterTags}).then((res) => {
             console.log(res.data);

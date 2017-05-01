@@ -28406,7 +28406,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     createFilter: function createFilter() {
       var _this2 = this;
 
-      if (editMode) {} else {
+      if (this.editMode) {
+        console.error("NOT YET IMPLEMENTED");
+      } else {
         this.$store.dispatch('CREATE_FILTER', { name: this.filterName, tags: this.filterTags }).then(function (res) {
           console.log(res.data);
           //this.filters.push();
