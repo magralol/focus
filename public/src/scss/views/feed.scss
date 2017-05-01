@@ -1,0 +1,62 @@
+
+.feed_wrapper{
+  padding: 0 5px;
+}
+
+
+.new_post_wrapper, .message_post{
+  width: 100%;
+  height: auto;
+  padding: 10px;
+  background: #fff;
+  border: 1px solid #ececec;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.feed_tags{
+  padding: 20px 5px;
+  box-sizing: border-box;
+}
+
+#new_message{
+  // min-height: 150px;
+  resize: none;
+  background: #fff;
+  padding: 5px;
+  border-radius: 0;
+  border: none;
+  outline-style:none;
+  box-shadow:none;
+  border-color:transparent;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.message_info{
+  line-height: 60px;
+  font-size: 12px;
+  color: #ccc;
+  margin-right: 15px;
+  float: right;
+}
+
+.post_btn{
+  margin: 10px 0;
+  float: right;
+  padding: 10px 20px;
+  border: none;
+}
+
+.clearfix{
+  overflow: auto;
+}
+
+.message_post{
+  margin-bottom: 10px;
+}
+
+.message_box{
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}

@@ -1,0 +1,16 @@
+//Components
+@import 'vars/colors';
+@import 'vars/fonts';
+
+//Views
+@import 'components/navbar';
+@import 'views/home';
+@import 'views/feed';
+@import 'views/profile';
+
+
+
+body{
+    background: $light;
+    font-family: 'Open Sans';
+}

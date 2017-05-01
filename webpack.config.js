@@ -1,9 +1,9 @@
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
- entry: './src/js/main.js',
+ entry: './public/src/js/main.js',
  output: {
-   filename: './build/main.js',
+   filename: './public/build/main.js',
    path: __dirname
  },
  module: {
@@ -31,6 +31,6 @@ module.exports = {
    extensions: [".vue", ".js", "scss", "css"]
  },
  plugins: [
-    new ExtractTextPlugin({ filename: './build/style.css', disable: false, allChunks: true })
+    new ExtractTextPlugin({ filename: './public/build/style.css', disable: false, allChunks: true })
  ]
 };
