@@ -28288,11 +28288,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       console.log(err);
     });
   },
-  methods: {
-    parseDate: function parseDate(date) {
-      return __WEBPACK_IMPORTED_MODULE_3_moment___default()(date).format('DD/MM-YYYY');
-    }
-  }
+  methods: {}
 });
 
 /***/ }),
