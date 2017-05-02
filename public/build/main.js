@@ -29124,9 +29124,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "page": 'settings'
     }
-  }), _vm._v(" "), _c('h3', {
-    staticClass: "text-center"
-  }, [_vm._v("@Username")]), _vm._v(" "), _c('p', {
+  }), _vm._v(" "), _c('p', {
     staticClass: "btn create-filter-btn text-center",
     attrs: {
       "data-toggle": "modal",

@@ -3,7 +3,7 @@
   <navbar :page="'settings'"></navbar>
 
   <!-- FILIP, Lägg till dynamiskt användarnamn, plz -->
-  <h3 class="text-center">@Username</h3>
+  <!--<h3 class="text-center">@Username</h3>-->
 
     <p class="btn create-filter-btn text-center" data-toggle="modal" data-target="#filtermodal">Nytt Filter </p>
 
