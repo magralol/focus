@@ -24356,7 +24356,6 @@ __WEBPACK_IMPORTED_MODULE_2_axios___default.a.interceptors.response.use(function
   return response;
 }, function (error) {
   if (error.response.status == 401) {
-    console.log(error.response);
     window.location.href = "/";
     return Promise.reject(error);
   }
@@ -24371,7 +24370,6 @@ __WEBPACK_IMPORTED_MODULE_2_axios___default.a.interceptors.response.use(function
   getters: {},
   mutations: {
     setposts: function setposts(state, data) {
-      console.log("data: ", data);
       state.posts = data;
     },
     setfilters: function setfilters(state, data) {

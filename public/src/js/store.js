@@ -12,7 +12,6 @@ axios.interceptors.response.use(function (response) {
   return response;
 }, function (error) {
   if(error.response.status == 401){
-    console.log(error.response);
     window.location.href = "/";
     return Promise.reject(error);
   } 
@@ -28,7 +27,6 @@ export default new Vuex.Store({
   },
   mutations: {
     setposts: function(state, data) {
-      console.log("data: ", data);
       state.posts = data;
     },
     setfilters: function(state, data) {
