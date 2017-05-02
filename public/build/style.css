@@ -3,7 +3,7 @@
   margin: 0;
   box-sizing: border-box;
   padding: 5px 10px;
-  color: #e26f20; }
+  color: #337ab7; }
 
 .filter-active-bar span {
   margin-right: 10px; }
@@ -25,6 +25,14 @@
   font-size: 12px;
   text-transform: uppercase;
   color: #ccc; }
+
+.markdown img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  max-height: 500px;
+  overflow: hidden;
+  margin: 0 auto 15px; }
 
 #home-wrapper {
   width: 100vw;
@@ -58,7 +66,6 @@
 
 .reg_btn {
   width: 100%;
-  background: coral;
   margin-top: 10px; }
 
 @media screen and (min-width: 768px) {
@@ -122,12 +129,9 @@ form label {
 
 .create-filter-btn {
   position: relative;
-  background: none;
   left: 50%;
   margin: 20px 0 20px -45px;
-  font-size: 12px;
-  border-color: #e26f20;
-  color: #e26f20; }
+  font-size: 12px; }
 
 .filter-group {
   border: 1px solid #ccc;

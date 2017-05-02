@@ -28318,6 +28318,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -28364,7 +28366,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__navbar_vue__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__navbar_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__navbar_vue__);
-//
 //
 //
 //
@@ -28767,6 +28768,7 @@ webpackContext.id = 166;
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
+    staticClass: "markdown",
     domProps: {
       "innerHTML": _vm._s(_vm.markdown)
     }
@@ -28870,7 +28872,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticStyle: {
       "margin": "30px auto"
     }
-  }, [_vm._v("@" + _vm._s(_vm.username))]) : _vm._e(), _vm._v(" "), _c('div', {
+  }, [_vm._v("@" + _vm._s(_vm.username))]) : _vm._e(), _vm._v(" "), _c('p', {
+    staticClass: "text-center"
+  }, [_vm._v("Inlägg")]), _vm._v(" "), _c('p', {
+    staticClass: "text-center"
+  }, [_vm._v(_vm._s(_vm.posts.length))]), _vm._v(" "), _c('div', {
     staticClass: "col-md-4 col-md-offset-4 feed_wrapper"
   }, [_vm._l((_vm.posts), function(post) {
     return _c('div', [_c('feeditem', {
@@ -29125,7 +29131,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "page": 'settings'
     }
   }), _vm._v(" "), _c('p', {
-    staticClass: "btn create-filter-btn text-center",
+    staticClass: "btn btn-primary create-filter-btn text-center",
     attrs: {
       "data-toggle": "modal",
       "data-target": "#filtermodal"
@@ -29253,7 +29259,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "for": "filterTags"
     }
-  }, [_vm._v("Taggar (separera med ,)")]), _vm._v(" "), _c('input', {
+  }, [_vm._v("Taggar (separera med ,) inga mellanrum exempel tag1,tag2,tag3")]), _vm._v(" "), _c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
