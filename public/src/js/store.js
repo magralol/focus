@@ -14,7 +14,7 @@ axios.interceptors.response.use(function (response) {
   if(error.response.status == 401){
     window.location.href = "/";
     return Promise.reject(error);
-  } 
+  }
 });
 
 export default new Vuex.Store({
@@ -42,7 +42,7 @@ export default new Vuex.Store({
     },
     SIGN_OUT: function (cxt) {
       localStorage.removeItem("token");
-    },  
+    },
     REGISTER: function (ctx, payload) {
       return axios.post('/register', {
         email: payload.email,

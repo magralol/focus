@@ -2,10 +2,9 @@
 <div>
   <navbar :page="'settings'"></navbar>
 
-  <!-- FILIP, Lägg till dynamiskt användarnamn, plz -->
-  <!--<h3 class="text-center">@Username</h3>-->
+  <!-- <h3 class="text-center">@Username</h3> -->
+  <p class="btn btn-primary create-filter-btn text-center" data-toggle="modal" data-target="#filtermodal">Nytt Filter </p>
 
-    <p class="btn create-filter-btn text-center" data-toggle="modal" data-target="#filtermodal">Nytt Filter </p>
 
 
 
@@ -54,7 +53,7 @@
             <input type="text" id="filterTitle" name="filterTilte" class="form-control" placeholder="Namn på filtret" v-model="filterName">
         </div>
         <div class="modal-body">
-          <label for="filterTags">Taggar (separera med ,)</label>
+          <label for="filterTags">Taggar (separera med ,) inga mellanrum exempel tag1,tag2,tag3</label>
           <input type="text" id="filterTags" name="filterTags" class="form-control" placeholder="Taggar..." v-model="filterTags">
         </div>
         <div class="modal-footer">

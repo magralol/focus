@@ -2,6 +2,8 @@
 <div>
   <navbar :page="'profile'"></navbar>
   <h3 style="margin: 30px auto;" class="text-center" v-if="username">@{{ username }}</h3>
+  <p class="text-center">Inlägg</p>
+  <p class="text-center">{{posts.length}}</p>
 
   <div class="col-md-4 col-md-offset-4 feed_wrapper">
     <!-- Message Feed
