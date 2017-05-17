@@ -22,22 +22,23 @@ function checkAuth(to, from, next) {
         next();
       }).catch((err) => {
         if(err.response){
-          router.push({path:"/"});
+          window.location.href = "/";
         }
       });
     }else{
-      router.push({path:"/"});
+      window.location.href = "/";
     }
 }
 
 var router = new VueRouter({
     mode: 'hash',
     routes: [
-      { path: '/', name: 'home', component: Home},
-      { path: '/feed', name: 'feed', component: Feed, beforeEnter: checkAuth},
-      { path: '/tag/:tag', name: 'tag', component: Feed, beforeEnter: checkAuth},
-      { path: '/user/:username', name: 'profile', component: Profile, beforeEnter: checkAuth},
-      { path: '/settings', name: 'settings', component: Settings, beforeEnter: checkAuth}
+      { path: '/', name: 'home', component: Feed, beforeEnter: checkAuth },
+      { path: '/feed', name: 'feed', component: Feed, beforeEnter: checkAuth },
+      { path: '/tag/:tag', name: 'tag', component: Feed, beforeEnter: checkAuth },
+      { path: '/user/:username', name: 'profile', component: Profile, beforeEnter: checkAuth },
+      { path: '/settings', name: 'settings', component: Settings, beforeEnter: checkAuth },
+      { path: '*', redirect: '/' }
     ]
 });
 

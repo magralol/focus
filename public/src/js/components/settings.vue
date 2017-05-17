@@ -2,10 +2,8 @@
 <div>
   <navbar :page="'settings'"></navbar>
 
-  <!-- FILIP, Lägg till dynamiskt användarnamn, plz -->
   <!-- <h3 class="text-center">@Username</h3> -->
-
-    <p class="btn btn-primary create-filter-btn text-center" data-toggle="modal" data-target="#filtermodal">Nytt Filter </p>
+  <p class="btn btn-primary create-filter-btn text-center" data-toggle="modal" data-target="#filtermodal">Nytt Filter </p>
 
 
 
@@ -19,7 +17,7 @@
 
          <!-- När man klickar på edit ska .panel-footer bli display: block
           ============================================================ -->
-         <div class="col-xs-6 text-right">Redigera</div>
+       <div class="col-xs-6 text-right" v-on:click="openFilterFooter">Redigera</div>
        </div>
 
       <ul class="list-group">
@@ -32,11 +30,11 @@
             <span v-else class="label label-default">Aktivera</span>
           </div>
           <div class="filter-body-tags">
-            <span class="filter-tags" v-for="(tag, i) in filter.allawedtags">{{ tag }} </span>
+            <span class="filter-tags" v-for="tag in filter.allawedtags">{{ tag }} </span>
           </div>
-          <div class="panel-footer clearfix">
-            <div class="col-xs-6 text-center edit-filter" data-toggle="modal" data-target="#filtermodal">Redigera filter</div>
-            <div class="col-xs-6 text-center delete-filter">Ta bort filter</div>
+          <div class="panel-footer clearfix" v-show="filterFooter">
+            <div class="col-xs-6 text-center edit-filter" v-on:click="editFilter(i)">Redigera filter</div>
+            <div class="col-xs-6 text-center delete-filter" v-on:click="deleteFilter(i)">Ta bort filter</div>
           </div>
         </li>
 
@@ -55,7 +53,7 @@
             <input type="text" id="filterTitle" name="filterTilte" class="form-control" placeholder="Namn på filtret" v-model="filterName">
         </div>
         <div class="modal-body">
-          <label for="filterTags">Taggar (separera med ,)"</label>
+          <label for="filterTags">Taggar (separera med ,) inga mellanrum exempel tag1,tag2,tag3</label>
           <input type="text" id="filterTags" name="filterTags" class="form-control" placeholder="Taggar..." v-model="filterTags">
         </div>
         <div class="modal-footer">
@@ -80,7 +78,9 @@ export default {
   data () {
     return {
       filterTags: "",
-      filterName: ""
+      filterName: "",
+      filterFooter: false,
+      editMode: false
     }
   },
   computed: {
@@ -100,22 +100,43 @@ export default {
    },
     methods: {
       createFilter: function(){
-        console.log(this.filterTags, this.filterName);
-        this.$store.dispatch('CREATE_FILTER', {name: this.filterName, tags: this.filterTags}).then((res) => {
-          console.log(res.data);
-          //this.filters.push();
-          this.filters.push(res.data)
-          this.$store.commit('setfilters', this.filters);
-          $('#filtermodal').modal('hide');
-        })
-        .catch((err) => {
-          //TODO: Real error handling
-          console.log(err);
-        });
+        
+        if(this.editMode){
+          console.error("NOT YET IMPLEMENTED");
+        }else{
+          this.$store.dispatch('CREATE_FILTER', {name: this.filterName, tags: this.filterTags}).then((res) => {
+            console.log(res.data);
+            //this.filters.push();
+            this.filters.push(res.data)
+            this.$store.commit('setfilters', this.filters);
+            this.filterName = "";
+            this.filterTags = "";
+            $('#filtermodal').modal('hide');
+          }).catch((err) => {
+            //TODO: Real error handling
+            console.log(err);
+          });
+        }
+        
 
       },
       activateFilter: function(i){
         this.$store.dispatch('ACTIVATE_FILTER', {id: this.filters[i]._id});
+      },
+      openFilterFooter: function(){
+        this.filterFooter = !this.filterFooter;
+        console.log(this.filterFooter);
+      },
+      editFilter: function(i){
+        //this.filterName = this.filters[i].name;
+        //this.filterTags = this.filters[i].allawedtags.join();
+        //$('#filtermodal').modal('show');
+        alert("Funktionalitet inte implementera än");
+      },
+      deleteFilter: function(i){
+        if(confirm("Är du säker på att du vill ta bort filter: " + this.filters[i].name + "?")){
+         this.$store.dispatch('REMOVE_FILTER', {id: this.filters[i]._id});
+        }
       }
     }
 }

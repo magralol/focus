@@ -56,17 +56,6 @@ export default {
       return this.$store.state.posts;
     }
   },
-  watch: {
-    posts: function(){
-      //console.log("posts changed!");
-      //this.posts = this.$store.state.posts;
-      //console.log(this.posts[0]);
-      //this.$set("posts", this.$store.state.posts);
-      //console.log(this.$set);
-      //this.$set(this.posts, this.$store.state.posts)
-      //location.reload();
-    }
-  },
   beforeMount: function(){
     if(this.$route.params.tag){
       this.tagname = this.$route.params.tag;

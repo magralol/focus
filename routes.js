@@ -12,6 +12,12 @@ app.get('/', function (req, res) {
   });
 });
 
+app.get('/feed', function (req, res) {
+  fs.readFile(__dirname + '/views/feed.html', 'utf8', function(err, data){
+        res.send(data);
+  });
+});
+
 //Auth routes
 app.post('/register', require('./controllers/AuthController').register);
 app.post('/signin', require('./controllers/AuthController').signin);
@@ -35,6 +41,7 @@ app.get('/username', auth, require('./controllers/UserController').getUserName);
 app.get('/filter', auth, require('./controllers/FilterController').getFilters);
 app.post('/filter', auth, require('./controllers/FilterController').createFilter);
 app.put('/filter/:id', auth, require('./controllers/FilterController').updateFilter);
+app.delete('/filter/:id', auth, require('./controllers/FilterController').removeFilter);
 app.get('/filter/activate/:id', auth, require('./controllers/FilterController').activateFilter);
 
 module.exports = app;

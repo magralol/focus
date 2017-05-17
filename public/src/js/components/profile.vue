@@ -55,9 +55,6 @@ export default {
       });
    },
    methods:{
-     parseDate: function(date){
-        return moment(date).format('DD/MM-YYYY');
-     }
    }
 }
 </script>

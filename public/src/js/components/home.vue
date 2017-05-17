@@ -44,7 +44,7 @@
         <input id="login_password" type="password" class="form-control" v-model="password">
 
         <!-- Register button -->
-        <input type="submit" name="login_btn" class="reg_btn btn btn-primary" value="Logga in">
+        <input type="submit" name="login_btn" class="reg_btn btn" value="Logga in">
 
         <!-- Info tooltip -->
         <span> Har du inget konto? <i v-on:click="registerShow = !registerShow">Registrera!</i></span>
@@ -57,6 +57,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   name: 'home',
   data() {
@@ -68,18 +70,49 @@ export default {
       regPassword: null,
       regUsername: null,
       errors: null,
-      successmsg: null
+      successmsg: null,
+      signInStatus: false
+    }
+  },
+  beforeMount: function(){
+    if(localStorage.getItem("token")){
+      this.$router.push({path:"/feed"});
+    }
+  },
+  watch: {
+    signInStatus: function(){
+      console.log();
+      console.log("signin status changed");
+      if(this.signInStatus){
+        console.log("test");
+        //this.router.push({path:"/feed"});
+      }
     }
   },
   methods: {
     signIn: function(){
+      
+      axios.post('/signin', {email: this.email, password: this.password}).then((res) => {
+        localStorage.setItem("token", res.data);
+        this.signInStatus = true;
+      }).catch((err) => {
+        if(err.response){
+          //TODO: real errors:
+          this.errors = "Fel användarnamn eller lösenord, försök igen!";
+        }
+      });
+      
+      /*var router = this.$router;
       this.$store.dispatch('SIGN_IN', {email: this.email, password: this.password})
       .then((res) => {
-        console.log(res);
-        if(res){
-           localStorage.setItem("token", res.data);
+        if(res.status == 200){
+          localStorage.setItem("token", res.data);
           //console.log(localStorage.getItem("token"));
-          this.$router.push('feed');
+          //this.$router.push('feed');
+          //window.location.href = "#/feed";
+          //router.push({path:"/feed"});
+          //history.pushState({}, null, "#/feed");
+          router.replace({path:"/feed"});
         }else{
           this.errors = "Fel användarnamn eller lösenord, försök igen!";
         }
@@ -88,7 +121,7 @@ export default {
           //TODO: real errors:
           this.errors = "Fel användarnamn eller lösenord, försök igen!";
         }
-      });;
+      });*/
     },
     register: function(){
       this.$store.dispatch('REGISTER', {email: this.regEmail, password: this.regPassword, username: this.regUsername})

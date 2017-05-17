@@ -69,6 +69,34 @@ module.exports = {
             }
         });
     },
+    removeFilter: function (req, res) {
+      User.findById(req.user.id, function (err, doc) {
+          if(err){
+              //TODO Error handling
+              res.sendStatus(500);
+          }else{
+              Filter.findOneAndRemove({_id: req.params.id, user: doc.username}, function(err, doc){
+                if(err){
+                    //TODO Error handling
+                    res.sendStatus(500);
+                }else{
+                    if(doc){
+                        Filter.find({user: doc.username}, {__v: 0}, function (err, docs) {
+                            if(err){
+                                //TODO Error handling
+                                res.sendStatus(500);
+                            }else{
+                                res.send(docs);
+                            }
+                        });
+                    }else{
+                        res.sendStatus(401)
+                    }
+                }
+              });
+          }
+      });  
+    },
     setFilter: function (req, res) {
         User.update({_id: req.user.id}, {defaultfilter: req.body.filter}, function (err, doc) {
             if(err){
@@ -89,21 +117,16 @@ module.exports = {
                 console.log(err);
                 res.sendStatus(500);
             }else{
-                Filter.update({user: user, active: true}, {active: false}, function (err, status) {
-                    if(err){
-                        //TODO error handling
-                        console.log(err);
-                        res.sendStatus(500);
-                    }else{
-
-                        Filter.findOneAndUpdate({_id: req.params.id, user: user}, {active: true}, { new: true },function(err, doc){  
+                Filter.find({user: user, active: true}, function (err, doc) {
+                    if(doc.length > 0 && req.params.id == doc[0]._id){
+                        console.log("same as before!");
+                         Filter.update({_id: req.params.id, user: user, active: true}, {active: false}, function (err, status) {
                             if(err){
                                 //TODO error handling
                                 console.log(err);
-                                res.sendStatus(500);
+                                res.send(200);
                             }else{
-
-                                Filter.find({user: user}, {__v:0}, function (err, docs) {
+                                 Filter.find({user: user}, {__v:0}, function (err, docs) {
                                     if(err){
                                         //TODO error handling
                                         console.log(err);
@@ -113,9 +136,40 @@ module.exports = {
                                         res.send(docs);
                                     }  
                                 });
-                            }  
+                            }
+                         });
+                    }else{
+                        console.log("err here!");
+                        Filter.update({user: user, active: true}, {active: false}, function (err, status) {
+                            if(err){
+                                //TODO error handling
+                                console.log(err);
+                                res.sendStatus(500);
+                            }else{
+
+                                Filter.findOneAndUpdate({_id: req.params.id, user: user}, {active: true}, { new: true },function(err, doc){  
+                                    if(err){
+                                        //TODO error handling
+                                        console.log(err);
+                                        res.sendStatus(500);
+                                    }else{
+
+                                        Filter.find({user: user}, {__v:0}, function (err, docs) {
+                                            if(err){
+                                                //TODO error handling
+                                                console.log(err);
+                                                res.sendStatus(500);
+                                            }else{
+                                                //Filter.find({});
+                                                res.send(docs);
+                                            }  
+                                        });
+                                    }  
+                                });
+                            }
                         });
                     }
+
                 });
             }
         });

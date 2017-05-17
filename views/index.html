@@ -13,15 +13,123 @@
     <title>Focus</title>
 </head>
 <body>
-    <div id="app"></div>
+    <div id="home-wrapper">
+        <div class="login-box">
+        <h3>Focus</h3>
+
+        <div style="display:none;" class="alert alert-success" role="alert"><b>Kontot skapat!</b></div>
+
+        <div style="display:none;" class="alert alert-danger" role="alert"><b>Nu har det visst blivit fel. Försök igen!</b></div>
+
+        <!-- Register form -->
+        <form style="display:none;" class="register-form home-form">
+
+            <!-- Username -->
+            <label for="reg_username">Användarnamn</label>
+            <input id="reg_username" type="text" name="" class="form-control regUsername">
+
+            <!-- Email -->
+            <label for="reg_email">Email</label>
+            <input id="reg_email" type="email" name="" class="form-control regEmail">
+
+            <!-- Password -->
+            <label for="reg_password">Lösenord</label>
+            <input id="reg_password" type="password" name="" class="form-control regPassword">
+
+            <!-- Register button -->
+            <input type="submit" name="reg_btn" class="reg_btn btn btn-primary" value="Registrera">
+
+            <!-- Info tooltip -->
+            <span>Har du redan ett konto? <i class="swtchForm">Logga in</i></span>
+        </form>
+
+        <!-- Sign in form -->
+        <form class="login-form home-form">
+
+            <!-- Email -->
+            <label for="login_email">Email</label>
+            <input id="login_email" type="email" class="form-control signinEmail">
+
+            <!-- Password -->
+            <label for="login_password">Lösenord</label>
+            <input id="login_password" type="password" class="form-control signinPassword">
+
+            <!-- Register button -->
+            <input type="submit" name="login_btn" class="reg_btn btn btn-primary" value="Logga in">
+
+            <!-- Info tooltip -->
+            <span> Har du inget konto? <i class="swtchForm">Registrera!</i></span>
+        </form>
+
+
+        </div>
+    </div>
 
     <!-- jQuery -->
     <script src="/lib/bootstrap/jquery-2.1.4.min.js"></script>
     <!-- Bootstrap js -->
     <script src="/lib/bootstrap/bootstrap.min.js"></script>
-    <!-- showdown js -->
-    <script src="/lib/showdown/showdown.min.js"></script>
-    <!-- Compiled js -->
-    <script src="/build/main.js"></script>
+
+    <script>
+
+        (function () {
+
+            if(localStorage.getItem("token")){
+                localStorage.removeItem("token");
+            }
+
+            $(".register-form").on("submit", function(e) {
+                e.preventDefault();
+                $.ajax({
+                    url: "/register",
+                    method: "POST",
+                    data: {
+                        username: $(".regUsername").val(),
+                        email: $(".regEmail").val(), 
+                        password: $(".regPassword").val()
+                    }
+                }).done(function(res) {
+                    $(".alert-success").css("display", "block");
+                    $(".alert-danger").css("display", "none");
+                }).fail(function() {
+                    $(".alert-success").css("display", "none");
+                    $(".alert-danger").css("display", "block");
+                });
+            });
+
+            $(".login-form").on("submit", function(e) {
+                e.preventDefault();
+                $.ajax({
+                    url: "/signin",
+                    method: "POST",
+                    data: {
+                        email: $(".signinEmail").val(), 
+                        password: $(".signinPassword").val()
+                    }
+                }).done(function(res) {
+                    localStorage.setItem("token", res);
+                    window.location.href = "/feed";
+                }).fail(function() {
+                    $(".alert-success").css("display", "none");
+                    $(".alert-danger").css("display", "block");
+                });
+            });
+
+            $(".swtchForm").on("click", function(e) {
+                console.log("clicked");
+                if($(".login-form").css("display") == "block"){
+                    $(".login-form").css("display", "none");
+                    $(".register-form").css("display", "block");
+                }else{
+                    $(".login-form").css("display", "block");
+                    $(".register-form").css("display", "none");
+                }
+                $(".alert-success").css("display", "none");
+                $(".alert-danger").css("display", "none");
+            });
+
+        })();
+
+    </script>
 </body>
 </html>
