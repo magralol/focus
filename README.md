@@ -1,2 +1,2 @@
 # focus
-Social networking comsept application
+Social networking concept application
