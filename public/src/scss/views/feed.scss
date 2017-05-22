@@ -43,6 +43,11 @@
   overflow: auto;
 }
 
+.char_count{
+  font-size: 12px;
+  color: $grey;
+  text-align: center;
+}
 
 
 @media screen and ( max-width: 768px ){
@@ -53,10 +58,5 @@
   }
   .new_post_wrapper{
     margin-top: -75px;
-  }
-  .char_count{
-    font-size: 12px;
-    color: $grey;
-    text-align: center;
   }
 }
