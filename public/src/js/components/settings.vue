@@ -3,57 +3,58 @@
   <navbar :page="'settings'"></navbar>
 
   <!-- <h3 class="text-center">@Username</h3> -->
-  <p class="btn btn-primary create-filter-btn text-center" data-toggle="modal" data-target="#filtermodal">Nytt Filter </p>
-
-
-
-
-   <div class="container">
-     <div class="col-md-6 col-md-offset-3">
-       <div class="row">
-         <div class="col-xs-6 text-left">
-           <p>Filter</p>
-         </div>
-
-         <!-- När man klickar på edit ska .panel-footer bli display: block
+  <div class="container">
+    <div class="col-md-6 col-md-offset-3 text-center">
+      <p class="btn btn-primary create-filter-btn text-center" data-toggle="modal" data-target="#filtermodal">
+        Nytt Filter
+      </p>
+      <div class="row">
+         <!-- Open modal button
           ============================================================ -->
-       <div class="col-xs-6 text-right" v-on:click="openFilterFooter">Redigera</div>
-       </div>
+        <div class="col-xs-12 text-right crud_btn" v-on:click="openFilterFooter">
+          <span v-show="!filterFooter">Redigera</span>
+          <span v-show="filterFooter" >Klar</span>
+        </div>
+      </div>
 
       <ul class="list-group">
-        <li class="list-group-item" v-for="(filter, i) in filters">
-          <div style="padding: 0" class="col-xs-8 text-left">
-            <span class="filter-title">{{ filter.name }}</span>
-          </div>
-          <div style="padding: 0" class="col-xs-4 text-right" v-on:click="activateFilter(i)">
-            <span v-if="filter.active" class="label label-success">Aktiverad</span>
-            <span v-else class="label label-default">Aktivera</span>
-          </div>
-          <div class="filter-body-tags">
-            <span class="filter-tags" v-for="tag in filter.allawedtags">{{ tag }} </span>
+        <li class="list-group-item message_post" v-for="(filter, i) in filters">
+          <div class="list-group-container">
+            <span class="col-xs-8 filter-info text-left">
+            <div class="text-left filter-title">
+              <span>{{ filter.name }}</span>
+            </div>
+            <div class="filter-body-tags">
+              <span class="filter-tags" v-for="tag in filter.allawedtags">{{ tag }} </span>
+            </div>
+            </span>
+            <div class="col-xs-4 filter-activate" v-on:click="activateFilter(i)">
+              <span v-if="filter.active" class="label label-success">Aktiverad</span>
+              <span v-else class="label label-default">Aktivera</span>
+            </div>
           </div>
           <div class="panel-footer clearfix" v-show="filterFooter">
-            <div class="col-xs-6 text-center edit-filter" v-on:click="editFilter(i)">Redigera filter</div>
-            <div class="col-xs-6 text-center delete-filter" v-on:click="deleteFilter(i)">Ta bort filter</div>
+            <div class="col-xs-6 text-center edit-filter" v-on:click="editFilter(i)">Redigera</div>
+            <div class="col-xs-6 text-center delete-filter" v-on:click="deleteFilter(i)">Ta bort</div>
           </div>
         </li>
-
       </ul>
     </div>
   </div>
 
-<!-- Modal -->
+<!-- Filter Modal
+ ============================================================ -->
 <form class="" v-on:submit.prevent="createFilter">
 <div class="modal fade" id="filtermodal" tabindex="-1" role="dialog" aria-labelledby="filtermodal">
   <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <label for="filterTitle">Namn</label>
+          <label for="filterTitle"><strong>Namn</strong></label>
             <input type="text" id="filterTitle" name="filterTilte" class="form-control" placeholder="Namn på filtret" v-model="filterName">
         </div>
         <div class="modal-body">
-          <label for="filterTags">Taggar (separera med ,) inga mellanrum exempel tag1,tag2,tag3</label>
+          <label for="filterTags"><strong>Taggar</strong> <br> exempel tag1,tag2,tag3</label>
           <input type="text" id="filterTags" name="filterTags" class="form-control" placeholder="Taggar..." v-model="filterTags">
         </div>
         <div class="modal-footer">
@@ -100,7 +101,7 @@ export default {
    },
     methods: {
       createFilter: function(){
-        
+
         if(this.editMode){
           console.error("NOT YET IMPLEMENTED");
         }else{
@@ -117,7 +118,7 @@ export default {
             console.log(err);
           });
         }
-        
+
 
       },
       activateFilter: function(i){

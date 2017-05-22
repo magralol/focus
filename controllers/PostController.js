@@ -41,8 +41,8 @@ module.exports = {
                                 //TODO: real error handling
                                 res.sendStatus(500);
                             }else{
-                                docs = docs.sort(function(a,b) { 
-                                    return new Date(b.date).getTime() - new Date(a.date).getTime() 
+                                docs = docs.sort(function(a,b) {
+                                    return new Date(b.date).getTime() - new Date(a.date).getTime()
                                 });
 
                                 res.send(docs);
@@ -57,13 +57,13 @@ module.exports = {
                 //TODO: real error handling
                 res.sendStatus(500);
             }else{
-                docs = docs.sort(function(a,b) { 
-                    return new Date(b.date).getTime() - new Date(a.date).getTime() 
+                docs = docs.sort(function(a,b) {
+                    return new Date(b.date).getTime() - new Date(a.date).getTime()
                 });
                 res.send(docs);
             }
         });*/
-        
+
     },
     getByTag: function (req, res) {
         Post.find({tags: req.params.tag}, {__v: 0}, function (err, docs) {
@@ -71,8 +71,8 @@ module.exports = {
                 //TODO: real error handling
                 res.sendStatus(500);
             }else{
-                docs = docs.sort(function(a,b) { 
-                    return new Date(b.date).getTime() - new Date(a.date).getTime() 
+                docs = docs.sort(function(a,b) {
+                    return new Date(b.date).getTime() - new Date(a.date).getTime()
                 });
                 res.send(docs);
             }
@@ -85,15 +85,15 @@ module.exports = {
                 //TODO: real error handling
                 res.sendStatus(500);
             }else{
-                docs = docs.sort(function(a,b) { 
-                    return new Date(b.date).getTime() - new Date(a.date).getTime() 
+                docs = docs.sort(function(a,b) {
+                    return new Date(b.date).getTime() - new Date(a.date).getTime()
                 });
                 res.send(docs);
             }
         });
     },
     createPost: function (req, res) {
-        
+
         var username;
         var resentpost;
         if(req.body.postbody.length < 300){ 
@@ -115,7 +115,7 @@ module.exports = {
             }
 
             User.findById(req.user.id, function (err, doc) {
-                    if(err){   
+                    if(err){
                         //TODO: Real error handling
                         console.log(err);
                         res.sendStatus(500);
@@ -129,9 +129,9 @@ module.exports = {
                             tags:       tags,
                             date:       moment.utc().format()
                         });
-                        
+
                         post.save(function (err, doc) {
-                            if(err){   
+                            if(err){
                                 //TODO: Real error handling
                                 console.log(err);
                                 res.sendStatus(500);
@@ -159,8 +159,8 @@ module.exports = {
                                                         //TODO: real error handling
                                                         res.sendStatus(500);
                                                     }else{
-                                                        docs = docs.sort(function(a,b) { 
-                                                            return new Date(b.date).getTime() - new Date(a.date).getTime() 
+                                                        docs = docs.sort(function(a,b) {
+                                                            return new Date(b.date).getTime() - new Date(a.date).getTime()
                                                         });
                                                         socket.emit("new post", true);
                                                         socket.emit("new post user " + username, resentpost);
@@ -173,7 +173,7 @@ module.exports = {
                                     }
                                 });
                             }
-                            
+
                     });
                     }
             });

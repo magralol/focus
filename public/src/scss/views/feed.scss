@@ -1,8 +1,7 @@
 
 .feed_wrapper{
-  padding: 0 5px;
+  padding: 0 10px;
 }
-
 
 .new_post_wrapper, .message_post{
   width: 100%;
@@ -12,6 +11,7 @@
   border: 1px solid #ececec;
   border-radius: 5px;
   margin-bottom: 20px;
+  box-shadow: -2px 3px 6px rgba(0,0,0,0.1);
 }
 
 .feed_tags{
@@ -20,29 +20,21 @@
 }
 
 #new_message{
-  // min-height: 150px;
   resize: none;
   background: #fff;
   padding: 5px;
   border-radius: 0;
   border: none;
   outline-style:none;
+  color: $dark;
   box-shadow:none;
   border-color:transparent;
   border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 
-.message_info{
-  line-height: 60px;
-  font-size: 12px;
-  color: #ccc;
-  margin-right: 15px;
-  float: right;
-}
-
 .post_btn{
+  display: block;
   margin: 10px 0;
-  float: right;
   padding: 10px 20px;
   border: none;
 }
@@ -51,12 +43,20 @@
   overflow: auto;
 }
 
-.message_post{
-  margin-bottom: 10px;
-}
 
-.message_box{
-  border-bottom: 1px solid rgba(0,0,0,0.1);
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
+
+@media screen and ( max-width: 768px ){
+  .active-filters-bar{
+    background: $purple;
+    margin-top: -20px;
+    padding-bottom: 80px;
+  }
+  .new_post_wrapper{
+    margin-top: -75px;
+  }
+  .char_count{
+    font-size: 12px;
+    color: $grey;
+    text-align: center;
+  }
 }
