@@ -5,23 +5,16 @@
   <!-- <h3 class="text-center">@Username</h3> -->
   <p class="btn btn-primary create-filter-btn text-center" data-toggle="modal" data-target="#filtermodal">Nytt Filter </p>
 
-
-
-
-   <div class="container">
-     <div class="col-md-6 col-md-offset-3">
-       <div class="row">
-         <div class="col-xs-6 text-left">
-           <p>Filter</p>
-         </div>
-
-         <!-- När man klickar på edit ska .panel-footer bli display: block
+  <div class="container">
+    <div class="col-md-6 col-md-offset-3">
+      <div class="row">
+         <!-- Open modal button
           ============================================================ -->
-       <div class="col-xs-6 text-right" v-on:click="openFilterFooter">Redigera</div>
-       </div>
+        <div class="col-xs-12 text-right" v-on:click="openFilterFooter">Redigera</div>
+      </div>
 
       <ul class="list-group">
-        <li class="list-group-item" v-for="(filter, i) in filters">
+        <li class="list-group-item message_post" v-for="(filter, i) in filters">
           <div style="padding: 0" class="col-xs-8 text-left">
             <span class="filter-title">{{ filter.name }}</span>
           </div>
@@ -37,12 +30,12 @@
             <div class="col-xs-6 text-center delete-filter" v-on:click="deleteFilter(i)">Ta bort filter</div>
           </div>
         </li>
-
       </ul>
     </div>
   </div>
 
-<!-- Modal -->
+<!-- Filter Modal
+ ============================================================ -->
 <form class="" v-on:submit.prevent="createFilter">
 <div class="modal fade" id="filtermodal" tabindex="-1" role="dialog" aria-labelledby="filtermodal">
   <div class="modal-dialog" role="document">
@@ -100,7 +93,7 @@ export default {
    },
     methods: {
       createFilter: function(){
-        
+
         if(this.editMode){
           console.error("NOT YET IMPLEMENTED");
         }else{
@@ -117,7 +110,7 @@ export default {
             console.log(err);
           });
         }
-        
+
 
       },
       activateFilter: function(i){

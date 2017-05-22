@@ -17,10 +17,21 @@
 
 .navbar-header{
   box-sizing: border-box;
+  background: $purple;
+}
+
+.mobile-icon{
+  height: 60px;
+  color: $light;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $grey;
 }
 
 .mobile-active {
-  border-bottom: 3px solid $brand;
+  font-size: 16px;
+  color: #fff;
 }
 
 .navbar-header a{
@@ -31,4 +42,34 @@
   font-size: 12px;
   text-transform: uppercase;
   color: #ccc;
+}
+
+.show{
+  display: block;
+}
+
+.hidden{
+  display: none;
+}
+
+@media screen and ( max-width: 768px ){
+  .navbar-header{
+    box-sizing: border-box;
+    background: $purple;
+    height: 60px;
+  }
+  .active-filters-bar{
+    text-align: left;
+    padding-left: 20px;
+    color: $grey;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: bold;
+  }
+  .active-filters-bar span{
+    text-transform: none;
+    font-weight: normal;
+    color: #fff;
+    margin-left: 5px;
+  }
 }

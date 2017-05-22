@@ -15,15 +15,15 @@
 
         <!-- Username -->
         <label for="reg_username">Användarnamn</label>
-        <input id="reg_username" type="text" name="" class="form-control" v-model="regUsername">
+        <input id="reg_username" type="text" name="" class="form-control homescreen-form" v-model="regUsername">
 
         <!-- Email -->
         <label for="reg_email">Email</label>
-        <input id="reg_email" type="email" name="" class="form-control" v-model="regEmail">
+        <input id="reg_email" type="email" name="" class="form-control homescreen-form" v-model="regEmail">
 
         <!-- Password -->
         <label for="reg_password">Lösenord</label>
-        <input id="reg_password" type="password" name="" class="form-control" v-model="regPassword">
+        <input id="reg_password" type="password" name="" class="form-control homescreen-form" v-model="regPassword">
 
         <!-- Register button -->
         <input type="submit" name="reg_btn" class="reg_btn btn" value="Registrera">
@@ -37,11 +37,11 @@
 
         <!-- Email -->
         <label for="login_email">Email</label>
-        <input id="login_email" type="email" class="form-control" v-model="email">
+        <input id="login_email" type="email" class="form-control homescreen-form" v-model="email">
 
         <!-- Password -->
         <label for="login_password">Lösenord</label>
-        <input id="login_password" type="password" class="form-control" v-model="password">
+        <input id="login_password" type="password" class="form-control homescreen-form" v-model="password">
 
         <!-- Register button -->
         <input type="submit" name="login_btn" class="reg_btn btn" value="Logga in">
@@ -91,7 +91,7 @@ export default {
   },
   methods: {
     signIn: function(){
-      
+
       axios.post('/signin', {email: this.email, password: this.password}).then((res) => {
         localStorage.setItem("token", res.data);
         this.signInStatus = true;
@@ -101,7 +101,7 @@ export default {
           this.errors = "Fel användarnamn eller lösenord, försök igen!";
         }
       });
-      
+
       /*var router = this.$router;
       this.$store.dispatch('SIGN_IN', {email: this.email, password: this.password})
       .then((res) => {
