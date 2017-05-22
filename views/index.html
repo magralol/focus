@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Compiled css -->
     <link rel="stylesheet" href="/build/style.css">
+    <link rel="manifest" href="/manifest.json">
     <title>Focus</title>
 </head>
 <body>
@@ -20,6 +21,11 @@
         <div style="display:none;" class="alert alert-success" role="alert"><b>Kontot skapat!</b></div>
 
         <div style="display:none;" class="alert alert-danger" role="alert"><b>Nu har det visst blivit fel. Försök igen!</b></div>
+
+        <div class="login-state">
+          <span id="sign_in_toggle" class="swtchForm active">Logga in</span>
+          <span id="register_toggle" class="swtchForm">Registrera</span>
+        </div>
 
         <!-- Register form -->
         <form style="display:none;" class="register-form home-form">
@@ -39,8 +45,6 @@
             <!-- Register button -->
             <input type="submit" name="reg_btn" class="reg_btn btn btn-primary" value="Registrera">
 
-            <!-- Info tooltip -->
-            <span>Har du redan ett konto? <i class="swtchForm">Logga in</i></span>
         </form>
 
         <!-- Sign in form -->
@@ -57,8 +61,6 @@
             <!-- Register button -->
             <input type="submit" name="login_btn" class="reg_btn btn btn-primary" value="Logga in">
 
-            <!-- Info tooltip -->
-            <span> Har du inget konto? <i class="swtchForm">Registrera!</i></span>
         </form>
 
 
@@ -85,7 +87,7 @@
                     method: "POST",
                     data: {
                         username: $(".regUsername").val(),
-                        email: $(".regEmail").val(), 
+                        email: $(".regEmail").val(),
                         password: $(".regPassword").val()
                     }
                 }).done(function(res) {
@@ -103,7 +105,7 @@
                     url: "/signin",
                     method: "POST",
                     data: {
-                        email: $(".signinEmail").val(), 
+                        email: $(".signinEmail").val(),
                         password: $(".signinPassword").val()
                     }
                 }).done(function(res) {
@@ -120,9 +122,13 @@
                 if($(".login-form").css("display") == "block"){
                     $(".login-form").css("display", "none");
                     $(".register-form").css("display", "block");
+                    $("#sign_in_toggle").removeClass('active');
+                    $("#register_toggle").addClass('active');
                 }else{
                     $(".login-form").css("display", "block");
                     $(".register-form").css("display", "none");
+                    $("#sign_in_toggle").addClass('active');
+                    $("#register_toggle").removeClass('active');
                 }
                 $(".alert-success").css("display", "none");
                 $(".alert-danger").css("display", "none");

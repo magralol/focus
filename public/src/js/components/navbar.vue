@@ -1,46 +1,44 @@
 <template>
 <div>
-  <!-- Active filter bar
-   ============================================================ -->
 
-  <!-- <div class="filter-active-bar">
-    <p><span>Work</span><i class="fa fa-circle" style="color: green;"></i></p>
-  </div> -->
-
-  <!-- Navigation bar
+  <!-- Navbar mobile
    ============================================================ -->
    <div class="navbar navbar-inverse navigation-bar" role="navigation">
 
      <div class="container">
        <div class="navbar-header text-center">
          <span class="visible-xs">
-          <a href="#/feed">
+
+          <a href="#/">
             <div class="col-xs-3 mobile-icon" v-bind:class="page == 'feed' ? 'mobile-active': ''">
               <i class="fa fa-commenting-o fa-2x"></i>
             </div>
           </a>
-
+          <!-- Profile
+           ============================================================ -->
           <a :href="'#/user/'+user">
             <div class="col-xs-3 mobile-icon" v-bind:class="page == 'profile' ? 'mobile-active': ''">
               <i class="fa fa-user fa-2x"></i>
             </div>
           </a>
-
+          <!-- Settings
+           ============================================================ -->
           <a href="#/settings">
             <div class="col-xs-3 mobile-icon" v-bind:class="page == 'settings' ? 'mobile-active': ''">
-              <i class="fa fa-cog fa-2x"></i>
+              <i class="fa fa-sliders fa-2x"></i>
             </div>
           </a>
-
+          <!-- Signout
+           ============================================================ -->
           <a href="#" v-on:click="signout">
             <div class="col-xs-3 mobile-icon">
               <i class="fa fa-times-circle-o fa-2x"></i>
             </div>
           </a>
-         </span>
-
-         <!-- <a href="" class="navbar-brand"><img src=""></a> -->
+        </span>
        </div>
+       <!-- Navbar desktop
+        ============================================================ -->
        <div class="navbar-collapse collapse">
          <ul class="nav navbar-nav navbar-right">
            <li v-bind:class="page == 'feed' ? 'active': ''"><a href="#/feed">Flöde</a></li>
@@ -65,7 +63,7 @@ export default {
     }
   },
   beforeMount: function(){
-    
+
     this.$store.dispatch('GET_USER_NAME').then((res) => {
       this.user = res.data.username;
     }).catch((err) => {

@@ -45,3 +45,45 @@
     width: 350px;
   }
 }
+
+@media screen and ( max-width: 768px ){
+  #home-wrapper{
+    background: url('/src/images/loginBg.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+  .login-state{
+    display: flex;
+    padding: 0 40px;
+    margin: 30px auto;
+    justify-content: space-between;
+    span{
+      font-size: 18px;
+      text-transform: uppercase;
+    }
+  }
+  .login-box{
+    width: 100%;
+    background: rgba(255,255,255,0);
+    color: $light;
+  }
+  .login-box h3{
+    font-size: 52px;
+    font-weight: bold;
+    color: #fff;
+  }
+  label{
+    text-transform: uppercase;
+    font-size: 12px;
+    padding-left: 10px;
+  }
+
+  .reg_btn{
+    height: 40px;
+    background: $blue;
+    border-radius: 20px;
+  }
+  .active{
+    border-bottom: 2px solid $blue;
+  }
+}

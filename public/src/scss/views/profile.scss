@@ -5,56 +5,24 @@ form label{
   font-weight: 300;
 }
 
-.create-filter-btn{
-  position: relative;
-  left: 50%;
-  margin: 20px 0 20px -45px;
-  font-size: 12px;
-}
 
 
-.filter-group{
-  border: 1px solid #ccc;
-  padding: 10px 5px;
-  background: #fff;
-}
-
-.list-group-item{
-  margin-bottom: 10px;
-}
-
-.filter-title{
-  margin: 0;
-  padding: 0;
-}
-
-.filter-date{
-  font-size: 10px;
-  color: $brand;
-}
-
-.filter-body-tags{
-  color: $brand;
-}
-.filter-tags{
-  font-size: 10px;
-  font-style: italic;
-  color: $brand;
-}
-
-.panel-footer{
-  padding: 0;
-  background: none;
-}
-
-.panel-footer div{
-  padding: 10px;
-}
-
-.delete-filter{
-  color: red;
-}
-
-.edit-filter{
-  color: green;
+@media screen and ( max-width: 768px ){
+  .profile_header{
+    background: $purple;
+    margin-top: -25px;
+    margin-bottom: 20px;
+    padding: 15px;
+  }
+  .profile_header h3{
+    color: #fff!important;
+    text-align: center;
+    margin: 0 0 10px;
+  }
+  .profile_header p{
+    color: $grey;
+    text-transform: uppercase;
+    font-size: 12px;
+    margin: 0 auto;
+  }
 }
