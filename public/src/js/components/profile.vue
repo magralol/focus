@@ -36,7 +36,8 @@ export default {
   },
   data () {
     return {
-      username: null
+      username: null,
+      socket: io()
     }
   },
   computed: {
@@ -52,6 +53,12 @@ export default {
       .catch((err) => {
         //TODO: Real error handling
         console.log(err);
+      });
+   },
+   mounted: function(){
+      this.socket.on('new post user ' + this.username, (data)=>{
+        //Hacky way to not prevent posts from uppdating in diffrent components
+        if(this.$route.path === "/user/"+ this.username) this.posts.unshift(data)
       });
    },
    methods:{

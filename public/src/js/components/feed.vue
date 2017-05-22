@@ -48,7 +48,8 @@ export default {
   data () {
     return {
       postbody: "",
-      tagname: null
+      tagname: null,
+      socket: io()
     }
   },
   computed: {
@@ -64,6 +65,15 @@ export default {
       this.$store.dispatch('GET_POSTS');
     }
   },
+  mounted: function(){
+    this.socket.on('new post', (data)=>{
+      //Hacky way to not prevent posts from uppdating in diffrent components
+      if(this.$route.path === "/"){
+        //this.$store.commit('setposts', data);
+        this.$store.dispatch('GET_POSTS');
+      }
+    });
+  },
   methods: {
     parseDate: function(date){
       return moment(date).format('DD/MM-YYYY');
@@ -74,7 +84,7 @@ export default {
         if(this.$route.params.tag){
           this.posts.unshift({body: res.data[0].body, user: res.data[0].user, date: res.data[0].date});
         }else{
-          this.$store.commit('setposts', res.data);
+          //this.$store.commit('setposts', res.data);
         }
         //this.posts.unshift({body: res.data[0].body, user: res.data[0].user, date: res.data[0].date});
         this.postbody = "";

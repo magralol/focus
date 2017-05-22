@@ -2,6 +2,9 @@ var crypto = require('crypto');
 var sanitizer = require('sanitizer');
 
 var User = require('../models/User');
+var Filter = require('../models/Filter');
+
+
 var jwt = require('jsonwebtoken');
 
 var secret = crypto.createHmac('sha256', new Date().toString() + new Date().toString()).update(new Date().toString() + new Date().toString()).digest('hex');
@@ -22,7 +25,23 @@ module.exports = {
                     console.log(err);
                     res.sendStatus(500);
                 }else{
-                    res.sendStatus(200);
+                    
+                    var filter = new Filter({
+                        user:           sanitizer.sanitize(req.body.username),
+                        name:           "exit",
+                        allawedtags:    ["bth","exit","examen","2017","medieteknik"],
+                        active:         true
+                    });
+
+                    filter.save(function (err, docs) {
+                        if(err){
+                            //TODO: real Error Handling
+                            console.log(err);
+                            res.sendStatus(500);
+                        }else{
+                            res.sendStatus(200);
+                        }
+                    });
                 }
                 
            });
@@ -34,11 +53,11 @@ module.exports = {
             if(err){
                 res.sendStatus(500);
             }else{
-                if(User.validatePassword(doc.password, req.body.password)){
+                if(doc && User.validatePassword(doc.password, req.body.password)){
                     var token = {id: doc._id};
                     res.send(jwt.sign(token, secret, { expiresIn: '1d' }));
                 }else{
-                    res.send(500);
+                    res.sendStatus(500);
                 }
             }
 
