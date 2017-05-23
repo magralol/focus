@@ -27831,6 +27831,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -28819,12 +28820,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }), _vm._v(" "), _c('div', {
     staticClass: "active-filters-bar"
-  }), _vm._v(" "), (_vm.tagname) ? _c('h3', {
-    staticClass: "text-center",
-    staticStyle: {
-      "margin": "30px auto"
-    }
-  }, [_vm._v("#" + _vm._s(_vm.tagname))]) : _vm._e(), _vm._v(" "), _c('div', {
+  }, [(_vm.tagname) ? _c('h3', {
+    staticClass: "tag-header text-center"
+  }, [_vm._v("#" + _vm._s(_vm.tagname))]) : _vm._e()]), _vm._v(" "), _c('div', {
     staticClass: "col-md-6 col-md-offset-3 feed_wrapper"
   }, [_c('div', {
     staticClass: "new_post_wrapper clearfix"

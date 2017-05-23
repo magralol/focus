@@ -204,13 +204,20 @@
   color: #C3C3C3;
   text-align: center; }
 
+.tag-header {
+  margin: 0;
+  padding: 10px 0;
+  color: #141236; }
+
 @media screen and (max-width: 768px) {
   .active-filters-bar {
     background: #141236;
     margin-top: -20px;
     padding-bottom: 80px; }
   .new_post_wrapper {
-    margin-top: -75px; } }
+    margin-top: -75px; }
+  .tag-header {
+    color: #fff; } }
 
 form label {
   font-size: 12px;
