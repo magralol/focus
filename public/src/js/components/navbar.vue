@@ -78,8 +78,6 @@ export default {
       // For iOS Apps
       $('a').on('click', function(e){
         e.preventDefault();
-        //alert(window.location.href.replace(window.location.pathname, $(this).attr('href')));
-        //window.location.pathname = "/feed#/" + $(this).attr('href').replace("#/", "");
         window.location.assign("http://37.139.17.158/feed"+$(this).attr('href'));
       });
     }
@@ -90,7 +88,11 @@ export default {
       if(localStorage.getItem("token")){
         localStorage.removeItem("token");
       }
-       window.location.href = "/"
+      if(("standalone" in window.navigator) && window.navigator.standalone){
+        window.location.assign("http://37.139.17.158/");
+      }else{
+        window.location.href = "/"
+      }
     }
   }
 }
