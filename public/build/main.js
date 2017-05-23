@@ -28226,7 +28226,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       $('a').on('click', function (e) {
         e.preventDefault();
         //alert(window.location.href.replace(window.location.pathname, $(this).attr('href')));
-        window.location.pathname = $(this).attr('href');
+        window.location.pathname = "/feed#/" + $(this).attr('href').replace("#/", "");
       });
     }
   },
