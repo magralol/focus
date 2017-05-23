@@ -49,6 +49,12 @@
   text-align: center;
 }
 
+.tag-header{
+  margin: 0;
+  padding: 10px 0;
+  color: $purple;
+}
+
 
 @media screen and ( max-width: 768px ){
   .active-filters-bar{
@@ -58,5 +64,8 @@
   }
   .new_post_wrapper{
     margin-top: -75px;
+  }
+  .tag-header{
+    color: #fff;
   }
 }
