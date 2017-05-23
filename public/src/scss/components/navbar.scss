@@ -15,6 +15,14 @@
   border: none;
 }
 
+.navbar-inverse{
+  background: $purple;
+}
+
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover{
+  background: #0a091f;
+}
+
 .navbar-header{
   box-sizing: border-box;
   background: $purple;

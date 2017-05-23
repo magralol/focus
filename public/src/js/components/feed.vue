@@ -4,8 +4,9 @@
   <navbar :page="'feed'"></navbar>
   <div class="active-filters-bar">
     <!-- <p>Filter: <span>WORK</span> </p> -->
+    <h3 class="tag-header text-center" v-if="tagname">#{{ tagname }}</h3>
   </div>
-  <h3 style="margin: 30px auto;" class="text-center" v-if="tagname">#{{ tagname }}</h3>
+
 
   <div class="col-md-6 col-md-offset-3 feed_wrapper">
 
