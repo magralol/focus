@@ -73,6 +73,16 @@ export default {
         }
     });
   },
+  mounted: function(){
+    if (("standalone" in window.navigator) && window.navigator.standalone) {
+      // For iOS Apps
+      $('a').on('click', function(e){
+        e.preventDefault();
+        var new_location = $(this).attr('href');
+        this.$router.push($(this).attr('href').replace("#/",""));
+      });
+    }
+  },
   methods:{
     signout: function(e){
       e.preventDefault();
