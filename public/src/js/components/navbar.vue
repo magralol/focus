@@ -78,7 +78,8 @@ export default {
       // For iOS Apps
       $('a').on('click', function(e){
         e.preventDefault();
-        alert(window.location.href.replace(window.location.pathname, $(this).attr('href')));
+        //alert(window.location.href.replace(window.location.pathname, $(this).attr('href')));
+        window.location.pathname = $(this).attr('href');
       });
     }
   },
