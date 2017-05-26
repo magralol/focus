@@ -28323,6 +28323,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -31369,14 +31371,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }), _vm._v(" "), _c('p', {
     staticClass: "char_count"
-  }, [_vm._v("Tecken: " + _vm._s(_vm.postbody.length) + "/300")]), _vm._v(" "), _c('input', {
-    staticClass: "btn btn-primary reg_btn",
-    attrs: {
-      "type": "submit",
-      "name": "",
-      "value": "Skicka"
-    }
-  })])]), _vm._v(" "), (_vm.posts.length == 0) ? _c('div', [(_vm.tagname) ? _c('span', [_vm._v("Det finns inga inlägg i #" + _vm._s(_vm.tagname))]) : _c('span', [_vm._v("Det finns för tillfället inga inlägg.")])]) : _vm._e(), _vm._v(" "), _vm._l((_vm.posts), function(post) {
+  }, [_vm._v("Tecken: " + _vm._s(_vm.postbody.length) + "/300")]), _vm._v(" "), _vm._m(0)])]), _vm._v(" "), (_vm.posts.length == 0) ? _c('div', [(_vm.tagname) ? _c('span', [_vm._v("Det finns inga inlägg i #" + _vm._s(_vm.tagname))]) : _c('span', [_vm._v("Det finns för tillfället inga inlägg.")])]) : _vm._e(), _vm._v(" "), _vm._l((_vm.posts), function(post) {
     return _c('div', [_c('feeditem', {
       attrs: {
         "text": post.body,
@@ -31385,7 +31380,23 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     })], 1)
   })], 2)], 1)
-},staticRenderFns: []}
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('span', {
+    staticClass: "xs-hidden",
+    staticStyle: {
+      "width": "300px",
+      "display": "block",
+      "margin": "0 auto"
+    }
+  }, [_c('input', {
+    staticClass: "btn btn-primary reg_btn",
+    attrs: {
+      "type": "submit",
+      "name": "",
+      "value": "Skicka"
+    }
+  })])
+}]}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
@@ -31410,7 +31421,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v("Inlägg")]), _vm._v(" "), _c('p', {
     staticClass: "text-center"
   }, [_vm._v(_vm._s(_vm.posts.length))])]), _vm._v(" "), _c('div', {
-    staticClass: "col-md-4 col-md-offset-4 feed_wrapper"
+    staticClass: "col-md-6 col-md-offset-3 feed_wrapper"
   }, [_vm._l((_vm.posts), function(post) {
     return _c('div', [_c('feeditem', {
       attrs: {
