@@ -13,6 +13,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use('/', require("./routes"));
 
-app.listen(3000, function () {
+
+var server = require('http').createServer(app);
+var io = require('./socket')(server);
+
+server.listen(3000, function () {
     console.log("App listning on: http://localhost:3000");
 });
+
+module.exports = app;

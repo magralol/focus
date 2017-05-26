@@ -1,0 +1,26 @@
+{
+  "short_name": "Focus",
+  "name": "Focus",
+  "icons": [
+    {
+      "src": "/src/images/focus_icon/48x48.png",
+      "type": "image/png",
+      "sizes": "48x48"
+    },
+    {
+      "src": "/src/images/focus_icon/96x96.png",
+      "type": "image/png",
+      "sizes": "96x96"
+    },
+    {
+      "src": "/src/images/focus_icon/192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#f7f7f7",
+  "theme_color": "#141236",
+  "display": "standalone",
+  "orientation": "portrait"
+}

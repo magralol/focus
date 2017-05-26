@@ -8,9 +8,8 @@
      <div class="container">
        <div class="navbar-header text-center">
          <span class="visible-xs">
-          <!-- Feed
-          ============================================================ -->
-          <a href="#/feed">
+
+          <a href="#/">
             <div class="col-xs-3 mobile-icon" v-bind:class="page == 'feed' ? 'mobile-active': ''">
               <i class="fa fa-commenting-o fa-2x"></i>
             </div>

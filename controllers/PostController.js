@@ -5,6 +5,8 @@ var Post = require('../models/Post');
 var Filter = require('../models/Filter');
 var User = require('../models/User');
 
+var socket = require('../socket')();
+
 module.exports = {
     getById: function (req, res) {
         Post.findById(req.params.id, { __v: 0 }, function (err, doc) {
@@ -42,6 +44,7 @@ module.exports = {
                                 docs = docs.sort(function(a,b) {
                                     return new Date(b.date).getTime() - new Date(a.date).getTime()
                                 });
+
                                 res.send(docs);
                             }
                         });
@@ -91,7 +94,9 @@ module.exports = {
     },
     createPost: function (req, res) {
 
-        if(req.body.postbody.length < 300){
+        var username;
+        var resentpost;
+        if(req.body.postbody.length < 300){ 
             var body = req.body.postbody;
             var tags = body.match(/#[a-z]+/gi);
             var users = body.match(/@[a-z]+/gi);
@@ -115,7 +120,9 @@ module.exports = {
                         console.log(err);
                         res.sendStatus(500);
                     }else{
-                        var post = new Post({
+                        username = doc.username;
+
+                        var post = new Post({ 
                             //TODO: Do dynamic with sign in user
                             user:       doc.username,
                             body:       sanitizer.sanitize(body),
@@ -129,6 +136,7 @@ module.exports = {
                                 console.log(err);
                                 res.sendStatus(500);
                             }else{
+                                resentpost = doc;
                                 User.findById(req.user.id, function (err, doc) {
                                     if(err){
                                         //TODO: real error handling
@@ -145,7 +153,7 @@ module.exports = {
                                                 }else{
                                                     query = {};
                                                 }
-
+                                                
                                                 Post.find(query, {__v: 0 }, function (err, docs) {
                                                     if(err){
                                                         //TODO: real error handling
@@ -154,7 +162,10 @@ module.exports = {
                                                         docs = docs.sort(function(a,b) {
                                                             return new Date(b.date).getTime() - new Date(a.date).getTime()
                                                         });
-                                                        res.send(docs);
+                                                        socket.emit("new post", true);
+                                                        socket.emit("new post user " + username, resentpost);
+                                                        
+                                                        res.sendStatus(200);
                                                     }
                                                 });
                                             }

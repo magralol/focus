@@ -27,6 +27,7 @@ export default new Vuex.Store({
   },
   mutations: {
     setposts: function(state, data) {
+      console.log("state.posts: ", data);
       state.posts = data;
     },
     setfilters: function(state, data) {

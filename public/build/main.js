@@ -24678,6 +24678,7 @@ __WEBPACK_IMPORTED_MODULE_2_axios___default.a.interceptors.response.use(function
   getters: {},
   mutations: {
     setposts: function setposts(state, data) {
+      console.log("state.posts: ", data);
       state.posts = data;
     },
     setfilters: function setfilters(state, data) {
@@ -28338,7 +28339,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   data: function data() {
     return {
       postbody: "",
-      tagname: null
+      tagname: null,
+      socket: io()
     };
   },
 
@@ -28355,22 +28357,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.$store.dispatch('GET_POSTS');
     }
   },
+  mounted: function mounted() {
+    var _this = this;
+
+    this.socket.on('new post', function (data) {
+      //Hacky way to not prevent posts from uppdating in diffrent components
+      if (_this.$route.path === "/") {
+        //this.$store.commit('setposts', data);
+        _this.$store.dispatch('GET_POSTS');
+      }
+    });
+  },
   methods: {
     parseDate: function parseDate(date) {
       return __WEBPACK_IMPORTED_MODULE_3_moment___default()(date).format('DD/MM-YYYY');
     },
     post: function post() {
-      var _this = this;
+      var _this2 = this;
 
       this.$store.dispatch('CREATE_POST', { body: this.postbody }).then(function (res) {
 
-        if (_this.$route.params.tag) {
-          _this.posts.unshift({ body: res.data[0].body, user: res.data[0].user, date: res.data[0].date });
-        } else {
-          _this.$store.commit('setposts', res.data);
-        }
+        if (_this2.$route.params.tag) {
+          _this2.posts.unshift({ body: res.data[0].body, user: res.data[0].user, date: res.data[0].date });
+        } else {}
+        //this.$store.commit('setposts', res.data);
+
         //this.posts.unshift({body: res.data[0].body, user: res.data[0].user, date: res.data[0].date});
-        _this.postbody = "";
+        _this2.postbody = "";
       }).catch(function (err) {
         if (err.response) {
           //TODO: real errors:
@@ -28676,7 +28689,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'navbar',
@@ -28764,7 +28776,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   data: function data() {
     return {
-      username: null
+      username: null,
+      socket: io()
     };
   },
 
@@ -28782,6 +28795,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     }).catch(function (err) {
       //TODO: Real error handling
       console.log(err);
+    });
+  },
+  mounted: function mounted() {
+    var _this2 = this;
+
+    this.socket.on('new post user ' + this.username, function (data) {
+      //Hacky way to not prevent posts from uppdating in diffrent components
+      if (_this2.$route.path === "/user/" + _this2.username) _this2.posts.unshift(data);
     });
   },
   methods: {}
@@ -31879,7 +31900,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "visible-xs"
   }, [_c('a', {
     attrs: {
-      "href": "#/feed"
+      "href": "#/"
     }
   }, [_c('div', {
     staticClass: "col-xs-3 mobile-icon",
