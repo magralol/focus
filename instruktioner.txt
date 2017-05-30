@@ -1,25 +1,33 @@
 
-Nödvändig förutsättning:
+Nödvändiga installerade program för att applikationen ska fungera:
 Node.js miljö (https://nodejs.org/en/download/)
-Mongodb database (https://www.mongodb.com/download-center?jmp=nav#community)
+Mongodb databas (https://www.mongodb.com/download-center?jmp=nav#community)
 Webpack (npm install webpack -g)
 
 Installation:
-Öppna terminal (osx eller linux) eller cmd (windows) i den focus mappen skriv sedan npm install
+Öppna terminalen (osx eller linux) eller cmd (windows) och navigera in till focus-mappen, skriv sedan npm install
 (om node.js är installerat).
 
-Starta sedan applikationen genom att skriva npm start (sudo krävs på osx eller linux) i terminal (osx och linux) eller cmd (windows)
-Servern kommer setarta och vara tillgänglig på localhost:3000 eller 127.0.0.1:300 i din webbläsare (google chrome eller firefox är rekomenderat).
+Starta sedan applikationen genom att i terminalen skriva sudo npm start på osx eller linux eller i windows cmd skriva npm start.
+Servern kommer starta och vara tillgänglig på localhost:3000 eller 127.0.0.1:300 i din webbläsare (google chrome eller firefox är rekomenderat).
 
-om npm start inte skulle starta appliaktionen så starta mongodb genom att skriva mongod i terminalen och i ett nytt terminal fönster
+Om npm start inte skulle starta appliaktionen så starta mongodb genom att skriva mongod i terminalen och i ett nytt terminal fönster
 skriv node app.js (i samma mapp som focus källkod)
 
 Användning:
-När applikationen har startats (se under punkt installation) navigera dig till localhost:3000 i din webbläsare.
+När applikationen har startats (se punkt installation) navigera dig till localhost:3000 i din webbläsare.
+
 Klicka sedan på registrera för att registrera ett konto och följ instruktionerna. När kontot är registrerat så
-navigera tillbaka till logga in genom att klicka på logga in. Följ instruktionerna och logga in på applikationen.
-När du har loggat in så kommer du till flödet. Där kan du skapa egna inlägg genom att skriva ett medelande i "skriv ett medelande..."
-rutan (ett inlägg får ändast vara 300 täcken) och sedan trycka på skicka knappen. Du kan även se andras och dinna egna inlägg i flödet
-under "skriv medelande..." rutan. Navigera till profil för att se den inloggade användarens profil och alla de inlägg som användaren har
-laggt upp. Navigera till instlällningar för att se användarens filter, skapa nya filter, ta bort fitler, och aktiver eller avaktiver filter
-klicka på logga ut för att logga ut från applikationen. 
+navigera tillbaka till logga in genom att klicka på logga in.
+
+Följ instruktionerna och logga in på applikationen.
+
+När du har loggat in så kommer du till flödet. Där kan du skapa egna inlägg genom att skriva ett meddelande i "skriv ett medelande..."
+rutan (ett inlägg får ändast vara 300 täcken) och sedan trycka på skicka knappen.
+
+Du kan även se andras och dina egna inlägg i flödet under "skriv medelande..." rutan.
+
+Navigera till profil för att se den inloggade användarens profil och alla de inlägg som användaren har skapat.
+
+Navigera till instlällningar för att se användarens filter, skapa nya filter, ta bort filter, och aktiver eller avaktiver filter.
+klicka på logga ut för att logga ut från applikationen.
