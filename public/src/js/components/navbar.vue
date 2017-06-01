@@ -73,13 +73,28 @@ export default {
         }
     });
   },
+  mounted: function(){
+    //Hacky way to fix navigation in standalone ios application
+    if (("standalone" in window.navigator) && window.navigator.standalone) {
+      $('a').on('click', function(e){
+        e.preventDefault();
+        window.location.assign("http://37.139.17.158/feed"+$(this).attr('href'));
+      });
+    }
+  },
   methods:{
     signout: function(e){
       e.preventDefault();
       if(localStorage.getItem("token")){
         localStorage.removeItem("token");
       }
-       window.location.href = "/"
+      
+      //Hacky way to fix navigation in standalone ios application
+      if(("standalone" in window.navigator) && window.navigator.standalone){
+        window.location.assign("http://37.139.17.158/");
+      }else{
+        window.location.href = "/"
+      }
     }
   }
 }

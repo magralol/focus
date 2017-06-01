@@ -123,7 +123,6 @@ module.exports = {
                         username = doc.username;
 
                         var post = new Post({ 
-                            //TODO: Do dynamic with sign in user
                             user:       doc.username,
                             body:       sanitizer.sanitize(body),
                             tags:       tags,
