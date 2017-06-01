@@ -28061,27 +28061,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           _this.errors = "Fel användarnamn eller lösenord, försök igen!";
         }
       });
-
-      /*var router = this.$router;
-      this.$store.dispatch('SIGN_IN', {email: this.email, password: this.password})
-      .then((res) => {
-        if(res.status == 200){
-          localStorage.setItem("token", res.data);
-          //console.log(localStorage.getItem("token"));
-          //this.$router.push('feed');
-          //window.location.href = "#/feed";
-          //router.push({path:"/feed"});
-          //history.pushState({}, null, "#/feed");
-          router.replace({path:"/feed"});
-        }else{
-          this.errors = "Fel användarnamn eller lösenord, försök igen!";
-        }
-      }).catch((err) => {
-        if(err.response){
-          //TODO: real errors:
-          this.errors = "Fel användarnamn eller lösenord, försök igen!";
-        }
-      });*/
     },
     register: function register() {
       var _this2 = this;
