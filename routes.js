@@ -44,4 +44,8 @@ app.put('/filter/:id', auth, require('./controllers/FilterController').updateFil
 app.delete('/filter/:id', auth, require('./controllers/FilterController').removeFilter);
 app.get('/filter/activate/:id', auth, require('./controllers/FilterController').activateFilter);
 
+//Admin routes
+app.get('/admin', require('./controllers/AdminController').index);
+app.delete('/admin/delete/:id', auth, require('./controllers/AdminController').removepost);
+
 module.exports = app;

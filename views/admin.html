@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" type="image/png" href="/src/images/focus_icon/96x96.png"/>
+    <!-- Bootstrap css -->
+    <link rel="stylesheet" href="/lib/bootstrap/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Focus - Admin</title>
+</head>
+<body>
+
+    <h1 style="text-align: center">Admin panel</h1><br><hr><br>
+    <div id="app">
+        <div v-show="errormsg" style="text-align: center" class="alert alert-danger" role="alert"><b>{{ errormsg }}</b></div>
+        <form v-if="!token" v-on:submit.prevent="signin">
+            <div class="form-group">
+                <input type="email" class="form-control" id="email" placeholder="email" v-model="email">
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" id="password" placeholder="password" v-model="password">
+            </div>
+            <button type="submit" class="btn btn-default">Sign in</button>
+        </form>
+        <div v-if="token">
+            <div class="panel panel-default" v-for="post in posts">
+                <div class="panel-heading">@{{ post.user }} <div class="pull-right"><i class="fa fa-times-circle fa-2x" aria-hidden="true" v-on:click="deletepost(post._id)"></i>
+</div></div>
+                <div class="panel-body">
+                    {{ post.body }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="/lib/bootstrap/jquery-2.1.4.min.js"></script>
+    <!-- socket.io js -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.3/vue.min.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                token: null,
+                email: null,
+                password: null,
+                errormsg: null,
+                posts: [],
+                socket: io()
+            },
+            mounted: function(){
+                var t = this;
+                this.socket.on('new post', function(){
+                    $.ajax({
+                        url: "/post",
+                        method: "GET",
+                        headers: {"Authorization": "Bearer " + t.token}
+                    }).done(function(res) {
+                        t.posts = res;
+                        t.errormsg = null;
+                    }).fail(function() {
+                        t.errormsg = "culd not load posts"
+                    });      
+                });
+            },
+            watch: {
+                token: function () {
+                    var t = this;
+                    $.ajax({
+                        url: "/post",
+                        method: "GET",
+                        headers: {"Authorization": "Bearer " + t.token}
+                    }).done(function(res) {
+                        t.posts = res;
+                        t.errormsg = null;
+                    }).fail(function() {
+                        t.errormsg = "culd not load posts"
+                    });
+                }
+            },
+            methods: {
+                signin: function(){
+                    var t = this;
+                    $.ajax({
+                        url: "/signin",
+                        method: "POST",
+                        data: {
+                            email: this.email,
+                            password: this.password
+                        }
+                    }).done(function(res) {
+                        t.token = res;
+                        t.email = null;
+                        t.password = null;
+                        t.errormsg = null;
+                    }).fail(function() {
+                        t.errormsg = "wrong credentials!"
+                    });
+                },
+                deletepost: function(id) {
+                    var t = this;
+                    if(confirm("are you sure you whant to remove post?")){
+                        $.ajax({
+                            url: "/admin/delete/"+id,
+                            method: "DELETE",
+                            headers: {"Authorization": "Bearer " + t.token}
+                        }).done(function(res) {
+                            console.log(res);
+                        }).fail(function() {
+                            t.errormsg = "you do not have the power to delete posts!"
+                        });
+                    }
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>

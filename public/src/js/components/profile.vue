@@ -7,7 +7,7 @@
     <p class="text-center">{{posts.length}}</p>
   </div>
 
-  <div class="col-md-4 col-md-offset-4 feed_wrapper">
+  <div class="col-md-6 col-md-offset-3 feed_wrapper">
     <!-- Message Feed
      ============================================================ -->
     <div v-for="post in posts">
