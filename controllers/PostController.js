@@ -103,7 +103,7 @@ module.exports = {
 
             if(tags){
                 for(var i = 0; i < tags.length; i++){
-                    body = body.replace(tags[i], "["+ tags[i] +"](#/tag/"+tags[i].replace("#","")+")");
+                    body = body.replace(tags[i], "["+ tags[i] +"](#/)");
                     tags[i] = tags[i].replace("#","");
                 }
             }
