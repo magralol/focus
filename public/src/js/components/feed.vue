@@ -16,7 +16,9 @@
       <form class="message" v-on:submit.prevent="post">
         <textarea name="new_message" class="form-control" placeholder="Skriv ett meddelande..." rows="6" id="new_message" v-model="postbody"></textarea>
         <p class="char_count">Tecken: {{postbody.length}}/300</p>
-        <input type="submit" name="" class="btn btn-primary reg_btn" value="Skicka">
+        <span class="xs-hidden" style="width: 300px; display: block; margin: 0 auto;">
+          <input type="submit" name="" class="btn btn-primary reg_btn" value="Skicka">
+        </span>
       </form>
     </div>
 

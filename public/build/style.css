@@ -100,19 +100,38 @@
   position: relative;
   width: 95%;
   min-height: 350px;
-  background: #fff;
+  background: #141236;
+  color: #fff;
   text-align: center;
   margin: 0 auto;
-  padding: 10px 20px;
+  padding: 10px 20px 20px;
   border-radius: 5px;
   box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.1); }
+
+.login-box h3 {
+  font-size: 52px;
+  font-weight: bold;
+  color: #fff; }
+
+.login-state {
+  display: flex;
+  padding: 0 40px;
+  margin: 30px auto;
+  justify-content: space-between; }
+  .login-state span {
+    font-size: 18px;
+    text-transform: uppercase; }
+
+.active {
+  border-bottom: 2px solid #005BF3; }
 
 .home-form {
   width: 90%;
   margin: 0 auto; }
 
-.home-form input {
-  margin-bottom: 5px; }
+.home-form input:not([type=submit]) {
+  margin-bottom: 5px;
+  background: #fff; }
 
 .home-form label {
   font-size: 10px;
@@ -121,7 +140,9 @@
 
 .reg_btn {
   width: 100%;
-  margin-top: 10px; }
+  height: 40px;
+  background: #005BF3;
+  border-radius: 20px; }
 
 @media screen and (min-width: 768px) {
   .login-box {
@@ -156,10 +177,11 @@
     height: 40px;
     background: #005BF3;
     border-radius: 20px; }
-  .active {
-    border-bottom: 2px solid #005BF3; }
   .home-form > .form-control {
-    color: #fff; } }
+    color: #fff; }
+  .home-form input:not([type=submit]) {
+    margin-bottom: 5px;
+    background: rgba(255, 255, 255, 0.3); } }
 
 .feed_wrapper {
   padding: 0 10px; }
@@ -223,11 +245,25 @@ form label {
   font-size: 12px;
   font-weight: 300; }
 
+.profile_header {
+  margin-bottom: 20px; }
+
+.profile_header h3 {
+  font-weight: bold;
+  color: #141236;
+  text-align: center;
+  margin: 0 0 10px; }
+
+.profile_header p {
+  color: #141236;
+  text-transform: uppercase;
+  font-size: 12px;
+  margin: 0 auto; }
+
 @media screen and (max-width: 768px) {
   .profile_header {
     background: #141236;
     margin-top: -25px;
-    margin-bottom: 20px;
     padding: 15px; }
   .profile_header h3 {
     color: #fff !important;
@@ -306,6 +342,9 @@ form label {
 
 .edit-filter {
   color: green; }
+
+.modal-content * input {
+  border: 1px solid rgba(0, 0, 0, 0.1); }
 
 body {
   background: #f7f7f7;
